@@ -15,8 +15,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<FormState> _formLoginKey = GlobalKey<FormState>();
   bool light = false;
-  String username = "failed";
+  String username = "0";
   String password = "";
   var obscureText = true;
 
@@ -75,187 +76,200 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.white,
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 50,
-                          ),
-                          Text(
-                            "ชื่อผู้ใช้งาน",
-                            style: GoogleFonts.prompt(
-                              textStyle: TextStyle(
-                                fontSize: Config.instance.fontinfo,
-                                fontWeight: FontWeight.w400,
-                              ),
+                      child: Form(
+                        key: _formLoginKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 50,
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10.0),
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.person_rounded,
-                                  color: Colors.grey,
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0),
-                                ),
-                                hintText: 'ชื่อผู้ใช้งาน',
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 50,
-                          ),
-                          Text(
-                            "รหัสผ่าน",
-                            style: GoogleFonts.prompt(
-                              textStyle: TextStyle(
-                                fontSize: Config.instance.fontinfo,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10.0),
-                            child: TextFormField(
-                              obscureText: obscureText,
-                              decoration: InputDecoration(
-                                suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      obscureText = !obscureText;
-                                    });
-                                  },
-                                  child: obscureText
-                                      ? Icon(
-                                          Icons.visibility_off,
-                                          color: Colors.grey,
-                                        )
-                                      : Icon(
-                                          Icons.visibility,
-                                          color: Colors.grey,
-                                        ),
-                                ),
-                                prefixIcon: Icon(
-                                  Icons.lock_rounded,
-                                  color: Colors.grey,
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0),
-                                ),
-                                hintText: 'รหัสผ่าน',
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 50,
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size.fromHeight(50),
-                              onPrimary: Colors.white,
-                              primary: const Color.fromRGBO(19, 71, 154, 1),
-                            ),
-                            child: Text(
-                              "เข้าสู่ระบบ",
+                            Text(
+                              "ชื่อผู้ใช้งาน",
                               style: GoogleFonts.prompt(
                                 textStyle: TextStyle(
                                   fontSize: Config.instance.fontinfo,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                             ),
-                            onPressed: () {
-                              if (username == "0") {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const BottomNavBar(),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.0),
+                              child: TextFormField(
+                                validator: (username) {
+                                  return null;
+                                },
+                                onSaved: (newValue) {},
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.person_rounded,
+                                    color: Colors.grey,
                                   ),
-                                );
-                              } else {
-                                showDialog<String>(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      AlertDialog(
-                                    title: const Text('เข้าสู่ระบบล้มเหลว'),
-                                    content: const Text(
-                                        'โปรดกรอก ชื่อผู้ใช้งาน หรือ รหัสผ่านให้ถูกต้อง เพื่อเข้าสู่ระบบ'),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(context, 'ปิด'),
-                                        child: const Text('ปิด'),
-                                      ),
-                                    ],
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey, width: 1.0),
                                   ),
-                                );
-                              }
-                            },
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 50,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Switch(
-                                    // This bool value toggles the switch.
-                                    value: light,
-                                    activeColor: Color.fromRGBO(235, 158, 0, 1),
-                                    onChanged: (bool value) {
-                                      // This is called when the user toggles the switch.
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey, width: 1.0),
+                                  ),
+                                  hintText: 'ชื่อผู้ใช้งาน',
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 50,
+                            ),
+                            Text(
+                              "รหัสผ่าน",
+                              style: GoogleFonts.prompt(
+                                textStyle: TextStyle(
+                                  fontSize: Config.instance.fontinfo,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.0),
+                              child: TextFormField(
+                                obscureText: obscureText,
+                                validator: (value) {
+                                  return null;
+                                },
+                                onSaved: (newValue) {},
+                                decoration: InputDecoration(
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
                                       setState(() {
-                                        light = value;
+                                        obscureText = !obscureText;
                                       });
                                     },
+                                    child: obscureText
+                                        ? Icon(
+                                            Icons.visibility_off,
+                                            color: Colors.grey,
+                                          )
+                                        : Icon(
+                                            Icons.visibility,
+                                            color: Colors.grey,
+                                          ),
                                   ),
-                                  Text(
-                                    "จดจำบัญชีผู้ใช้งาน",
-                                    style: GoogleFonts.prompt(
-                                      textStyle: TextStyle(
-                                        fontSize: Config.instance.fontinfo,
-                                        color: Color.fromRGBO(19, 71, 154, 1),
-                                      ),
-                                    ),
+                                  prefixIcon: Icon(
+                                    Icons.lock_rounded,
+                                    color: Colors.grey,
                                   ),
-                                ],
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey, width: 1.0),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey, width: 1.0),
+                                  ),
+                                  hintText: 'รหัสผ่าน',
+                                ),
                               ),
-                              TextButton(
-                                onPressed: () async {
-                                  await launchUrl(
-                                      Uri.parse(
-                                          "https://elaws.md.go.th/nsw-generator/gen_from_db/my/forgot_password_form.php"),
-                                      mode: LaunchMode.externalApplication);
-                                },
-                                child: Text(
-                                  "ลืมรหัสผ่าน ?",
-                                  style: GoogleFonts.prompt(
-                                    textStyle: TextStyle(
-                                      fontSize: Config.instance.fontinfo,
-                                      color: Color.fromRGBO(235, 158, 0, 1),
-                                    ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 50,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size.fromHeight(50),
+                                onPrimary: Colors.white,
+                                primary: const Color.fromRGBO(19, 71, 154, 1),
+                              ),
+                              child: Text(
+                                "เข้าสู่ระบบ",
+                                style: GoogleFonts.prompt(
+                                  textStyle: TextStyle(
+                                    fontSize: Config.instance.fontinfo,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                        ],
+                              onPressed: () {
+                                if (username == null) {
+                                  showDialog<String>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                      title: const Text('เข้าสู่ระบบล้มเหลว'),
+                                      content: const Text(
+                                          'โปรดกรอก ชื่อผู้ใช้งาน หรือ รหัสผ่านให้ถูกต้อง เพื่อเข้าสู่ระบบ'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, 'ปิด'),
+                                          child: const Text('ปิด'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const BottomNavBar(),
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 50,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Switch(
+                                      // This bool value toggles the switch.
+                                      value: light,
+                                      activeColor:
+                                          Color.fromRGBO(235, 158, 0, 1),
+                                      onChanged: (bool value) {
+                                        // This is called when the user toggles the switch.
+                                        setState(() {
+                                          light = value;
+                                        });
+                                      },
+                                    ),
+                                    Text(
+                                      "จดจำบัญชีผู้ใช้งาน",
+                                      style: GoogleFonts.prompt(
+                                        textStyle: TextStyle(
+                                          fontSize: Config.instance.fontinfo,
+                                          color: Color.fromRGBO(19, 71, 154, 1),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    await launchUrl(
+                                        Uri.parse(
+                                            "https://elaws.md.go.th/nsw-generator/gen_from_db/my/forgot_password_form.php"),
+                                        mode: LaunchMode.externalApplication);
+                                  },
+                                  child: Text(
+                                    "ลืมรหัสผ่าน ?",
+                                    style: GoogleFonts.prompt(
+                                      textStyle: TextStyle(
+                                        fontSize: Config.instance.fontinfo,
+                                        color: Color.fromRGBO(235, 158, 0, 1),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
