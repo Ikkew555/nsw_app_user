@@ -7,8 +7,8 @@ import 'package:nsw_app/component/bottom_navigation_bar_profilepage.dart';
 import 'package:nsw_app/component/menu_meeting_menu.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/component/btn_notification.dart';
-import 'package:nsw_app/pages/calendarpage.dart';
-import 'package:nsw_app/pages/profilepage.dart';
+import 'package:nsw_app/pages/calendar/calendarpage.dart';
+import 'package:nsw_app/pages/profile/profilepage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {

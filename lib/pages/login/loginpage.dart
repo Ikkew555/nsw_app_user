@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/component/bottom_navigation_bar.dart';
+import 'package:nsw_app/component/failed_alertdialog.dart';
 import 'package:nsw_app/config.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,6 +16,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool light = false;
+  String username = "failed";
+  String password = "";
+  var obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 10.0),
-                            child: TextField(
+                            child: TextFormField(
                               decoration: InputDecoration(
                                 prefixIcon: Icon(
                                   Icons.person_rounded,
@@ -119,8 +124,25 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 10.0),
-                            child: TextField(
+                            child: TextFormField(
+                              obscureText: obscureText,
                               decoration: InputDecoration(
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      obscureText = !obscureText;
+                                    });
+                                  },
+                                  child: obscureText
+                                      ? Icon(
+                                          Icons.visibility_off,
+                                          color: Colors.grey,
+                                        )
+                                      : Icon(
+                                          Icons.visibility,
+                                          color: Colors.grey,
+                                        ),
+                                ),
                                 prefixIcon: Icon(
                                   Icons.lock_rounded,
                                   color: Colors.grey,
@@ -156,12 +178,31 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const BottomNavBar(),
-                                ),
-                              );
+                              if (username == "0") {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const BottomNavBar(),
+                                  ),
+                                );
+                              } else {
+                                showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                    title: const Text('เข้าสู่ระบบล้มเหลว'),
+                                    content: const Text(
+                                        'โปรดกรอก ชื่อผู้ใช้งาน หรือ รหัสผ่านให้ถูกต้อง เพื่อเข้าสู่ระบบ'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, 'ปิด'),
+                                        child: const Text('ปิด'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
                             },
                           ),
                           SizedBox(
@@ -196,7 +237,12 @@ class _LoginPageState extends State<LoginPage> {
                                 ],
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  await launchUrl(
+                                      Uri.parse(
+                                          "https://elaws.md.go.th/nsw-generator/gen_from_db/my/forgot_password_form.php"),
+                                      mode: LaunchMode.externalApplication);
+                                },
                                 child: Text(
                                   "ลืมรหัสผ่าน ?",
                                   style: GoogleFonts.prompt(
@@ -229,7 +275,12 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          await launchUrl(
+                              Uri.parse(
+                                  "https://elaws.md.go.th/nsw-generator/gen_from_db/my/register.php"),
+                              mode: LaunchMode.externalApplication);
+                        },
                         child: Text(
                           "ลงทะเบียน",
                           style: GoogleFonts.prompt(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/loginpage.dart';
+import 'package:nsw_app/pages/login/loginpage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -72,7 +73,12 @@ class _SplashPageState extends State<SplashPage> {
               height: MediaQuery.of(context).size.height / 50,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () async {
+                await launchUrl(
+                    Uri.parse(
+                        "https://elaws.md.go.th/nsw-generator/gen_from_db/my/register.php"),
+                    mode: LaunchMode.externalApplication);
+              },
               child: Text(
                 "ลงทะเบียน",
                 style: GoogleFonts.prompt(

@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:nsw_app/component/bottom_navigation_bar_qrscanpage.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/homepage.dart';
-import 'package:nsw_app/pages/notificationpage.dart';
-import 'package:nsw_app/pages/profilepage.dart';
-import 'package:nsw_app/pages/scanQRpage.dart';
-import 'package:nsw_app/pages/track_statuspage.dart';
+import 'package:nsw_app/pages/home/homepage.dart';
+import 'package:nsw_app/pages/notification/notificationpage.dart';
+import 'package:nsw_app/pages/profile/profilepage.dart';
+import 'package:nsw_app/pages/scanQR/scanQRpage.dart';
+import 'package:nsw_app/pages/track_status/track_statuspage.dart';
 
 class BottomNavBarNotification extends StatefulWidget {
   const BottomNavBarNotification({Key? key}) : super(key: key);
