@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/privacy_consentpage.dart';
+import 'package:nsw_app/pages/privacy_consent/privacy_consentpage.dart';
 
 class PrivacyConsentButton extends StatefulWidget {
   const PrivacyConsentButton({Key? key}) : super(key: key);
