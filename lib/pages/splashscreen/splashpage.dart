@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/login/loginpage.dart';
+import 'package:nsw_app/pages/login/login.view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SplashPage extends StatefulWidget {
