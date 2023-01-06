@@ -42,6 +42,7 @@ dependencies:
   flutter_neat_and_clean_calendar: ^0.3.6+19
   badges: ^2.0.3
   tab_indicator_styler: ^2.0.0
+  google_maps_flutter: ^2.2.3
 
 dev_dependencies:
   flutter_test:
