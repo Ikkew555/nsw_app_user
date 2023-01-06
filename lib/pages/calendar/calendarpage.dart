@@ -78,6 +78,7 @@ class _CalendarPageState extends State<CalendarPage> {
           )
         ],
         body: Calendar(
+          eventTileHeight: 70, //*Events height
           startOnMonday: true,
           weekDays: [
             'Mon',
@@ -104,7 +105,7 @@ class _CalendarPageState extends State<CalendarPage> {
           expandableDateFormat: 'EEEE d MMMM yyyy',
           // datePickerType: DatePickerType.date, //*Hide calendar icon
           dayOfWeekStyle: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.w800, fontSize: 11),
+              color: Colors.black, fontWeight: FontWeight.w800, fontSize: 12),
         ),
       ),
     );

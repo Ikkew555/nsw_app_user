@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/home/homepage.dart';
+import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/notification/notificationpage.dart';
 import 'package:nsw_app/pages/profile/profilepage.dart';
 import 'package:nsw_app/pages/scanQR/scanQRpage.dart';

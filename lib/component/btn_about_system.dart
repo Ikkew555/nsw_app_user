@@ -37,7 +37,7 @@ class _AboutSystemButtonState extends State<AboutSystemButton> {
           SizedBox(
             width: 20,
           ),
-          Text("เกี่ยวกับระบบ", style: Config.instance.f16semiboldblack),
+          Text("Contact us", style: Config.instance.f16semiboldblack),
         ],
       ),
     );

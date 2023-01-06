@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/component/bottom_navigation_bar_qrscanpage.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/home/homepage.dart';
+import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/notification/notificationpage.dart';
 import 'package:nsw_app/pages/profile/profilepage.dart';
 import 'package:nsw_app/pages/scanQR/scanQRpage.dart';
@@ -228,35 +228,3 @@ class _BottomNavBarState extends State<BottomNavBar> {
     );
   }
 }
-
-      // bottomNavigationBar: BottomNavigationBar(
-      //   showUnselectedLabels: true,
-      //   type: BottomNavigationBarType.fixed,
-      //   currentIndex: _selectedIndex,
-      //   selectedItemColor: Color.fromRGBO(19, 71, 154, 1),
-      //   unselectedItemColor: Colors.black38,
-      //   selectedFontSize: 12,
-      //   onTap: _onItemTapped,
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home_outlined),
-      //       label: 'หน้าหลัก',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.insert_drive_file_outlined),
-      //       label: 'ติดตามสถานะ',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.qr_code_scanner),
-      //       label: 'แสกน QR',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.notifications_none_outlined),
-      //       label: 'แจ้งเตือน',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.settings_outlined),
-      //       label: 'ตั้งค่า',
-      //     ),
-      //   ],
-      // ),
