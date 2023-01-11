@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,11 +11,12 @@ class Config {
   Color color = const Color.fromRGBO(19, 71, 154, 1);
   double fonttopic = 12;
   double fontinfo = 16;
+
   TextStyle f16semiboldprimary = GoogleFonts.prompt(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
-      color: Config.instance.color,
+      color: Color.fromRGBO(19, 71, 154, 1),
     ),
   );
   TextStyle f16semiboldblack = GoogleFonts.prompt(

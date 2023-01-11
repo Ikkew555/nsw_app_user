@@ -5,18 +5,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/pincode/widgets/popupSuccessfull.dart';
 
-void main() => runApp(MyApp());
+// void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: _buildTheme(),
-      home: PincodeView(),
-    );
-  }
-}
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       theme: _buildTheme(),
+//       home: PincodeView(),
+//     );
+//   }
+// }
 
 ThemeData _buildTheme() {
   final base = ThemeData.light();
