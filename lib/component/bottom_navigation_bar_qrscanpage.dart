@@ -6,7 +6,7 @@ import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/notification/notificationpage.dart';
 import 'package:nsw_app/pages/profile/profilepage.dart';
 import 'package:nsw_app/pages/scanQR/scanQRpage.dart';
-import 'package:nsw_app/pages/track_status/track_statuspage.dart';
+import 'package:nsw_app/pages/track_status/track_status.view.dart';
 
 class BottomNavBarQRScan extends StatefulWidget {
   const BottomNavBarQRScan({Key? key}) : super(key: key);
