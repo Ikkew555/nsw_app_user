@@ -1,23 +1,40 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:ui';
+
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nsw_app/component/bottom_navigation_bar_profilepage.dart';
 import 'package:nsw_app/component/menu_meeting_menu.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/component/btn_notification.dart';
-import 'package:nsw_app/pages/calendar/calendarpage.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:nsw_app/model/login.user.Json.dart';
+import 'package:nsw_app/model/user.dart';
+import 'package:nsw_app/pages/home/home.view.dto.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  const HomeView({Key? key, required this.homeDto}) : super(key: key);
+
+  final HomeDto homeDto;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeViewState extends State<HomeView> {
+  // late userData userdata;
+  late HomeDto homeDto;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      homeDto = widget.homeDto;
+    });
+    // print("userdata");
+    // print(userdata);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,26 +50,20 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.black,
                             shape: StadiumBorder(),
-                            onPrimary: Colors.black,
+                            backgroundColor: Colors.transparent,
                             splashFactory: NoSplash.splashFactory,
-                            primary: Colors.transparent,
                             shadowColor: Colors.transparent,
                             elevation: 0,
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const BottomNavBarProfile(),
-                              ),
-                            );
+                            HandleonPressedProfile();
                           },
                           child: Row(
                             children: [
                               Image.asset(
-                                "assets/profile_img.png",
+                                homeDto.imagePathProfile,
                                 width: 50,
                               ),
                               SizedBox(
@@ -63,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                      text: 'สวัสดี',
+                                      text: homeDto.helloText,
                                       style: GoogleFonts.prompt(
                                         textStyle: TextStyle(
                                           fontSize: 22,
@@ -73,7 +84,8 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     TextSpan(
-                                      text: ' คุณ',
+                                      text:
+                                          ''' ${User.instance.prefix.toString()}''',
                                       style: GoogleFonts.prompt(
                                         textStyle: TextStyle(
                                           fontSize: 12,
@@ -83,7 +95,8 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     TextSpan(
-                                      text: ' \nสมมุติ ทดสอบระบบ',
+                                      text:
+                                          '''\n${User.instance.displayName.toString()}''', // user name and surname
                                       style: GoogleFonts.prompt(
                                         textStyle: TextStyle(
                                           fontSize: 18,
@@ -137,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                                   ShapeBorderClipper(shape: CircleBorder()),
                               color: Colors.transparent,
                               child: Image.asset(
-                                "assets/circle_menu1.png",
+                                homeDto.imagePathMenuWait,
                                 width: 60,
                               ),
                             ),
@@ -146,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                             height: 5,
                           ),
                           Text(
-                            "รอผู้ยื่นคำร้อง",
+                            homeDto.menuWaitText,
                             style: GoogleFonts.prompt(
                               textStyle: const TextStyle(
                                 fontSize: 12,
@@ -179,7 +192,7 @@ class _HomePageState extends State<HomePage> {
                                   ShapeBorderClipper(shape: CircleBorder()),
                               color: Colors.transparent,
                               child: Image.asset(
-                                "assets/circle_menu2.png",
+                                homeDto.imagePathMenuWorking,
                                 width: 60,
                               ),
                             ),
@@ -188,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                             height: 5,
                           ),
                           Text(
-                            "กรมฯ กำลังดำเนินการ",
+                            homeDto.menuWorkingText,
                             style: GoogleFonts.prompt(
                               textStyle: const TextStyle(
                                 fontSize: 12,
@@ -221,7 +234,7 @@ class _HomePageState extends State<HomePage> {
                                   ShapeBorderClipper(shape: CircleBorder()),
                               color: Colors.transparent,
                               child: Image.asset(
-                                "assets/circle_menu3.png",
+                                homeDto.imagePathMenuDocument,
                                 width: 60,
                               ),
                             ),
@@ -230,7 +243,7 @@ class _HomePageState extends State<HomePage> {
                             height: 5,
                           ),
                           Text(
-                            "พร้อมรับเอกสาร",
+                            homeDto.menuDocumentText,
                             style: GoogleFonts.prompt(
                               textStyle: const TextStyle(
                                 fontSize: 12,
@@ -267,12 +280,11 @@ class _HomePageState extends State<HomePage> {
                       width: MediaQuery.of(context).size.width,
                       child: InkWell(
                         hoverColor: Colors.transparent,
-                        onTap: () async {
-                          await launchUrl(Uri.parse("https://md.go.th/"),
-                              mode: LaunchMode.externalApplication);
+                        onTap: () {
+                          HandleonTapWelcomeWeb();
                         },
                         child: Image.asset(
-                          "assets/web_nsw1.png",
+                          homeDto.imagePathWelcomeWeb,
                         ),
                       ),
                     ),
@@ -298,13 +310,11 @@ class _HomePageState extends State<HomePage> {
                       width: MediaQuery.of(context).size.width,
                       child: InkWell(
                         hoverColor: Colors.transparent,
-                        onTap: () async {
-                          await launchUrl(
-                              Uri.parse("https://app-shipreg.md.go.th/my/"),
-                              mode: LaunchMode.externalApplication);
+                        onTap: () {
+                          HandleonTapEservice();
                         },
                         child: Image.asset(
-                          "assets/web_nsw2.png",
+                          homeDto.imagePathEservice,
                         ),
                       ),
                     ),
@@ -346,12 +356,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const CalendarPage(),
-                                ),
-                              );
+                              HandleonPressedCalendar();
                             },
                           ),
                         ),
@@ -384,5 +389,21 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  HandleonTapWelcomeWeb() {
+    homeDto.onTapWelcomeWeb.call();
+  }
+
+  HandleonTapEservice() {
+    homeDto.onTapEservice.call();
+  }
+
+  HandleonPressedProfile() {
+    homeDto.onPressedProfile.call();
+  }
+
+  HandleonPressedCalendar() {
+    homeDto.onPressedCalendar.call();
   }
 }
