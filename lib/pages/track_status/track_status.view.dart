@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/component/btn_notification.dart';
 import 'package:nsw_app/component/track_status_menu.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TrackStatusPage extends StatefulWidget {
@@ -15,6 +16,26 @@ class TrackStatusPage extends StatefulWidget {
 }
 
 class _TrackStatusPageState extends State<TrackStatusPage> {
+  OutlineInputBorder myinputborder() {
+    //return type is OutlineInputBorder
+    return OutlineInputBorder(
+        //Outline border type for TextFeild
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        borderSide: BorderSide(
+          color: Colors.black38,
+          width: 1,
+        ));
+  }
+
+  OutlineInputBorder myfocusborder() {
+    return OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        borderSide: BorderSide(
+          color: Config.instance.color,
+          width: 1,
+        ));
+  }
+
   List<String> items = [
     "รอผู้ยื่นคำร้องดำเนินการ (4) ",
     "กรมฯ กำลังดำเนินการ (4)",
@@ -133,191 +154,205 @@ class _TrackStatusPageState extends State<TrackStatusPage> {
                                   primary: Config.instance.color,
                                   elevation: 0,
                                 ),
-                                onPressed: () => showDialog<String>(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      AlertDialog(
-                                    contentPadding:
-                                        EdgeInsets.only(left: 10, right: 10),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(20.0),
-                                      ),
-                                    ),
-                                    content: SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height -
-                                              50,
-                                      width: 300,
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: <Widget>[
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            Center(
-                                              child: Text(
-                                                "งานทะเบียนเรือ",
-                                                style: GoogleFonts.prompt(
-                                                  textStyle: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 18,
-                                                    color: Colors.black,
+                                onPressed: () {
+                                  showDialog<String>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                      contentPadding:
+                                          EdgeInsets.only(left: 10, right: 10),
+                                      content: SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height -
+                                                50,
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                50,
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.stretch,
+                                            children: <Widget>[
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Center(
+                                                child: Text(
+                                                  "งานทะเบียนเรือ",
+                                                  style: GoogleFonts.prompt(
+                                                    textStyle: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 18,
+                                                      color: Colors.black,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            Row(
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_1.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_2.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_3.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_4.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_5.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_6.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_7.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_8.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_9.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_10.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_11.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_12.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_13.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_14.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    "assets/work_system_15.png",
-                                                    width: 150,
-                                                  ),
-                                                  onTap: () {},
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                          ],
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_1.png",
+                                                      system_name:
+                                                          "งานตรวจเรือ"),
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_2.png",
+                                                      system_name:
+                                                          "งานคนประจำเรือ"),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_3.png",
+                                                      system_name:
+                                                          "งานประกาศนียบัตร"),
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_4.png",
+                                                      system_name:
+                                                          "งานระบบ\nการชำระค่าธรรมเนียม"),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_5.png",
+                                                      system_name:
+                                                          "งานคดีและการดำเนินคดี"),
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_6.png",
+                                                      system_name:
+                                                          "งานคุณภาพสิ่งแวดล้อม"),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_7.png",
+                                                      system_name:
+                                                          "งานสิ่งล่วงล้ำลำแม่น้ำ"),
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_8.png",
+                                                      system_name:
+                                                          "งานตรวจการขนส่งทางน้ำ"),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_9.png",
+                                                      system_name:
+                                                          "งานระบบเงินเดือน"),
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_10.png",
+                                                      system_name:
+                                                          "งานระบบรับแจ้งปัญหา\nการใช้งานระบบคอมพิวเตอร์"),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_11.png",
+                                                      system_name:
+                                                          "งานจดทะเบียน\nเป็นผู้ประกอบการขนส่งทาง\nทะเลและผู้ประกอบกิจการอู่เรือ"),
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_12.png",
+                                                      system_name:
+                                                          "งานจดทะเบียน\nเป็นผู้ประกอบการขนส่ง\nต่อเนื่องหลายรูปแบบ"),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_13.png",
+                                                      system_name:
+                                                          "งานขออนุญาตประกอบ\nกิจการท่าเรือเดินทะเลตาม\nประกาศคณะปฏิวัติฉบับที่ ๕๘"),
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_14.png",
+                                                      system_name:
+                                                          "งานสารสนเทศพาณิชยนาวี"),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  SystemBox(
+                                                      system_img:
+                                                          "assets/system_3.png",
+                                                      system_name:
+                                                          "งานพัฒนาเว็บไซต์\nของกรมเจ้าท่า"),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                },
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -394,6 +429,22 @@ class _TrackStatusPageState extends State<TrackStatusPage> {
                               ],
                             );
                           },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0),
+                        child: SizedBox(
+                          height: 40,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              labelText: "ค้นหา",
+                              labelStyle: Config.instance.f16normal,
+                              suffixIcon: Icon(Icons.search),
+                              border: myinputborder(),
+                              enabledBorder: myinputborder(),
+                              focusedBorder: myfocusborder(),
+                            ),
+                          ),
                         ),
                       ),
                       SingleChildScrollView(
@@ -509,7 +560,7 @@ class _TrackStatusPageState extends State<TrackStatusPage> {
                                                                   () async {
                                                                 await launchUrl(
                                                                     Uri.parse(
-                                                                        "https://www.youtube.com/watch?v=eaEMSKzqGAg&ab_channel=Stanstanding"),
+                                                                        "https://www.google.com/?&bih=961&biw=1872&hl=en"),
                                                                     mode: LaunchMode
                                                                         .externalApplication);
                                                               },

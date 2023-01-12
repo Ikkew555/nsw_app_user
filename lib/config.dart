@@ -9,14 +9,23 @@ class Config {
   static Config instance = Config._myConstructor();
 
   Color color = const Color.fromRGBO(19, 71, 154, 1);
+  Color primarycolor = const Color.fromRGBO(7, 20, 124, 1);
+
   double fonttopic = 12;
   double fontinfo = 16;
 
+  TextStyle f12semiboldprimary = GoogleFonts.prompt(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 12,
+      color: Color.fromRGBO(7, 20, 124, 1),
+    ),
+  );
   TextStyle f16semiboldprimary = GoogleFonts.prompt(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
-      color: Color.fromRGBO(19, 71, 154, 1),
+      color: Color.fromRGBO(7, 20, 124, 1),
     ),
   );
   TextStyle f16semiboldblack = GoogleFonts.prompt(
@@ -52,6 +61,12 @@ class Config {
       fontWeight: FontWeight.w400,
       fontSize: 14,
       color: Colors.grey,
+    ),
+  );
+  TextStyle f16normal = GoogleFonts.prompt(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
     ),
   );
   TextStyle f18boldblack = GoogleFonts.prompt(
