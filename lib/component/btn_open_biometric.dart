@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
 
@@ -9,6 +11,8 @@ class OpenBiometricButton extends StatefulWidget {
 }
 
 class _OpenBiometricButtonState extends State<OpenBiometricButton> {
+  bool light = false;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -24,21 +28,37 @@ class _OpenBiometricButtonState extends State<OpenBiometricButton> {
       ),
       onPressed: () {},
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            width: 20,
-            height: 20,
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(179, 193, 206, 1),
-              shape: BoxShape.circle,
-            ),
+          Row(
+            children: [
+              Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(179, 193, 206, 1),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Text("เปิดการใช้งานด้วยอัตลักษณ์",
+                  style: Config.instance.f16semiboldblack),
+            ],
           ),
-          SizedBox(
-            width: 20,
+          Switch(
+            // This bool value toggles the switch.
+            value: light,
+            activeColor: Color.fromRGBO(235, 158, 0, 1),
+            onChanged: (bool value) {
+              // This is called when the user toggles the switch.
+              setState(() {
+                light = value;
+              });
+            },
           ),
-          Text("เปิดการใช้งานด้วยอัตลักษณ์",
-              style: Config.instance.f16semiboldblack),
         ],
       ),
     );
