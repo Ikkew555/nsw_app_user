@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/contact.us/contact.us.view.dart';
 
 class AboutSystemButton extends StatefulWidget {
   const AboutSystemButton({Key? key}) : super(key: key);
@@ -22,7 +23,14 @@ class _AboutSystemButtonState extends State<AboutSystemButton> {
         primary: Colors.white,
         elevation: 5,
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ContactUsView(),
+          ),
+        );
+      },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
