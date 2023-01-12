@@ -25,7 +25,7 @@ class SearchBar extends StatelessWidget {
         child: TextField(
           decoration: InputDecoration(
             labelText: "สาขาเจ้าท่าทั้งหมด",
-            labelStyle: Config.instance.f16semiboldblack,
+            labelStyle: Config.instance.f16normal,
             prefixIcon: Icon(Icons.location_on_outlined),
             suffixIcon: Icon(Icons.search),
             contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),

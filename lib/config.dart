@@ -7,7 +7,6 @@ class Config {
   Config._myConstructor();
 
   static Config instance = Config._myConstructor();
-
   Color color = const Color.fromRGBO(19, 71, 154, 1);
   Color primarycolor = const Color.fromRGBO(7, 20, 124, 1);
 
@@ -83,4 +82,12 @@ class Config {
       color: Color.fromRGBO(102, 102, 102, 1),
     ),
   );
+}
+
+class ApiConfig {
+  ApiConfig._myConstructor();
+  static ApiConfig instance = ApiConfig._myConstructor();
+  String apiNswUrl = "https://app-shipreg.md.go.th/auth_citizen/";
+
+  String localUrl = "http://209.15.98.9:8888/api/";
 }
