@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/home/home.dart';
 import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/notification/notificationpage.dart';
 import 'package:nsw_app/pages/profile/profilepage.dart';
@@ -19,7 +20,7 @@ class _BottomNavBarQRScanState extends State<BottomNavBarQRScan> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
+    Home(),
     TrackStatusPage(),
     QRScanner(),
     NotificationPage(),
@@ -36,7 +37,7 @@ class _BottomNavBarQRScanState extends State<BottomNavBarQRScan> {
   Widget currentScreen = QRScanner();
   int currentTab = 5;
   final List<Widget> screens = [
-    HomePage(),
+    Home(),
     TrackStatusPage(),
     NotificationPage(),
     ProfilePage(),
@@ -67,7 +68,7 @@ class _BottomNavBarQRScanState extends State<BottomNavBarQRScan> {
                     onPressed: () {
                       setState(
                         () {
-                          currentScreen = HomePage();
+                          currentScreen = Home();
                           currentTab = 0;
                         },
                       );

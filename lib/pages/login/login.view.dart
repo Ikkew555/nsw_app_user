@@ -2,9 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nsw_app/api/api_login.dart';
 import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/component/failed_alertdialog.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/model/login.user.Json.dart';
+import 'package:nsw_app/model/user.dart';
+import 'package:nsw_app/pages/home/home.dart';
+import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,8 +22,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formLoginKey = GlobalKey<FormState>();
   bool light = false;
-  String username = "0";
-  String password = "";
+  var username;
+  var password;
   var obscureText = true;
 
   @override
@@ -99,7 +104,11 @@ class _LoginPageState extends State<LoginPage> {
                                 validator: (username) {
                                   return null;
                                 },
-                                onSaved: (newValue) {},
+                                onSaved: (_username) {
+                                  setState(() {
+                                    username = _username;
+                                  });
+                                },
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.person_rounded,
@@ -136,7 +145,11 @@ class _LoginPageState extends State<LoginPage> {
                                 validator: (value) {
                                   return null;
                                 },
-                                onSaved: (newValue) {},
+                                onSaved: (_password) {
+                                  setState(() {
+                                    password = _password;
+                                  });
+                                },
                                 decoration: InputDecoration(
                                   suffixIcon: GestureDetector(
                                     onTap: () {
@@ -188,7 +201,21 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                               ),
-                              onPressed: () {
+                              onPressed: () async {
+                                if (_formLoginKey.currentState!.validate()) {
+                                  _formLoginKey.currentState!.save();
+                                }
+                                print("username");
+                                print(username);
+                                print("password");
+                                print(password);
+                                userData userdata =
+                                    await loginApi(username, password);
+                                setState(() {
+                                  User.instance.prefix = userdata.info?.prefix;
+                                  User.instance.displayName =
+                                      userdata.info?.displayName;
+                                }); // set value userData
                                 if (username == null) {
                                   showDialog<String>(
                                     context: context,
@@ -210,8 +237,7 @@ class _LoginPageState extends State<LoginPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BottomNavBar(),
+                                      builder: (context) => Home(),
                                     ),
                                   );
                                 }
