@@ -63,6 +63,12 @@ class Config {
       color: Colors.grey,
     ),
   );
+  TextStyle f16normal = GoogleFonts.prompt(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+    ),
+  );
   TextStyle f18boldblack = GoogleFonts.prompt(
     textStyle: TextStyle(
       fontWeight: FontWeight.w700,

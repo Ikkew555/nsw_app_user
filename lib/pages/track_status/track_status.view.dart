@@ -16,6 +16,26 @@ class TrackStatusPage extends StatefulWidget {
 }
 
 class _TrackStatusPageState extends State<TrackStatusPage> {
+  OutlineInputBorder myinputborder() {
+    //return type is OutlineInputBorder
+    return OutlineInputBorder(
+        //Outline border type for TextFeild
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        borderSide: BorderSide(
+          color: Colors.black38,
+          width: 1,
+        ));
+  }
+
+  OutlineInputBorder myfocusborder() {
+    return OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        borderSide: BorderSide(
+          color: Config.instance.color,
+          width: 1,
+        ));
+  }
+
   List<String> items = [
     "รอผู้ยื่นคำร้องดำเนินการ (4) ",
     "กรมฯ กำลังดำเนินการ (4)",
@@ -409,6 +429,22 @@ class _TrackStatusPageState extends State<TrackStatusPage> {
                               ],
                             );
                           },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0),
+                        child: SizedBox(
+                          height: 40,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              labelText: "ค้นหา",
+                              labelStyle: Config.instance.f16normal,
+                              suffixIcon: Icon(Icons.search),
+                              border: myinputborder(),
+                              enabledBorder: myinputborder(),
+                              focusedBorder: myfocusborder(),
+                            ),
+                          ),
                         ),
                       ),
                       SingleChildScrollView(
