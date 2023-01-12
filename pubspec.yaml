@@ -43,6 +43,7 @@ dependencies:
   badges: ^2.0.3
   tab_indicator_styler: ^2.0.0
   google_maps_flutter: ^2.2.3
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
