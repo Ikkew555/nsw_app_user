@@ -76,4 +76,11 @@ class Config {
       color: Colors.black,
     ),
   );
+  TextStyle f12semiboldgrey = GoogleFonts.prompt(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 12,
+      color: Color.fromRGBO(102, 102, 102, 1),
+    ),
+  );
 }
