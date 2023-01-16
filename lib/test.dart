@@ -4,6 +4,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
+import 'package:nsw_app/pages/login/login.dart';
 import 'package:nsw_app/pages/login/login.view.dart';
 import 'package:nsw_app/pages/profile/profilepage.dart';
 import 'package:nsw_app/pages/track_status/track_status.view.dart';
@@ -393,7 +394,7 @@ class _MainSrcState extends State<MainSrc> {
 
     List<Widget> _buildScreens() {
       return [
-        LoginPage(),
+        Login(),
         TrackStatusPage(),
         ProfilePage(),
       ];

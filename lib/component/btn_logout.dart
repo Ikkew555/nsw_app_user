@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/login/login.dart';
 import 'package:nsw_app/pages/login/login.view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,7 +42,7 @@ class _LogOutButtonState extends State<LogOutButton> {
         // User.instance.setuid("");
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => const LoginPage()),
+            MaterialPageRoute(builder: (context) => const Login()),
             (route) => false);
       },
       child: Row(

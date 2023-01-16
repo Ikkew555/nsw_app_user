@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/login/login.dart';
 import 'package:nsw_app/pages/login/login.view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SplashPage extends StatefulWidget {
-  const SplashPage({Key? key}) : super(key: key);
+class SplashScreenView extends StatefulWidget {
+  const SplashScreenView({Key? key}) : super(key: key);
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  State<SplashScreenView> createState() => _SplashScreenViewState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashScreenViewState extends State<SplashScreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +64,7 @@ class _SplashPageState extends State<SplashPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
+                      builder: (context) => const Login(),
                     ),
                   );
                 },
@@ -95,4 +97,12 @@ class _SplashPageState extends State<SplashPage> {
       ),
     );
   }
+
+  // HandleonPressedRegister() {
+  //   splashscreenDto.onPressedRegister.call();
+  // }
+
+  // HandleonPressedLogin() {
+  //   splashscreenDto.onPressedLogin.call();
+  // }
 }

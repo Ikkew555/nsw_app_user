@@ -1,30 +1,40 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/api/api_login.dart';
 import 'package:nsw_app/component/bottom_navigation_bar.dart';
-import 'package:nsw_app/component/failed_alertdialog.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/model/login.user.Json.dart';
 import 'package:nsw_app/model/user.dart';
 import 'package:nsw_app/pages/home/home.dart';
-import 'package:nsw_app/pages/home/home.view.dart';
+import 'package:nsw_app/pages/login/login.view.dto.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class LoginView extends StatefulWidget {
+  const LoginView({Key? key, required this.loginDto}) : super(key: key);
+
+  final LoginDto loginDto;
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginViewState extends State<LoginView> {
   final GlobalKey<FormState> _formLoginKey = GlobalKey<FormState>();
   bool light = false;
+  late LoginDto loginDto;
   var username;
   var password;
   var obscureText = true;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      loginDto = widget.loginDto;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: MediaQuery.of(context).size.height / 8,
                         ),
                         Image.asset(
-                          "assets/logo_nsw.png",
+                          loginDto.imagePathLogo,
                           width: MediaQuery.of(context).size.width / 3,
                         ),
                         Container(
@@ -188,9 +198,10 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                backgroundColor:
+                                    const Color.fromRGBO(19, 71, 154, 1),
                                 minimumSize: const Size.fromHeight(50),
-                                onPrimary: Colors.white,
-                                primary: const Color.fromRGBO(19, 71, 154, 1),
                               ),
                               child: Text(
                                 "เข้าสู่ระบบ",
@@ -234,10 +245,11 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   );
                                 } else {
+                                  // HandleonPressedLogin;
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Home(),
+                                      builder: (context) => BottomNavBar(),
                                     ),
                                   );
                                 }
@@ -276,11 +288,8 @@ class _LoginPageState extends State<LoginPage> {
                                   ],
                                 ),
                                 TextButton(
-                                  onPressed: () async {
-                                    await launchUrl(
-                                        Uri.parse(
-                                            "https://elaws.md.go.th/nsw-generator/gen_from_db/my/forgot_password_form.php"),
-                                        mode: LaunchMode.externalApplication);
+                                  onPressed: () {
+                                    HandleonPressedForgotPassword();
                                   },
                                   child: Text(
                                     "ลืมรหัสผ่าน ?",
@@ -315,11 +324,8 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () async {
-                          await launchUrl(
-                              Uri.parse(
-                                  "https://elaws.md.go.th/nsw-generator/gen_from_db/my/register.php"),
-                              mode: LaunchMode.externalApplication);
+                        onPressed: () {
+                          HandleonPressedRegister;
                         },
                         child: Text(
                           "ลงทะเบียน",
@@ -340,5 +346,17 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+  HandleonPressedForgotPassword() {
+    loginDto.onPressedForgotPassword.call();
+  }
+
+  HandleonPressedRegister() {
+    loginDto.onPressedRegister.call();
+  }
+
+  HandleonPressedLogin() {
+    loginDto.onPressedLogin.call();
   }
 }

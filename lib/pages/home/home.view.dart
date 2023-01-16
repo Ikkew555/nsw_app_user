@@ -8,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/component/menu_meeting_menu.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/component/btn_notification.dart';
-import 'package:nsw_app/model/login.user.Json.dart';
 import 'package:nsw_app/model/user.dart';
 import 'package:nsw_app/pages/home/home.view.dto.dart';
 
@@ -84,8 +83,7 @@ class _HomeViewState extends State<HomeView> {
                                       ),
                                     ),
                                     TextSpan(
-                                      text:
-                                          ''' ${User.instance.prefix.toString()}''',
+                                      text: ''' ${User.instance.prefix}''',
                                       style: GoogleFonts.prompt(
                                         textStyle: TextStyle(
                                           fontSize: 12,

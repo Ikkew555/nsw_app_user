@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:nsw_app/pages/homepage.dart';
-import 'package:nsw_app/pages/splashscreen/splashpage.dart';
-// import 'package:nsw_app/pages/track_status/track_statuspage.dart';
-// import 'package:nsw_app/component/notification_btn.dart';
-// import 'package:nsw_app/pages/splashpage.dart';
+import 'package:nsw_app/pages/splashscreen/splashscreen.dart';
+import 'package:nsw_app/pages/splashscreen/splashscreen.view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
       ),
-      home: const SplashPage(),
+      home: const SplashScreenView(),
     );
   }
 }
