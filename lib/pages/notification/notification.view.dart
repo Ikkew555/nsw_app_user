@@ -5,14 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/component/noticifation_menu_1.dart';
 import 'package:nsw_app/component/noticifation_menu_2.dart';
 
-class NotificationPage extends StatefulWidget {
-  const NotificationPage({Key? key}) : super(key: key);
+class NotificationView extends StatefulWidget {
+  const NotificationView({Key? key}) : super(key: key);
 
   @override
-  State<NotificationPage> createState() => _NotificationPageState();
+  State<NotificationView> createState() => _NotificationViewState();
 }
 
-class _NotificationPageState extends State<NotificationPage> {
+class _NotificationViewState extends State<NotificationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -5,8 +5,9 @@ import 'package:nsw_app/component/bottom_navigation_bar_qrscanpage.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/home/home.dart';
 import 'package:nsw_app/pages/home/home.view.dart';
-import 'package:nsw_app/pages/notification/notificationpage.dart';
-import 'package:nsw_app/pages/profile/profilepage.dart';
+import 'package:nsw_app/pages/notification/notification.view.dart';
+import 'package:nsw_app/pages/profile/profile.dart';
+import 'package:nsw_app/pages/profile/profile.view.dart';
 import 'package:nsw_app/pages/scanQR/scanQRpage.dart';
 import 'package:nsw_app/pages/track_status/track_status.view.dart';
 
@@ -25,8 +26,8 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
     Home(),
     TrackStatusPage(),
     QRScanner(),
-    NotificationPage(),
-    ProfilePage(),
+    NotificationView(),
+    Profile(),
   ];
 
   void _onItemTapped(int index) {
@@ -41,8 +42,8 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
   final List<Widget> screens = [
     Home(),
     TrackStatusPage(),
-    NotificationPage(),
-    ProfilePage(),
+    NotificationView(),
+    Profile(),
   ];
 
   @override
@@ -137,7 +138,7 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
                     onPressed: () {
                       setState(
                         () {
-                          currentScreen = NotificationPage();
+                          currentScreen = NotificationView();
                           currentTab = 3;
                         },
                       );
@@ -168,7 +169,7 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
                     onPressed: () {
                       setState(
                         () {
-                          currentScreen = ProfilePage();
+                          currentScreen = Profile();
                           currentTab = 4;
                         },
                       );

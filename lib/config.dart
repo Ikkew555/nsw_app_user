@@ -13,6 +13,13 @@ class Config {
   double fonttopic = 12;
   double fontinfo = 16;
 
+  TextStyle f12normalprimary = GoogleFonts.prompt(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 12,
+    ),
+  );
+
   TextStyle f12semiboldprimary = GoogleFonts.prompt(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,

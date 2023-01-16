@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/privacy_consent/privacy_consentpage.dart';
+import 'package:nsw_app/pages/privacy_consent/privacy_consent.view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class PrivacyConsentButton extends StatefulWidget {
   const PrivacyConsentButton({Key? key}) : super(key: key);
@@ -24,12 +25,8 @@ class _PrivacyConsentButtonState extends State<PrivacyConsentButton> {
         elevation: 5,
       ),
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const PrivacyPage(),
-          ),
-        );
+        PersistentNavBarNavigator.pushNewScreen(context,
+            screen: PrivacyConsentView(), withNavBar: false);
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
