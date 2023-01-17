@@ -3,7 +3,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nsw_app/component/btn_view_notification.dart';
+import 'package:nsw_app/component/btn_viewall_notification.dart';
 import 'package:nsw_app/component/noticifation_menu_1.dart';
 import 'package:nsw_app/component/noticifation_menu_2.dart';
 import 'package:nsw_app/config.dart';

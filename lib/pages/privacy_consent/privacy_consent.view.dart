@@ -5,14 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/component/btn_return.dart';
 import 'package:nsw_app/config.dart';
 
-class PrivacyPage extends StatefulWidget {
-  const PrivacyPage({Key? key}) : super(key: key);
+class PrivacyConsentView extends StatefulWidget {
+  const PrivacyConsentView({Key? key}) : super(key: key);
 
   @override
-  State<PrivacyPage> createState() => _PrivacyPageState();
+  State<PrivacyConsentView> createState() => _PrivacyConsentViewState();
 }
 
-class _PrivacyPageState extends State<PrivacyPage> {
+class _PrivacyConsentViewState extends State<PrivacyConsentView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

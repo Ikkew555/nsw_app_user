@@ -2,35 +2,35 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nsw_app/component/btn_about_system.dart';
-import 'package:nsw_app/component/btn_change_pin.dart';
-import 'package:nsw_app/component/btn_logout.dart';
-import 'package:nsw_app/component/btn_open_biometric.dart';
-import 'package:nsw_app/component/btn_privacy_consent.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/model/user.dart';
+import 'package:nsw_app/pages/profile/profile.view.dto.dart';
+import 'package:nsw_app/pages/profile/widgets/btn_about_system.dart';
+import 'package:nsw_app/pages/profile/widgets/btn_change_pin.dart';
+import 'package:nsw_app/pages/profile/widgets/btn_logout.dart';
+import 'package:nsw_app/pages/profile/widgets/btn_open_biometric.dart';
+import 'package:nsw_app/pages/profile/widgets/btn_privacy_consent.dart';
 
-void main() => runApp(
-      MyApp(),
-    );
+class ProfileView extends StatefulWidget {
+  const ProfileView({Key? key, required this.profileDto}) : super(key: key);
 
-class MyApp extends StatelessWidget {
+  final ProfileDto profileDto;
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ProfilePage(),
-    );
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  late ProfileDto profileDto;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      profileDto = widget.profileDto;
+    });
   }
-}
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
-
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,15 +75,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Column(
                       children: [
                         Container(
-                          // color: Colors.green,
                           height: MediaQuery.of(context).size.height / 8,
                         ),
                         Image.asset(
-                          "assets/profile_img.png",
+                          profileDto.imagePathProfile,
                           width: MediaQuery.of(context).size.width / 3,
                         ),
                         SizedBox(
-                          // color: Colors.green,
                           height: MediaQuery.of(context).size.height / 5,
                           child: Column(
                             children: [
@@ -91,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 30,
                               ),
                               Text(
-                                "คุณ",
+                                ''' ${User.instance.prefix}''',
                                 style: GoogleFonts.prompt(
                                   textStyle: TextStyle(
                                     fontSize: 12,
@@ -103,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 5,
                               ),
                               Text(
-                                "สมมุติ ทดสอบระบบ",
+                                '''\n${User.instance.displayName.toString()}''', // user name and surname
                                 style: GoogleFonts.prompt(
                                   textStyle: TextStyle(
                                     fontSize: Config.instance.fontinfo,
@@ -129,9 +127,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   Container(
-                    // constraints: BoxConstraints(
-                    //   maxHeight: double.infinity,
-                    // ),
                     color: Colors.white,
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 0.0),

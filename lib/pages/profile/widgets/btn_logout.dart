@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/login/login.dart';
 import 'package:nsw_app/pages/login/login.view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LogOutButton extends StatefulWidget {
@@ -35,15 +36,8 @@ class _LogOutButtonState extends State<LogOutButton> {
         elevation: 5,
       ),
       onPressed: () {
-        // _logout();
-        // Conf.instance.clear();
-        // User.instance.setname("");
-        // User.instance.setsurname("");
-        // User.instance.setuid("");
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const Login()),
-            (route) => false);
+        PersistentNavBarNavigator.pushNewScreen(context,
+            screen: Login(), withNavBar: false);
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
