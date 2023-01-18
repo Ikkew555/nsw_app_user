@@ -17,12 +17,18 @@ class HomeDto {
     required this.prefixText,
     required this.allAppointmentText,
     required this.appointmentText,
+    required this.onPressedInProgess,
+    required this.onPressedReadyToReceiveDocuments,
+    required this.onPressedWaitingforPetitioner,
   });
 
   Function onPressedProfile;
   Function onTapEservice;
   Function onTapWelcomeWeb;
   Function onPressedCalendar;
+  Function onPressedWaitingforPetitioner;
+  Function onPressedInProgess;
+  Function onPressedReadyToReceiveDocuments;
 
   String imagePathWelcomeWeb;
   String imagePathEservice;

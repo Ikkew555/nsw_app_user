@@ -22,7 +22,7 @@ class _BottomNavBarQRScanState extends State<BottomNavBarQRScan> {
 
   final List<Widget> _widgetOptions = <Widget>[
     Home(),
-    TrackStatusPage(),
+    TrackStatusView(),
     QRScanner(),
     NotificationView(),
     Profile(),
@@ -39,7 +39,7 @@ class _BottomNavBarQRScanState extends State<BottomNavBarQRScan> {
   int currentTab = 5;
   final List<Widget> screens = [
     Home(),
-    TrackStatusPage(),
+    TrackStatusView(),
     NotificationView(),
     Profile(),
   ];
@@ -100,7 +100,7 @@ class _BottomNavBarQRScanState extends State<BottomNavBarQRScan> {
                     onPressed: () {
                       setState(
                         () {
-                          currentScreen = TrackStatusPage();
+                          currentScreen = TrackStatusView();
                           currentTab = 1;
                         },
                       );

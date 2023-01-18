@@ -53,7 +53,7 @@ class _MainSrcState extends State<MainSrc> {
     List<Widget> _buildScreens() {
       return [
         Home(),
-        TrackStatusPage(),
+        TrackStatusView(),
         QRScanner(),
         NotificationView(),
         Profile(),
