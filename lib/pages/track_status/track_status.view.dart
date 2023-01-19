@@ -19,12 +19,13 @@ class _TrackStatusViewState extends State<TrackStatusView> {
   OutlineInputBorder myinputborder() {
     //return type is OutlineInputBorder
     return OutlineInputBorder(
-        //Outline border type for TextFeild
-        borderRadius: BorderRadius.all(Radius.circular(50)),
-        borderSide: BorderSide(
-          color: Colors.black38,
-          width: 1,
-        ));
+      //Outline border type for TextFeild
+      borderRadius: BorderRadius.all(Radius.circular(50)),
+      borderSide: BorderSide(
+        color: Colors.black38,
+        width: 1,
+      ),
+    );
   }
 
   OutlineInputBorder myfocusborder() {

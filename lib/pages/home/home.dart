@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:nsw_app/component/bottom_navigation_bar_profilepage.dart';
+import 'package:nsw_app/component/bottom_navigation_bar_trackstatus.dart';
 import 'package:nsw_app/pages/calendar/calendarpage.dart';
 import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/home/home.view.dto.dart';
@@ -100,7 +101,7 @@ class _HomeState extends State<Home> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const TrackStatusView(),
+        builder: (context) => const BottomNavBarTrackStatus(),
       ),
     );
   }
@@ -109,7 +110,7 @@ class _HomeState extends State<Home> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const TrackStatusView(),
+        builder: (context) => const BottomNavBarTrackStatus(),
       ),
     );
   }
@@ -118,7 +119,7 @@ class _HomeState extends State<Home> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const TrackStatusView(),
+        builder: (context) => const BottomNavBarTrackStatus(),
       ),
     );
   }

@@ -132,7 +132,7 @@ class _HomeViewState extends State<HomeView> {
                           elevation: 0,
                         ),
                         onPressed: () {
-                          HandleonPressedWaitingforPetitioner;
+                          HandleonPressedWaitingforPetitioner();
                         },
                         child: Column(
                           children: [
@@ -183,7 +183,7 @@ class _HomeViewState extends State<HomeView> {
                           elevation: 0,
                         ),
                         onPressed: () {
-                          HandleonPressedInProgess;
+                          HandleonPressedInProgess();
                         },
                         child: Column(
                           children: [
@@ -234,7 +234,7 @@ class _HomeViewState extends State<HomeView> {
                           elevation: 0,
                         ),
                         onPressed: () {
-                          HandleonPressedReadyToReceiveDocuments;
+                          HandleonPressedReadyToReceiveDocuments();
                         },
                         child: Column(
                           children: [
