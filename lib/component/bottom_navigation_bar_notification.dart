@@ -24,7 +24,7 @@ class _BottomNavBarNotificationState extends State<BottomNavBarNotification> {
 
   final List<Widget> _widgetOptions = <Widget>[
     Home(),
-    TrackStatusPage(),
+    TrackStatusView(),
     QRScanner(),
     NotificationView(),
     Profile(),
@@ -41,7 +41,7 @@ class _BottomNavBarNotificationState extends State<BottomNavBarNotification> {
   int currentTab = 3;
   final List<Widget> screens = [
     Home(),
-    TrackStatusPage(),
+    TrackStatusView(),
     NotificationView(),
     Profile(),
   ];
@@ -102,7 +102,7 @@ class _BottomNavBarNotificationState extends State<BottomNavBarNotification> {
                     onPressed: () {
                       setState(
                         () {
-                          currentScreen = TrackStatusPage();
+                          currentScreen = TrackStatusView();
                           currentTab = 1;
                         },
                       );

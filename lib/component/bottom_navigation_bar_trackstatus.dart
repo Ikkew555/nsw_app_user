@@ -24,7 +24,7 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
 
   final List<Widget> _widgetOptions = <Widget>[
     Home(),
-    TrackStatusPage(),
+    TrackStatusView(),
     QRScanner(),
     NotificationView(),
     Profile(),
@@ -37,11 +37,11 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
   }
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = TrackStatusPage();
+  Widget currentScreen = TrackStatusView();
   int currentTab = 1;
   final List<Widget> screens = [
     Home(),
-    TrackStatusPage(),
+    TrackStatusView(),
     NotificationView(),
     Profile(),
   ];
@@ -102,7 +102,7 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
                     onPressed: () {
                       setState(
                         () {
-                          currentScreen = TrackStatusPage();
+                          currentScreen = TrackStatusView();
                           currentTab = 1;
                         },
                       );

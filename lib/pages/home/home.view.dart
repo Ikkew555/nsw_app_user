@@ -126,131 +126,158 @@ class _HomeViewState extends State<HomeView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        children: [
-                          Badge(
-                            position: BadgePosition.topEnd(),
-                            badgeColor: Color.fromRGBO(255, 195, 0, 1),
-                            badgeContent: Text(
-                              '10',
-                              style: GoogleFonts.prompt(
-                                textStyle: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                        ),
+                        onPressed: () {
+                          HandleonPressedWaitingforPetitioner();
+                        },
+                        child: Column(
+                          children: [
+                            Badge(
+                              position: BadgePosition.topEnd(),
+                              badgeColor: Color.fromRGBO(255, 195, 0, 1),
+                              badgeContent: Text(
+                                '10',
+                                style: GoogleFonts.prompt(
+                                  textStyle: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              child: PhysicalShape(
+                                shadowColor: Colors.black,
+                                elevation: 2,
+                                clipper:
+                                    ShapeBorderClipper(shape: CircleBorder()),
+                                color: Colors.transparent,
+                                child: Image.asset(
+                                  homeDto.imagePathMenuWait,
+                                  width: 60,
                                 ),
                               ),
                             ),
-                            child: PhysicalShape(
-                              shadowColor: Colors.black,
-                              elevation: 2,
-                              clipper:
-                                  ShapeBorderClipper(shape: CircleBorder()),
-                              color: Colors.transparent,
-                              child: Image.asset(
-                                homeDto.imagePathMenuWait,
-                                width: 60,
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              homeDto.menuWaitText,
+                              style: GoogleFonts.prompt(
+                                textStyle: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            homeDto.menuWaitText,
-                            style: GoogleFonts.prompt(
-                              textStyle: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromRGBO(102, 102, 102, 1),
-                              ),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          Badge(
-                            position: BadgePosition.topEnd(),
-                            badgeColor: Color.fromRGBO(255, 195, 0, 1),
-                            badgeContent: Text(
-                              '10',
-                              style: GoogleFonts.prompt(
-                                textStyle: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                        ),
+                        onPressed: () {
+                          HandleonPressedInProgess();
+                        },
+                        child: Column(
+                          children: [
+                            Badge(
+                              position: BadgePosition.topEnd(),
+                              badgeColor: Color.fromRGBO(255, 195, 0, 1),
+                              badgeContent: Text(
+                                '10',
+                                style: GoogleFonts.prompt(
+                                  textStyle: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              child: PhysicalShape(
+                                shadowColor: Colors.black,
+                                elevation: 2,
+                                clipper:
+                                    ShapeBorderClipper(shape: CircleBorder()),
+                                color: Colors.transparent,
+                                child: Image.asset(
+                                  homeDto.imagePathMenuWorking,
+                                  width: 60,
                                 ),
                               ),
                             ),
-                            child: PhysicalShape(
-                              shadowColor: Colors.black,
-                              elevation: 2,
-                              clipper:
-                                  ShapeBorderClipper(shape: CircleBorder()),
-                              color: Colors.transparent,
-                              child: Image.asset(
-                                homeDto.imagePathMenuWorking,
-                                width: 60,
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              homeDto.menuWorkingText,
+                              style: GoogleFonts.prompt(
+                                textStyle: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            homeDto.menuWorkingText,
-                            style: GoogleFonts.prompt(
-                              textStyle: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromRGBO(102, 102, 102, 1),
-                              ),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          Badge(
-                            position: BadgePosition.topEnd(),
-                            badgeColor: Color.fromRGBO(255, 195, 0, 1),
-                            badgeContent: Text(
-                              '10',
-                              style: GoogleFonts.prompt(
-                                textStyle: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                        ),
+                        onPressed: () {
+                          HandleonPressedReadyToReceiveDocuments();
+                        },
+                        child: Column(
+                          children: [
+                            Badge(
+                              position: BadgePosition.topEnd(),
+                              badgeColor: Color.fromRGBO(255, 195, 0, 1),
+                              badgeContent: Text(
+                                '10',
+                                style: GoogleFonts.prompt(
+                                  textStyle: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              child: PhysicalShape(
+                                shadowColor: Colors.black,
+                                elevation: 2,
+                                clipper:
+                                    ShapeBorderClipper(shape: CircleBorder()),
+                                color: Colors.transparent,
+                                child: Image.asset(
+                                  homeDto.imagePathMenuDocument,
+                                  width: 60,
                                 ),
                               ),
                             ),
-                            child: PhysicalShape(
-                              shadowColor: Colors.black,
-                              elevation: 2,
-                              clipper:
-                                  ShapeBorderClipper(shape: CircleBorder()),
-                              color: Colors.transparent,
-                              child: Image.asset(
-                                homeDto.imagePathMenuDocument,
-                                width: 60,
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              homeDto.menuDocumentText,
+                              style: GoogleFonts.prompt(
+                                textStyle: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            homeDto.menuDocumentText,
-                            style: GoogleFonts.prompt(
-                              textStyle: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromRGBO(102, 102, 102, 1),
-                              ),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -403,5 +430,17 @@ class _HomeViewState extends State<HomeView> {
 
   HandleonPressedCalendar() {
     homeDto.onPressedCalendar.call();
+  }
+
+  HandleonPressedInProgess() {
+    homeDto.onPressedInProgess.call();
+  }
+
+  HandleonPressedReadyToReceiveDocuments() {
+    homeDto.onPressedReadyToReceiveDocuments.call();
+  }
+
+  HandleonPressedWaitingforPetitioner() {
+    homeDto.onPressedWaitingforPetitioner.call();
   }
 }

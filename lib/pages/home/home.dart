@@ -3,9 +3,11 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:nsw_app/component/bottom_navigation_bar_profilepage.dart';
+import 'package:nsw_app/component/bottom_navigation_bar_trackstatus.dart';
 import 'package:nsw_app/pages/calendar/calendarpage.dart';
 import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/home/home.view.dto.dart';
+import 'package:nsw_app/pages/track_status/track_status.view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
@@ -52,6 +54,11 @@ class _HomeState extends State<Home> {
       prefixText: prefixText,
       allAppointmentText: allAppointmentText,
       appointmentText: appointmentText,
+      onPressedInProgess: _HandleonPressedShortcutInProgress,
+      onPressedReadyToReceiveDocuments:
+          _HandleonPressedShortcutReadyToReceiveDocuments,
+      onPressedWaitingforPetitioner:
+          _HandleonPressedShortcutWaitingforPetitioner,
     );
   }
 
@@ -72,8 +79,8 @@ class _HomeState extends State<Home> {
         mode: LaunchMode.externalApplication);
   }
 
-  _HandleonPressedProfile() {
-    Navigator.push(
+  _HandleonPressedProfile() async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const BottomNavBarProfile(),
@@ -81,11 +88,38 @@ class _HomeState extends State<Home> {
     );
   }
 
-  _HandleonPressedCalendar() {
-    Navigator.push(
+  _HandleonPressedCalendar() async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const CalendarPage(),
+      ),
+    );
+  }
+
+  _HandleonPressedShortcutWaitingforPetitioner() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const BottomNavBarTrackStatus(),
+      ),
+    );
+  }
+
+  _HandleonPressedShortcutReadyToReceiveDocuments() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const BottomNavBarTrackStatus(),
+      ),
+    );
+  }
+
+  _HandleonPressedShortcutInProgress() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const BottomNavBarTrackStatus(),
       ),
     );
   }

@@ -8,23 +8,24 @@ import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class TrackStatusPage extends StatefulWidget {
-  const TrackStatusPage({Key? key}) : super(key: key);
+class TrackStatusView extends StatefulWidget {
+  const TrackStatusView({Key? key}) : super(key: key);
 
   @override
-  State<TrackStatusPage> createState() => _TrackStatusPageState();
+  State<TrackStatusView> createState() => _TrackStatusViewState();
 }
 
-class _TrackStatusPageState extends State<TrackStatusPage> {
+class _TrackStatusViewState extends State<TrackStatusView> {
   OutlineInputBorder myinputborder() {
     //return type is OutlineInputBorder
     return OutlineInputBorder(
-        //Outline border type for TextFeild
-        borderRadius: BorderRadius.all(Radius.circular(50)),
-        borderSide: BorderSide(
-          color: Colors.black38,
-          width: 1,
-        ));
+      //Outline border type for TextFeild
+      borderRadius: BorderRadius.all(Radius.circular(50)),
+      borderSide: BorderSide(
+        color: Colors.black38,
+        width: 1,
+      ),
+    );
   }
 
   OutlineInputBorder myfocusborder() {
