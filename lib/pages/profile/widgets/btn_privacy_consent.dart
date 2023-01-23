@@ -15,13 +15,13 @@ class _PrivacyConsentButtonState extends State<PrivacyConsentButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.white,
         alignment: Alignment.centerLeft,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
         minimumSize: const Size.fromHeight(50),
-        onPrimary: Colors.black,
-        primary: Colors.white,
         elevation: 5,
       ),
       onPressed: () {

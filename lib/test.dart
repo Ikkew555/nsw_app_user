@@ -1,19 +1,17 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/home/home.dart';
-import 'package:nsw_app/pages/login/login.dart';
-import 'package:nsw_app/pages/login/login.view.dart';
-import 'package:nsw_app/pages/notification/notification.view.dart';
-import 'package:nsw_app/pages/profile/profile.dart';
-import 'package:nsw_app/pages/profile/profile.view.dart';
-import 'package:nsw_app/pages/scanQR/scanQRpage.dart';
-import 'package:nsw_app/pages/track_status/track_status.view.dart';
+import 'package:nsw_app/pages/scanQR/scanQR.view.dart';
+import 'package:nsw_app/pages/scanQR/scanqr.dart';
+import 'package:nsw_app/test_widgets_&_pages/testpage.dart';
+import 'package:nsw_app/test_widgets_&_pages/testpage2.dart';
+import 'package:nsw_app/test_widgets_&_pages/testpage3.dart';
+import 'package:nsw_app/test_widgets_&_pages/testpage4.dart';
+import 'package:nsw_app/test_widgets_&_pages/testpage5.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,7 +19,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       theme: _buildTheme(),
       home: MainSrc(),
     );
@@ -42,21 +39,24 @@ class MainSrc extends StatefulWidget {
 }
 
 class _MainSrcState extends State<MainSrc> {
-  late PersistentTabController _controller;
-
   @override
   Widget build(BuildContext context) {
     PersistentTabController _controller;
 
     _controller = PersistentTabController(initialIndex: 0);
 
+    selectHandler() {
+      PersistentNavBarNavigator.pushNewScreen(context,
+          screen: ScanQR(), withNavBar: false);
+    }
+
     List<Widget> _buildScreens() {
       return [
-        Home(),
-        TrackStatusView(),
-        QRScanner(),
-        NotificationView(),
-        Profile(),
+        TestPage1(),
+        TestPage2(),
+        TestPage3(),
+        TestPage4(),
+        TestPage5(),
       ];
     }
 
@@ -101,11 +101,6 @@ class _MainSrcState extends State<MainSrc> {
           inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
       ];
-    }
-
-    void selectHandler() {
-      PersistentNavBarNavigator.pushNewScreen(context,
-          screen: QRScanner(), withNavBar: false);
     }
 
     return PersistentTabView(

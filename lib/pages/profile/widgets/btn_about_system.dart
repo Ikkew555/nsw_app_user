@@ -1,35 +1,34 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/contact.us/contact.us.view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-class AboutSystemButton extends StatefulWidget {
-  const AboutSystemButton({Key? key}) : super(key: key);
+class ContactUsButton extends StatefulWidget {
+  const ContactUsButton({Key? key}) : super(key: key);
 
   @override
-  State<AboutSystemButton> createState() => _AboutSystemButtonState();
+  State<ContactUsButton> createState() => _ContactUsButtonState();
 }
 
-class _AboutSystemButtonState extends State<AboutSystemButton> {
+class _ContactUsButtonState extends State<ContactUsButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.white,
         alignment: Alignment.centerLeft,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
         minimumSize: const Size.fromHeight(50),
-        onPrimary: Colors.black,
-        primary: Colors.white,
         elevation: 5,
       ),
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const ContactUsView(),
-          ),
-        );
+        PersistentNavBarNavigator.pushNewScreen(context,
+            screen: ContactUsView(), withNavBar: true);
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

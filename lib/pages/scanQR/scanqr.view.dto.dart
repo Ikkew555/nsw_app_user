@@ -1,5 +1,5 @@
-class TrackstatusDto {
-  TrackstatusDto({
+class ScanQRDto {
+  ScanQRDto({
     required this.onPressedShowSystem,
   });
 

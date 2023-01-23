@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:nsw_app/component/bottom_navigation_bar_qrscanpage.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/home/home.dart';
-import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/notification/notification.view.dart';
 import 'package:nsw_app/pages/profile/profile.dart';
-import 'package:nsw_app/pages/profile/profile.view.dart';
-import 'package:nsw_app/pages/scanQR/scanQRpage.dart';
-import 'package:nsw_app/pages/track_status/track_status.view.dart';
+import 'package:nsw_app/pages/scanQR/scanqr.dart';
+import 'package:nsw_app/pages/track_status/track_status.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class BottomNavBarTrackStatus extends StatefulWidget {
   const BottomNavBarTrackStatus({Key? key}) : super(key: key);
@@ -24,8 +23,8 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
 
   final List<Widget> _widgetOptions = <Widget>[
     Home(),
-    TrackStatusView(),
-    QRScanner(),
+    TrackStatus(),
+    ScanQR(),
     NotificationView(),
     Profile(),
   ];
@@ -37,11 +36,11 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
   }
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = TrackStatusView();
+  Widget currentScreen = TrackStatus();
   int currentTab = 1;
   final List<Widget> screens = [
     Home(),
-    TrackStatusView(),
+    TrackStatus(),
     NotificationView(),
     Profile(),
   ];
@@ -53,9 +52,6 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
         bucket: bucket,
         child: currentScreen,
       ),
-      // body: Center(
-      //   child: _widgetOptions.elementAt(_selectedIndex),
-      // ),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 10,
@@ -102,7 +98,7 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
                     onPressed: () {
                       setState(
                         () {
-                          currentScreen = TrackStatusView();
+                          currentScreen = TrackStatus();
                           currentTab = 1;
                         },
                       );
@@ -206,12 +202,8 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
         elevation: 0,
         backgroundColor: Config.instance.color,
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const BottomNavBarQRScan(),
-            ),
-          );
+          PersistentNavBarNavigator.pushNewScreen(context,
+              screen: ScanQR(), withNavBar: false);
         },
         child: Icon(
           Icons.qr_code_scanner,

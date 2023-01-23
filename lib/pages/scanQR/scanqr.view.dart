@@ -3,20 +3,23 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/scanQR/scanqr.view.dto.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class QRScanner extends StatefulWidget {
-  const QRScanner({Key? key}) : super(key: key);
+class ScanQRView extends StatefulWidget {
+  const ScanQRView({Key? key, required this.scanQRDto}) : super(key: key);
+
+  final scanQRDto;
 
   @override
-  State<StatefulWidget> createState() => _QRScannerState();
+  State<StatefulWidget> createState() => _ScanQRViewState();
 }
 
-class _QRScannerState extends State<QRScanner> {
+class _ScanQRViewState extends State<ScanQRView> {
+  late ScanQRDto scanQRDto;
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');

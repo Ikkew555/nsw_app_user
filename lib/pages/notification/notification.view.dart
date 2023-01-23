@@ -56,6 +56,9 @@ class _NotificationViewState extends State<NotificationView> {
                     NotificationCard2(),
                     NotificationCard(),
                     NotificationCard2(),
+                    SizedBox(
+                      height: 30,
+                    ),
                   ],
                 ),
               ),

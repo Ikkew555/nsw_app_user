@@ -22,6 +22,7 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   late ProfileDto profileDto;
+  var appbarheight = AppBar().preferredSize.height;
 
   @override
   void initState() {
@@ -34,26 +35,6 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        title: Text(
-          "โปรไฟล์",
-          style: GoogleFonts.prompt(
-            textStyle: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
       body: Column(
         children: [
           Expanded(
@@ -74,22 +55,35 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: appbarheight - 17,
+                        ),
+                        Text(
+                          "โปรไฟล์",
+                          style: GoogleFonts.prompt(
+                            textStyle: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                         Container(
-                          height: MediaQuery.of(context).size.height / 8,
+                          height: MediaQuery.of(context).size.height / 20,
                         ),
                         Image.asset(
                           profileDto.imagePathProfile,
                           width: MediaQuery.of(context).size.width / 3,
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 5,
+                          height: MediaQuery.of(context).size.height / 6,
                           child: Column(
                             children: [
                               SizedBox(
-                                height: 30,
+                                height: 25,
                               ),
                               Text(
-                                ''' ${User.instance.prefix}''',
+                                User.instance.prefix.toString(),
                                 style: GoogleFonts.prompt(
                                   textStyle: TextStyle(
                                     fontSize: 12,
@@ -101,7 +95,8 @@ class _ProfileViewState extends State<ProfileView> {
                                 height: 5,
                               ),
                               Text(
-                                '''\n${User.instance.displayName.toString()}''', // user name and surname
+                                User.instance.displayName
+                                    .toString(), // user name and surname
                                 style: GoogleFonts.prompt(
                                   textStyle: TextStyle(
                                     fontSize: Config.instance.fontinfo,
@@ -112,7 +107,7 @@ class _ProfileViewState extends State<ProfileView> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
+                                    EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
                                 child: Divider(
                                   thickness: 1,
                                   indent: 120,
@@ -151,7 +146,7 @@ class _ProfileViewState extends State<ProfileView> {
                             ),
                             ChangPinButton(),
                             PrivacyConsentButton(),
-                            AboutSystemButton(),
+                            ContactUsButton(),
                             LogOutButton(),
                           ],
                         ),
