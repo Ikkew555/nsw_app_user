@@ -115,8 +115,13 @@ class _ResetPinUsernameViewState extends State<ResetPinUsernameView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               TextButton(
-                                onPressed: () {},
-                                child: Text("ย้อนกลับ"),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  "ย้อนกลับ",
+                                  style: Config.instance.f16normal,
+                                ),
                               ),
                               SizedBox(
                                 width: 100,
@@ -134,7 +139,10 @@ class _ResetPinUsernameViewState extends State<ResetPinUsernameView> {
                                       HandleonPressedPassword();
                                     }
                                   },
-                                  child: Text("ถัดไป"),
+                                  child: Text(
+                                    "ถัดไป",
+                                    style: Config.instance.f16semiboldwhite,
+                                  ),
                                 ),
                               ),
                             ],

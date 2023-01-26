@@ -4,24 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:nsw_app/pages/resetpin_password/resetpinPassword.view.dart';
 import 'package:nsw_app/pages/resetpin_password/resetpinPassword.view.dto.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: _buildTheme(),
-      home: ResetPinPassword(),
-    );
-  }
-}
-
-ThemeData _buildTheme() {
-  final base = ThemeData.light();
-  return base.copyWith(
-      primaryIconTheme: base.iconTheme.copyWith(color: Colors.black));
-}
-
 class ResetPinPassword extends StatefulWidget {
   const ResetPinPassword({Key? key}) : super(key: key);
 

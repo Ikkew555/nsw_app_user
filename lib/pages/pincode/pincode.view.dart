@@ -3,35 +3,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/pincode/pincode.view.dto.dart';
 import 'package:nsw_app/pages/pincode/widgets/popupSuccessfull.dart';
 
-// void main() => runApp(MyApp());
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       theme: _buildTheme(),
-//       home: PincodeView(),
-//     );
-//   }
-// }
-
-ThemeData _buildTheme() {
-  final base = ThemeData.light();
-  return base.copyWith(
-      primaryIconTheme: base.iconTheme.copyWith(color: Colors.black));
-}
-
 class PincodeView extends StatefulWidget {
-  const PincodeView({Key? key}) : super(key: key);
+  const PincodeView({Key? key, required this.pincodeDto}) : super(key: key);
+
+  final PincodeDto pincodeDto;
 
   @override
   State<PincodeView> createState() => _PincodeViewState();
 }
 
 class _PincodeViewState extends State<PincodeView> {
+  late PincodeDto pincodeDto;
   double pincodeSize = 30;
   double numpadSize = 70;
   int pinDigit = 6;
@@ -50,6 +35,9 @@ class _PincodeViewState extends State<PincodeView> {
     initialPinCircle();
     setNumPad();
     super.initState();
+    setState(() {
+      pincodeDto = widget.pincodeDto;
+    });
   }
 
   void initialPinCircle() {
@@ -255,133 +243,149 @@ class _PincodeViewState extends State<PincodeView> {
         ),
         leading: Icon(Icons.keyboard_backspace_outlined),
       ),
-      body: Expanded(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Color.fromRGBO(19, 71, 154, 1),
-                      Color.fromRGBO(7, 20, 124, 1)
-                    ],
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Container(
-                      // color: Colors.green,
-                      height: MediaQuery.of(context).size.height / 20,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Color.fromRGBO(19, 71, 154, 1),
+                          Color.fromRGBO(7, 20, 124, 1)
+                        ],
+                      ),
                     ),
-                    Image.asset(
-                      "assets/logo_nsw.png",
-                      width: MediaQuery.of(context).size.width / 3,
+                    child: Column(
+                      children: [
+                        Container(
+                          // color: Colors.green,
+                          height: MediaQuery.of(context).size.height / 20,
+                        ),
+                        Image.asset(
+                          "assets/logo_nsw.png",
+                          width: MediaQuery.of(context).size.width / 3,
+                        ),
+                        Container(
+                          // color: Colors.green,
+                          height: MediaQuery.of(context).size.height / 20,
+                        ),
+                      ],
                     ),
-                    Container(
-                      // color: Colors.green,
-                      height: MediaQuery.of(context).size.height / 20,
+                  ),
+                  Container(
+                    // color: Colors.green,
+                    height: MediaQuery.of(context).size.height / 50,
+                  ),
+                  Text(
+                    "สำหรับการเข้าสู่ระบบครั้งแรก",
+                    style: GoogleFonts.prompt(
+                      textStyle: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  ],
-                ),
-              ),
-              Container(
-                // color: Colors.green,
-                height: MediaQuery.of(context).size.height / 50,
-              ),
-              Text(
-                "สำหรับการเข้าสู่ระบบครั้งแรก",
-                style: GoogleFonts.prompt(
-                  textStyle: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
                   ),
-                ),
-              ),
-              Text(
-                "กรุณาตั้งรหัสความปลอดภัย (PIN CODE)",
-                style: GoogleFonts.prompt(
-                  textStyle: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+                  Text(
+                    "กรุณาตั้งรหัสความปลอดภัย (PIN CODE)",
+                    style: GoogleFonts.prompt(
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: pinDigitWidgetList,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: numpadWidgetRow,
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      child: TextButton(
-                        onPressed: () {
-                          resetPin();
-                        },
-                        child: Text(
-                          "ยกเลิก",
-                          style: GoogleFonts.prompt(
-                            textStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Color.fromRGBO(19, 71, 154, 1),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: pinDigitWidgetList,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: numpadWidgetRow,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          child: TextButton(
+                            onPressed: () {
+                              resetPin();
+                              HandleonPressedCancel();
+                            },
+                            child: Text(
+                              "ยกเลิก",
+                              style: GoogleFonts.prompt(
+                                textStyle: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(19, 71, 154, 1),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      child: TextButton(
-                        onPressed: () {
-                          showDialog(
-                              context: context, builder: (_) => ImageDialog());
-                        },
-                        child: Text(
-                          "ข้าม",
-                          style: GoogleFonts.prompt(
-                            textStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          child: TextButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (_) => ImageDialog(),
+                              );
+                              HandleonPressedResetPin();
+                            },
+                            child: Text(
+                              "ข้าม",
+                              style: GoogleFonts.prompt(
+                                textStyle: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black45,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
+  }
+
+  HandleonPressedResetPin() {
+    pincodeDto.onPressedNavigateResetUsername.call();
+  }
+
+  HandleonPressedCancel() {
+    pincodeDto.onPressedCancelResetPin.call();
   }
 }

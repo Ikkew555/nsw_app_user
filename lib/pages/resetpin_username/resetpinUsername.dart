@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:nsw_app/pages/resetpin_password/resetpinPassword.dart';
-import 'package:nsw_app/pages/resetpin_password/resetpinPassword.view.dart';
 import 'package:nsw_app/pages/resetpin_username/resetpinUsername.view.dto.dart';
 import 'package:nsw_app/pages/resetpin_username/resetpinUsername.view.dart';
 
