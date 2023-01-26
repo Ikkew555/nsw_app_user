@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/privacy_consent/privacy_consent.view.dart';
@@ -15,13 +17,13 @@ class _PrivacyConsentButtonState extends State<PrivacyConsentButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.white,
         alignment: Alignment.centerLeft,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
         minimumSize: const Size.fromHeight(50),
-        onPrimary: Colors.black,
-        primary: Colors.white,
         elevation: 5,
       ),
       onPressed: () {
