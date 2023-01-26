@@ -1,15 +1,12 @@
 // ignore_for_file: prefer_const_constructors, unused_field, prefer_final_fields, unused_element, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:nsw_app/component/bottom_navigation_bar_qrscanpage.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/home/home.dart';
-import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/notification/notification.view.dart';
 import 'package:nsw_app/pages/profile/profile.dart';
-import 'package:nsw_app/pages/profile/profile.view.dart';
-import 'package:nsw_app/pages/scanQR/scanQRpage.dart';
-import 'package:nsw_app/pages/track_status/track_status.view.dart';
+import 'package:nsw_app/pages/scanQR/scanqr.dart';
+import 'package:nsw_app/pages/track_status/track_status.dart';
 
 class BottomNavBarNotification extends StatefulWidget {
   const BottomNavBarNotification({Key? key}) : super(key: key);
@@ -24,8 +21,8 @@ class _BottomNavBarNotificationState extends State<BottomNavBarNotification> {
 
   final List<Widget> _widgetOptions = <Widget>[
     Home(),
-    TrackStatusView(),
-    QRScanner(),
+    TrackStatus(),
+    ScanQR(),
     NotificationView(),
     Profile(),
   ];
@@ -41,7 +38,7 @@ class _BottomNavBarNotificationState extends State<BottomNavBarNotification> {
   int currentTab = 3;
   final List<Widget> screens = [
     Home(),
-    TrackStatusView(),
+    TrackStatus(),
     NotificationView(),
     Profile(),
   ];
@@ -102,7 +99,7 @@ class _BottomNavBarNotificationState extends State<BottomNavBarNotification> {
                     onPressed: () {
                       setState(
                         () {
-                          currentScreen = TrackStatusView();
+                          currentScreen = TrackStatus();
                           currentTab = 1;
                         },
                       );
@@ -209,7 +206,7 @@ class _BottomNavBarNotificationState extends State<BottomNavBarNotification> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const QRScanner(),
+              builder: (context) => const ScanQR(),
             ),
           );
         },
@@ -222,35 +219,3 @@ class _BottomNavBarNotificationState extends State<BottomNavBarNotification> {
     );
   }
 }
-
-      // bottomNavigationBar: BottomNavigationBar(
-      //   showUnselectedLabels: true,
-      //   type: BottomNavigationBarType.fixed,
-      //   currentIndex: _selectedIndex,
-      //   selectedItemColor: Color.fromRGBO(19, 71, 154, 1),
-      //   unselectedItemColor: Colors.black38,
-      //   selectedFontSize: 12,
-      //   onTap: _onItemTapped,
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home_outlined),
-      //       label: 'หน้าหลัก',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.insert_drive_file_outlined),
-      //       label: 'ติดตามสถานะ',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.qr_code_scanner),
-      //       label: 'แสกน QR',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.notifications_none_outlined),
-      //       label: 'แจ้งเตือน',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.settings_outlined),
-      //       label: 'ตั้งค่า',
-      //     ),
-      //   ],
-      // ),

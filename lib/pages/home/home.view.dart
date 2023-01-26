@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names
 
 import 'dart:ui';
 
@@ -133,6 +133,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         onPressed: () {
                           HandleonPressedWaitingforPetitioner();
+                          print("HandleonPressedWaitingforPetitioner");
                         },
                         child: Column(
                           children: [
@@ -184,6 +185,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         onPressed: () {
                           HandleonPressedInProgess();
+                          print("HandleonPressedInProgess");
                         },
                         child: Column(
                           children: [
@@ -235,6 +237,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         onPressed: () {
                           HandleonPressedReadyToReceiveDocuments();
+                          print("HandleonPressedReadyToReceiveDocuments");
                         },
                         child: Column(
                           children: [

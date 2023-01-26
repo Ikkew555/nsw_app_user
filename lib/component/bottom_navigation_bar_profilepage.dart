@@ -1,16 +1,12 @@
 // ignore_for_file: prefer_const_constructors, unused_field, prefer_final_fields, unused_element, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nsw_app/component/bottom_navigation_bar_qrscanpage.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/home/home.dart';
-import 'package:nsw_app/pages/home/home.view.dart';
-import 'package:nsw_app/pages/home/home.view.dto.dart';
 import 'package:nsw_app/pages/notification/notification.view.dart';
 import 'package:nsw_app/pages/profile/profile.dart';
-import 'package:nsw_app/pages/profile/profile.view.dart';
-import 'package:nsw_app/pages/scanQR/scanQRpage.dart';
-import 'package:nsw_app/pages/track_status/track_status.view.dart';
+import 'package:nsw_app/pages/scanQR/scanqr.dart';
+import 'package:nsw_app/pages/track_status/track_status.dart';
 
 class BottomNavBarProfile extends StatefulWidget {
   const BottomNavBarProfile({Key? key}) : super(key: key);
@@ -24,8 +20,8 @@ class _BottomNavBarProfileState extends State<BottomNavBarProfile> {
 
   final List<Widget> _widgetOptions = <Widget>[
     Home(),
-    TrackStatusView(),
-    QRScanner(),
+    TrackStatus(),
+    ScanQR(),
     NotificationView(),
     Profile(),
   ];
@@ -41,7 +37,7 @@ class _BottomNavBarProfileState extends State<BottomNavBarProfile> {
   int currentTab = 4;
   final List<Widget> screens = [
     Home(),
-    TrackStatusView(),
+    TrackStatus(),
     NotificationView(),
     Profile(),
   ];
@@ -104,7 +100,7 @@ class _BottomNavBarProfileState extends State<BottomNavBarProfile> {
                     onPressed: () {
                       setState(
                         () {
-                          currentScreen = TrackStatusView();
+                          currentScreen = TrackStatus();
                           currentTab = 1;
                         },
                       );
@@ -217,7 +213,7 @@ class _BottomNavBarProfileState extends State<BottomNavBarProfile> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const QRScanner(),
+              builder: (context) => const ScanQR(),
             ),
           );
         },
