@@ -19,7 +19,6 @@ class Config {
       fontSize: 12,
     ),
   );
-
   TextStyle f12semiboldprimary = GoogleFonts.prompt(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
@@ -30,6 +29,13 @@ class Config {
   TextStyle f16semiboldprimary = GoogleFonts.prompt(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
+      fontSize: 16,
+      color: Color.fromRGBO(7, 20, 124, 1),
+    ),
+  );
+  TextStyle f16seminormalprimary = GoogleFonts.prompt(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
       fontSize: 16,
       color: Color.fromRGBO(7, 20, 124, 1),
     ),

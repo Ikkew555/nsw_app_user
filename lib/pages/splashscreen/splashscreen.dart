@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  late SplashScreenDto splashscreenDto;
+  late SplashScreenDto splashScreenDto;
   String imagePathWelcomeWeb = "assets/web_nsw1.png";
   String imagePathEservice = "assets/web_nsw2.png";
   String imagePathProfile = "assets/profile_img.png";
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    splashscreenDto = SplashScreenDto(
+    splashScreenDto = SplashScreenDto(
         onPressedRegister: _HandleonPressedRegister,
         onPressedLogin: _HandleonPressedLogin,
         registerText: registerText);
@@ -40,8 +40,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SplashScreenView(
-        // splashscreenDto: splashscreenDto,
-        );
+      splashScreenDto: splashScreenDto,
+    );
   }
 
   _HandleonPressedRegister() async {
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const Login(),
+        builder: (context) => Login(),
       ),
     );
   }

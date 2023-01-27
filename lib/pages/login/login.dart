@@ -1,12 +1,13 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:nsw_app/component/bottom_navigation_bar.dart';
+import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/login/login.view.dart';
 import 'package:nsw_app/pages/login/login.view.dto.dart';
+import 'package:nsw_app/pages/pincode/pincode.dart';
+import 'package:nsw_app/pages/resetpin_username/resetpinUsername.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -25,16 +26,24 @@ class _LoginState extends State<Login> {
   String menuDocumentText = "พร้อมรับเอกสาร";
   String appointmentText = "การนัดหมาย";
   String allAppointmentText = "การนัดหมายทั้งหมด";
+  String registerText = "ยังไม่มีบัญชีผู้ใช้งาน ?";
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     loginDto = LoginDto(
-        onPressedForgotPassword: _HandleonPressedForgotPassword,
-        onPressedRegister: _HandleonPressedRegister,
-        onPressedLogin: _HandleonPressedLogin,
-        imagePathLogo: imagePathLogo);
+      onPressedForgotPassword: _HandleonPressedForgotPassword,
+      onPressedRegister: _HandleonPressedRegister,
+      onPressedLogin: _HandleonPressedLogin,
+      imagePathLogo: imagePathLogo,
+      loginValidate: _HandleLoginValidate,
+      passwordValidate: _HandlePasswordValidate,
+      usernameValidate: _HandleUsernameValidate,
+      registerText: registerText,
+      onPressedResetPin: _HandleonPressedResetPin,
+      onPressedSetPin: _HandleonPressedSetPin,
+    );
   }
 
   @override
@@ -63,6 +72,99 @@ class _LoginState extends State<Login> {
       context,
       MaterialPageRoute(
         builder: (context) => BottomNavBar(),
+      ),
+    );
+  }
+
+  _HandleonPressedResetPin() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResetPinUsername(),
+      ),
+    );
+  }
+
+  _HandleonPressedSetPin() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Pincode(),
+      ),
+    );
+  }
+
+  _HandleLoginValidate() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+          'เข้าสู่ระบบล้มเหลว',
+          style: Config.instance.f16semiboldprimary,
+        ),
+        content: Text(
+          'โปรดกรอก ชื่อผู้ใช้งาน หรือ รหัสผ่านให้ถูกต้อง เพื่อเข้าสู่ระบบ',
+          style: Config.instance.f16normalblack,
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'ปิด'),
+            child: Text(
+              'ปิด',
+              style: Config.instance.f16seminormalprimary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _HandleUsernameValidate() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+          'เข้าสู่ระบบล้มเหลว',
+          style: Config.instance.f16semiboldprimary,
+        ),
+        content: Text(
+          'โปรดกรอก ชื่อผู้ใช้งาน เพื่อเข้าสู่ระบบ',
+          style: Config.instance.f16normalblack,
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'ปิด'),
+            child: Text(
+              'ปิด',
+              style: Config.instance.f16seminormalprimary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _HandlePasswordValidate() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+          'เข้าสู่ระบบล้มเหลว',
+          style: Config.instance.f16semiboldprimary,
+        ),
+        content: Text(
+          'โปรดกรอก รหัสผ่านให้ถูกต้อง เพื่อเข้าสู่ระบบ',
+          style: Config.instance.f16normalblack,
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'ปิด'),
+            child: Text(
+              'ปิด',
+              style: Config.instance.f16seminormalprimary,
+            ),
+          ),
+        ],
       ),
     );
   }
