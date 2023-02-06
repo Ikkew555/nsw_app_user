@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously, non_constant_identifier_names, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,9 +7,11 @@ import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/model/login.user.Json.dart';
 import 'package:nsw_app/model/user.dart';
-import 'package:nsw_app/pages/home/home.dart';
 import 'package:nsw_app/pages/login/login.view.dto.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:nsw_app/pages/pincode/pincode.dart';
+import 'package:nsw_app/pages/resetpin_username/resetpinUsername.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:io' show Platform;
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key, required this.loginDto}) : super(key: key);
@@ -24,16 +26,27 @@ class _LoginViewState extends State<LoginView> {
   final GlobalKey<FormState> _formLoginKey = GlobalKey<FormState>();
   bool light = false;
   late LoginDto loginDto;
-  var username;
-  var password;
+  String username = "";
+  String password = "";
   var obscureText = true;
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  bool isIOS = false;
 
   @override
   void initState() {
     super.initState();
-    setState(() {
-      loginDto = widget.loginDto;
-    });
+    try {
+      if (Platform.isIOS || Platform.isMacOS) {
+        isIOS = true;
+      }
+    } catch (err) {
+      isIOS = false;
+    }
+    setState(
+      () {
+        loginDto = widget.loginDto;
+      },
+    );
   }
 
   @override
@@ -70,7 +83,6 @@ class _LoginViewState extends State<LoginView> {
                     child: Column(
                       children: [
                         Container(
-                          // color: Colors.green,
                           height: MediaQuery.of(context).size.height / 8,
                         ),
                         Image.asset(
@@ -78,7 +90,6 @@ class _LoginViewState extends State<LoginView> {
                           width: MediaQuery.of(context).size.width / 3,
                         ),
                         Container(
-                          // color: Colors.green,
                           height: MediaQuery.of(context).size.height / 15,
                         ),
                       ],
@@ -90,7 +101,12 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     color: Colors.white,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
+                      padding: EdgeInsets.fromLTRB(
+                        20.0,
+                        10.0,
+                        20.0,
+                        0.0,
+                      ),
                       child: Form(
                         key: _formLoginKey,
                         child: Column(
@@ -100,23 +116,20 @@ class _LoginViewState extends State<LoginView> {
                               height: MediaQuery.of(context).size.height / 50,
                             ),
                             Text(
-                              "ชื่อผู้ใช้งาน",
-                              style: GoogleFonts.prompt(
-                                textStyle: TextStyle(
-                                  fontSize: Config.instance.fontinfo,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
+                              loginDto.usernameText,
+                              style: Config.instance.f16normal,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 10.0),
+                              padding: EdgeInsets.only(
+                                top: 10.0,
+                              ),
                               child: TextFormField(
                                 validator: (username) {
                                   return null;
                                 },
                                 onSaved: (_username) {
                                   setState(() {
-                                    username = _username;
+                                    username = _username!;
                                   });
                                 },
                                 decoration: InputDecoration(
@@ -132,7 +145,7 @@ class _LoginViewState extends State<LoginView> {
                                     borderSide: BorderSide(
                                         color: Colors.grey, width: 1.0),
                                   ),
-                                  hintText: 'ชื่อผู้ใช้งาน',
+                                  hintText: loginDto.usernameText,
                                 ),
                               ),
                             ),
@@ -140,16 +153,13 @@ class _LoginViewState extends State<LoginView> {
                               height: MediaQuery.of(context).size.height / 50,
                             ),
                             Text(
-                              "รหัสผ่าน",
-                              style: GoogleFonts.prompt(
-                                textStyle: TextStyle(
-                                  fontSize: Config.instance.fontinfo,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
+                              loginDto.passwordText,
+                              style: Config.instance.f16normal,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 10.0),
+                              padding: EdgeInsets.only(
+                                top: 10.0,
+                              ),
                               child: TextFormField(
                                 obscureText: obscureText,
                                 validator: (value) {
@@ -157,7 +167,7 @@ class _LoginViewState extends State<LoginView> {
                                 },
                                 onSaved: (_password) {
                                   setState(() {
-                                    password = _password;
+                                    password = _password!;
                                   });
                                 },
                                 decoration: InputDecoration(
@@ -189,7 +199,7 @@ class _LoginViewState extends State<LoginView> {
                                     borderSide: BorderSide(
                                         color: Colors.grey, width: 1.0),
                                   ),
-                                  hintText: 'รหัสผ่าน',
+                                  hintText: loginDto.passwordText,
                                 ),
                               ),
                             ),
@@ -204,8 +214,8 @@ class _LoginViewState extends State<LoginView> {
                                 minimumSize: const Size.fromHeight(50),
                               ),
                               child: Text(
-                                "เข้าสู่ระบบ",
-                                style: GoogleFonts.prompt(
+                                loginDto.loginText,
+                                style: GoogleFonts.notoSansThai(
                                   textStyle: TextStyle(
                                     fontSize: Config.instance.fontinfo,
                                     fontWeight: FontWeight.w600,
@@ -227,31 +237,22 @@ class _LoginViewState extends State<LoginView> {
                                   User.instance.displayName =
                                       userdata.info?.displayName;
                                 }); // set value userData
-                                if (username == null) {
-                                  showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        AlertDialog(
-                                      title: const Text('เข้าสู่ระบบล้มเหลว'),
-                                      content: const Text(
-                                          'โปรดกรอก ชื่อผู้ใช้งาน หรือ รหัสผ่านให้ถูกต้อง เพื่อเข้าสู่ระบบ'),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(context, 'ปิด'),
-                                          child: const Text('ปิด'),
-                                        ),
-                                      ],
-                                    ),
-                                  );
+                                if (username == "") {
+                                  return HandleLoginUsernameValidate();
+                                }
+                                if (password == "") {
+                                  return HandleLoginPasswordValidate();
+                                }
+                                if (username == "setpin") {
+                                  return HandleonPressedSetpin();
+                                }
+                                if (username == "resetpin") {
+                                  return HandleonPressedResetpin();
+                                }
+                                if (username == "1101800898174") {
+                                  HandleonPressedSuccess();
                                 } else {
-                                  // HandleonPressedLogin;
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => BottomNavBar(),
-                                    ),
-                                  );
+                                  return;
                                 }
                               },
                             ),
@@ -277,13 +278,8 @@ class _LoginViewState extends State<LoginView> {
                                       },
                                     ),
                                     Text(
-                                      "จดจำบัญชีผู้ใช้งาน",
-                                      style: GoogleFonts.prompt(
-                                        textStyle: TextStyle(
-                                          fontSize: Config.instance.fontinfo,
-                                          color: Color.fromRGBO(19, 71, 154, 1),
-                                        ),
-                                      ),
+                                      loginDto.rememberUserText,
+                                      style: Config.instance.f16normalprimary,
                                     ),
                                   ],
                                 ),
@@ -292,13 +288,8 @@ class _LoginViewState extends State<LoginView> {
                                     HandleonPressedForgotPassword();
                                   },
                                   child: Text(
-                                    "ลืมรหัสผ่าน ?",
-                                    style: GoogleFonts.prompt(
-                                      textStyle: TextStyle(
-                                        fontSize: Config.instance.fontinfo,
-                                        color: Color.fromRGBO(235, 158, 0, 1),
-                                      ),
-                                    ),
+                                    loginDto.forgetPassText,
+                                    style: Config.instance.f16normalyellow,
                                   ),
                                 ),
                               ],
@@ -315,8 +306,8 @@ class _LoginViewState extends State<LoginView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "ยังไม่มีบัญชีผู้ใช้งาน ?",
-                        style: GoogleFonts.prompt(
+                        loginDto.registerText,
+                        style: GoogleFonts.notoSansThai(
                           textStyle: TextStyle(
                             fontSize: Config.instance.fontinfo,
                             color: Color.fromRGBO(19, 71, 154, 1),
@@ -328,8 +319,8 @@ class _LoginViewState extends State<LoginView> {
                           HandleonPressedRegister;
                         },
                         child: Text(
-                          "ลงทะเบียน",
-                          style: GoogleFonts.prompt(
+                          loginDto.registerText,
+                          style: GoogleFonts.notoSansThai(
                             textStyle: TextStyle(
                               fontSize: Config.instance.fontinfo,
                               color: Color.fromRGBO(235, 158, 0, 1),
@@ -358,5 +349,29 @@ class _LoginViewState extends State<LoginView> {
 
   HandleonPressedLogin() {
     loginDto.onPressedLogin.call();
+  }
+
+  HandleLoginValidate() {
+    loginDto.loginValidate.call();
+  }
+
+  HandleLoginUsernameValidate() {
+    loginDto.usernameValidate.call();
+  }
+
+  HandleLoginPasswordValidate() {
+    loginDto.passwordValidate.call();
+  }
+
+  HandleonPressedResetpin() {
+    loginDto.onPressedResetPin.call();
+  }
+
+  HandleonPressedSetpin() {
+    loginDto.onPressedSetPin.call();
+  }
+
+  HandleonPressedSuccess() {
+    loginDto.onPressedSetPin.call();
   }
 }

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:nsw_app/component/bottom_navigation_bar_qrscanpage.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/home/home.dart';
+import 'package:nsw_app/pages/notification/notification.dart';
 import 'package:nsw_app/pages/notification/notification.view.dart';
+import 'package:nsw_app/pages/notification/notification.view.dto.dart';
 import 'package:nsw_app/pages/profile/profile.dart';
 import 'package:nsw_app/pages/scanQR/scanqr.dart';
 import 'package:nsw_app/pages/track_status/track_status.dart';
@@ -25,7 +27,7 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
     Home(),
     TrackStatus(),
     ScanQR(),
-    NotificationView(),
+    NotificationPage(),
     Profile(),
   ];
 
@@ -41,7 +43,7 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
   final List<Widget> screens = [
     Home(),
     TrackStatus(),
-    NotificationView(),
+    NotificationPage(),
     Profile(),
   ];
 
@@ -134,7 +136,7 @@ class _BottomNavBarTrackStatusState extends State<BottomNavBarTrackStatus> {
                     onPressed: () {
                       setState(
                         () {
-                          currentScreen = NotificationView();
+                          currentScreen = NotificationPage();
                           currentTab = 3;
                         },
                       );

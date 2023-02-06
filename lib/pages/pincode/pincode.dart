@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/pages/login/login.dart';
 import 'package:nsw_app/pages/pincode/pincode.view.dart';
 import 'package:nsw_app/pages/pincode/pincode.view.dto.dart';
@@ -31,6 +32,7 @@ class _PincodeState extends State<Pincode> {
     pincodeDto = PincodeDto(
       onPressedNavigateResetUsername: _HandleonPressedNavigateResetUsername,
       onPressedCancelResetPin: _HandleonPressedCancel,
+      onPressedSkip: _HandleonPressedSkip,
     );
   }
 
@@ -55,6 +57,15 @@ class _PincodeState extends State<Pincode> {
       context,
       MaterialPageRoute(
         builder: (context) => Login(),
+      ),
+    );
+  }
+
+  _HandleonPressedSkip() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BottomNavBar(),
       ),
     );
   }

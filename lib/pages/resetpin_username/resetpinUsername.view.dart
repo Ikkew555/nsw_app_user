@@ -134,7 +134,7 @@ class _ResetPinUsernameViewState extends State<ResetPinUsernameView> {
                                     print(username);
                                     setState(() {}); // set value userData
                                     if (username == null) {
-                                      HandleonPressedPassword();
+                                      return;
                                     } else {
                                       HandleonPressedPassword();
                                     }

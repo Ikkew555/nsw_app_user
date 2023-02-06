@@ -14,6 +14,7 @@ class _ForgotButtonState extends State<ForgotButton> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         alignment: Alignment.centerLeft,
+        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -22,7 +23,6 @@ class _ForgotButtonState extends State<ForgotButton> {
           color: Config.instance.color,
         ),
         minimumSize: const Size.fromHeight(50),
-        primary: Colors.white,
         elevation: 5,
       ),
       onPressed: () {

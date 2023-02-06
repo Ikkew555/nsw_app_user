@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/contact.us/contact.us.view.dart';
+import 'package:nsw_app/pages/contact_us/contact_us.view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class ContactUsButton extends StatefulWidget {

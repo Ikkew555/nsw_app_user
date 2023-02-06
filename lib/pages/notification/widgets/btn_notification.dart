@@ -4,9 +4,10 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/component/btn_viewall_notification.dart';
-import 'package:nsw_app/component/noticifation_menu_1.dart';
-import 'package:nsw_app/component/noticifation_menu_2.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/notification/widgets/noticifation_menu_1_home/noticifation_menu_1_home.dart';
+import 'package:nsw_app/pages/notification/widgets/noticifation_menu_2/noticifation_menu_2.view.dart';
+import 'package:nsw_app/pages/notification/widgets/noticifation_menu_1/noticifation_menu_1.view.dart';
 
 class NotificationButton extends StatefulWidget {
   const NotificationButton({Key? key}) : super(key: key);

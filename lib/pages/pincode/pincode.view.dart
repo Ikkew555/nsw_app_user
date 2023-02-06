@@ -351,11 +351,11 @@ class _PincodeViewState extends State<PincodeView> {
                           width: MediaQuery.of(context).size.width * 0.3,
                           child: TextButton(
                             onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (_) => ImageDialog(),
-                              );
-                              HandleonPressedResetPin();
+                              // showDialog(
+                              //   context: context,
+                              //   builder: (_) => ImageDialog(),
+                              // );
+                              HandleonPressedSkip();
                             },
                             child: Text(
                               "ข้าม",
@@ -387,5 +387,9 @@ class _PincodeViewState extends State<PincodeView> {
 
   HandleonPressedCancel() {
     pincodeDto.onPressedCancelResetPin.call();
+  }
+
+  HandleonPressedSkip() {
+    pincodeDto.onPressedSkip.call();
   }
 }

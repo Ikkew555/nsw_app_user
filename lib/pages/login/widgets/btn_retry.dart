@@ -13,13 +13,13 @@ class _RetryButtonState extends State<RetryButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.black,
+        backgroundColor: Config.instance.color,
         alignment: Alignment.centerLeft,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
         minimumSize: const Size.fromHeight(50),
-        onPrimary: Colors.black,
-        primary: Config.instance.color,
         elevation: 5,
       ),
       onPressed: () {

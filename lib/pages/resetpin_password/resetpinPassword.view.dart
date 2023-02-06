@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/pincode/pincode.dart';
 import 'package:nsw_app/pages/resetpin_password/resetpinPassword.view.dto.dart';
 
 class ResetPinPasswordView extends StatefulWidget {
@@ -79,11 +80,16 @@ class _ResetPinPasswordViewState extends State<ResetPinPasswordView> {
                                 height: 60,
                                 child: TextFormField(
                                   textAlignVertical: TextAlignVertical.bottom,
-                                  validator: (username) {
-                                    if (username == null || username.isEmpty) {
-                                      return "รหัสผ่านไม่ถูกต้อง";
+                                  validator: (password) {
+                                    if (password == null || password.isEmpty) {
+                                      return "กรุณากรอกรหัสผ่าน";
                                     }
                                     return null;
+                                  },
+                                  onSaved: (_password) {
+                                    setState(() {
+                                      password = _password;
+                                    });
                                   },
                                   decoration: InputDecoration(
                                     prefixIcon: Icon(
@@ -122,11 +128,19 @@ class _ResetPinPasswordViewState extends State<ResetPinPasswordView> {
                                 width: 100,
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    if (_PasswordKey.currentState!.validate()) {
+                                      _PasswordKey.currentState!.save();
+                                    }
                                     setState(() {}); // set value userData
                                     if (password == null) {
                                       return;
                                     } else {
-                                      return;
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Pincode(),
+                                        ),
+                                      );
                                     }
                                   },
                                   child: Text(

@@ -12,81 +12,116 @@ class Config {
 
   double fonttopic = 12;
   double fontinfo = 16;
-
-  TextStyle f12normalprimary = GoogleFonts.prompt(
+  TextStyle f10normalgrey = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 10,
+      color: Colors.grey,
+    ),
+  );
+  TextStyle f12normalprimary = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: 12,
     ),
   );
-
-  TextStyle f12semiboldprimary = GoogleFonts.prompt(
+  TextStyle f12normalgrey = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 12,
+      color: Colors.grey,
+    ),
+  );
+  TextStyle f12semiboldprimary = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 12,
       color: Color.fromRGBO(7, 20, 124, 1),
     ),
   );
-  TextStyle f16semiboldprimary = GoogleFonts.prompt(
+  TextStyle f16semiboldprimary = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
       color: Color.fromRGBO(7, 20, 124, 1),
     ),
   );
-  TextStyle f16semiboldblack = GoogleFonts.prompt(
+  TextStyle f16normalprimary = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      color: Color.fromRGBO(7, 20, 124, 1),
+    ),
+  );
+
+  TextStyle f16semiboldblack = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
       color: Colors.black,
     ),
   );
-  TextStyle f16semiboldwhite = GoogleFonts.prompt(
+  TextStyle f16semiboldwhite = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
       color: Colors.white,
     ),
   );
-  TextStyle f18normalblack = GoogleFonts.prompt(
+  TextStyle f18normalblack = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: 18,
       color: Colors.black,
     ),
   );
-  TextStyle f16normalblack = GoogleFonts.prompt(
+  TextStyle f16normalblack = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: 16,
       color: Colors.black,
     ),
   );
-  TextStyle f14normalgrey = GoogleFonts.prompt(
+  TextStyle f14normalgrey = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: 14,
       color: Colors.grey,
     ),
   );
-  TextStyle f16normal = GoogleFonts.prompt(
+  TextStyle f16normal = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: 16,
     ),
   );
-  TextStyle f18boldblack = GoogleFonts.prompt(
+  TextStyle f16normalwhite = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      color: Colors.white,
+    ),
+  );
+  TextStyle f18boldblack = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w700,
       fontSize: 18,
       color: Colors.black,
     ),
   );
-  TextStyle f12semiboldgrey = GoogleFonts.prompt(
+  TextStyle f12semiboldgrey = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 12,
       color: Color.fromRGBO(102, 102, 102, 1),
+    ),
+  );
+
+  TextStyle f16normalyellow = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      color: Color.fromRGBO(235, 158, 0, 1),
     ),
   );
 }
