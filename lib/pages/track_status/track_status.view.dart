@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nsw_app/component/btn_notification.dart';
+import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/track_status/track_status.view.dto.dart';
 import 'package:nsw_app/pages/track_status_cancel/cancel.view.dart';

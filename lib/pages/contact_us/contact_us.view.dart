@@ -5,8 +5,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/contact.us/widgets/location.card.dart';
-import 'package:nsw_app/pages/contact.us/widgets/searchbar.dart';
+import 'package:nsw_app/pages/contact_us/widgets/location.card.dart';
+import 'package:nsw_app/pages/contact_us/widgets/searchbar.dart';
 
 void main() => runApp(MyApp());
 

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nsw_app/component/btn_notification.dart';
+import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
 import 'package:nsw_app/config.dart';
 
 class CalendarPage extends StatefulWidget {

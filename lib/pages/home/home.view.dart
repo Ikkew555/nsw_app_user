@@ -2,12 +2,13 @@
 
 import 'dart:ui';
 
+import 'package:badges/badges.dart' as badges;
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/component/menu_meeting_menu.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/component/btn_notification.dart';
+import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
 import 'package:nsw_app/model/user.dart';
 import 'package:nsw_app/pages/home/home.view.dto.dart';
 
@@ -137,7 +138,11 @@ class _HomeViewState extends State<HomeView> {
                         },
                         child: Column(
                           children: [
-                            Badge(
+                            badges.Badge(
+                              badgeContent: Text('3'),
+                              child: Icon(Icons.settings),
+                            ),
+                            badges.Badge(
                               position: BadgePosition.topEnd(),
                               badgeColor: Color.fromRGBO(255, 195, 0, 1),
                               badgeContent: Text(
@@ -189,7 +194,7 @@ class _HomeViewState extends State<HomeView> {
                         },
                         child: Column(
                           children: [
-                            Badge(
+                            badges.Badge(
                               position: BadgePosition.topEnd(),
                               badgeColor: Color.fromRGBO(255, 195, 0, 1),
                               badgeContent: Text(
@@ -241,7 +246,7 @@ class _HomeViewState extends State<HomeView> {
                         },
                         child: Column(
                           children: [
-                            Badge(
+                            badges.Badge(
                               position: BadgePosition.topEnd(),
                               badgeColor: Color.fromRGBO(255, 195, 0, 1),
                               badgeContent: Text(

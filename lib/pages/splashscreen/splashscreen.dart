@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:nsw_app/pages/login/login.dart';
 import 'package:nsw_app/pages/splashscreen/splashscreen.view.dart';
@@ -13,28 +15,21 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   late SplashScreenDto splashScreenDto;
-  String imagePathWelcomeWeb = "assets/web_nsw1.png";
-  String imagePathEservice = "assets/web_nsw2.png";
-  String imagePathProfile = "assets/profile_img.png";
-  String imagePathMenuWait = "assets/circle_menu1.png";
-  String imagePathMenuWorking = "assets/circle_menu2.png";
-  String imagePathMenuDocument = "assets/circle_menu3.png";
+  String imagePathLogo = "assets/logo_nsw.png";
+  String loginText = "เข้าสู่ระบบ";
   String registerText = "ลงทะเบียน";
-  String prefixText = " คุณ";
-  String menuWaitText = "รอผู้ยื่นคำร้อง";
-  String menuWorkingText = "กรมฯ กำลังดำเนินการ";
-  String menuDocumentText = "พร้อมรับเอกสาร";
-  String appointmentText = "การนัดหมาย";
-  String allAppointmentText = "การนัดหมายทั้งหมด";
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     splashScreenDto = SplashScreenDto(
-        onPressedRegister: _HandleonPressedRegister,
-        onPressedLogin: _HandleonPressedLogin,
-        registerText: registerText);
+      onPressedRegister: _HandleonPressedRegister,
+      onPressedLogin: _HandleonPressedLogin,
+      loginText: loginText,
+      imagePathLogo: imagePathLogo,
+      registerText: registerText,
+    );
   }
 
   @override

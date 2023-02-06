@@ -146,13 +146,13 @@ class _NotificationCard2HomePageState extends State<NotificationCard2HomePage> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.white,
         alignment: Alignment.centerLeft,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
         minimumSize: const Size.fromHeight(50),
-        onPrimary: Colors.black,
-        primary: Colors.white,
         elevation: 0,
       ),
       onPressed: () {
@@ -232,16 +232,6 @@ class _NotificationCard2HomePageState extends State<NotificationCard2HomePage> {
                             ],
                           ),
                         ),
-                        // Text(
-                        //   "คำร้อง งานตรวจเรือ ของคุณกำลังถูกตรวจสอบ",
-                        //   style: GoogleFonts.prompt(
-                        //     textStyle: TextStyle(
-                        //       fontSize: 12,
-                        //       fontWeight: FontWeight.w500,
-                        //       color: Color.fromRGBO(102, 102, 102, 1),
-                        //     ),
-                        //   ),
-                        // ),
                       ],
                     ),
                   ],

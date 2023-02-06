@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:nsw_app/component/bottom_navigation_bar.dart';
@@ -19,14 +19,12 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   late LoginDto loginDto;
   String imagePathLogo = "assets/logo_nsw.png";
-  String helloText = "สวัสดี";
-  String prefixText = " คุณ";
-  String menuWaitText = "รอผู้ยื่นคำร้อง";
-  String menuWorkingText = "กรมฯ กำลังดำเนินการ";
-  String menuDocumentText = "พร้อมรับเอกสาร";
-  String appointmentText = "การนัดหมาย";
-  String allAppointmentText = "การนัดหมายทั้งหมด";
+  String usernameText = "ชื่อผู้ใช้งาน";
+  String passwordText = "รหัสผ่าน";
+  String rememberUserText = "จดจำบัญชีผู้ใช้";
+  String forgetPassText = "ลืมรหัสผ่าน ?";
   String registerText = "ยังไม่มีบัญชีผู้ใช้งาน ?";
+  String loginText = "เข้าสู่ระบบ";
 
   @override
   void initState() {
@@ -43,6 +41,12 @@ class _LoginState extends State<Login> {
       registerText: registerText,
       onPressedResetPin: _HandleonPressedResetPin,
       onPressedSetPin: _HandleonPressedSetPin,
+      forgetPassText: forgetPassText,
+      passwordText: passwordText,
+      rememberUserText: rememberUserText,
+      usernameText: usernameText,
+      loginText: loginText,
+      onPressedSuccess: _HandleonPressedSuccess,
     );
   }
 
@@ -111,7 +115,7 @@ class _LoginState extends State<Login> {
             onPressed: () => Navigator.pop(context, 'ปิด'),
             child: Text(
               'ปิด',
-              style: Config.instance.f16seminormalprimary,
+              style: Config.instance.f16normalprimary,
             ),
           ),
         ],
@@ -136,7 +140,7 @@ class _LoginState extends State<Login> {
             onPressed: () => Navigator.pop(context, 'ปิด'),
             child: Text(
               'ปิด',
-              style: Config.instance.f16seminormalprimary,
+              style: Config.instance.f16normalprimary,
             ),
           ),
         ],
@@ -161,10 +165,19 @@ class _LoginState extends State<Login> {
             onPressed: () => Navigator.pop(context, 'ปิด'),
             child: Text(
               'ปิด',
-              style: Config.instance.f16seminormalprimary,
+              style: Config.instance.f16normalprimary,
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  _HandleonPressedSuccess() async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BottomNavBar(),
       ),
     );
   }

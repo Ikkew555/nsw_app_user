@@ -1,18 +1,36 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nsw_app/component/noticifation_menu_1.dart';
-import 'package:nsw_app/component/noticifation_menu_2.dart';
+import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/notification/notification.view.dto.dart';
+import 'package:nsw_app/pages/notification/widgets/noticifation_menu_1/noticifation_menu_1.dart';
+import 'package:nsw_app/pages/notification/widgets/noticifation_menu_2/noticifation_menu_2.view.dart';
 
 class NotificationView extends StatefulWidget {
-  const NotificationView({Key? key}) : super(key: key);
+  const NotificationView({Key? key, required this.notificationDto})
+      : super(key: key);
+
+  final NotificationViewDto notificationDto;
 
   @override
   State<NotificationView> createState() => _NotificationViewState();
 }
 
 class _NotificationViewState extends State<NotificationView> {
+  late NotificationViewDto notificationDto;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(
+      () {
+        notificationDto = widget.notificationDto;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,16 +39,8 @@ class _NotificationViewState extends State<NotificationView> {
         floatHeaderSlivers: true,
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
-            title: Text(
-              "การแจ้งเตือน",
-              style: GoogleFonts.prompt(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
-              ),
-            ),
+            title: Text(notificationDto.titleText,
+                style: Config.instance.f18normalblack),
             centerTitle: true,
             backgroundColor: Colors.white,
             elevation: 0,
