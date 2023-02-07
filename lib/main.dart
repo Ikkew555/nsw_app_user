@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nsw_app/pages/splashscreen/splashscreen.dart';
-import 'package:nsw_app/pages/splashscreen/splashscreen.view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
       ),
-      home: const SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }

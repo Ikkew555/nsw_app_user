@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dto.dart';
+import 'package:nsw_app/pages/track_status_all/track_status_all.view.dart';
+import 'package:nsw_app/pages/track_status_all/track_status_all.view.dto.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,20 +13,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WaitingForPetitioner(),
+      home: TrackStatusAll(),
     );
   }
 }
 
-class WaitingForPetitioner extends StatefulWidget {
-  const WaitingForPetitioner({Key? key}) : super(key: key);
+class TrackStatusAll extends StatefulWidget {
+  const TrackStatusAll({Key? key}) : super(key: key);
 
   @override
-  State<WaitingForPetitioner> createState() => _WaitingForPetitionerState();
+  State<TrackStatusAll> createState() => _TrackStatusAllState();
 }
 
-class _WaitingForPetitionerState extends State<WaitingForPetitioner> {
-  late WaitingForPetitionerDto waitingForPetitionerDto;
+class _TrackStatusAllState extends State<TrackStatusAll> {
+  late TrackStatusAllDto trackStatusAllDto;
   String titleText = "ติดตามสถานะ";
   String selectSystemText = "เลือกระบบ";
   String selectedSystemText = "เลือกระบบงาน";
@@ -35,7 +35,7 @@ class _WaitingForPetitionerState extends State<WaitingForPetitioner> {
   @override
   void initState() {
     super.initState();
-    waitingForPetitionerDto = WaitingForPetitionerDto(
+    trackStatusAllDto = TrackStatusAllDto(
       onPressedShowSystem: _HandleonPressedShowSystem,
       titleText: titleText,
       selectSystemText: selectSystemText,
@@ -46,8 +46,8 @@ class _WaitingForPetitionerState extends State<WaitingForPetitioner> {
 
   @override
   Widget build(BuildContext context) {
-    return WaitingForPetitionerView(
-      waitingForPetitionerDto: waitingForPetitionerDto,
+    return TrackStatusAllView(
+      trackStatusAllDto: trackStatusAllDto,
     );
   }
 

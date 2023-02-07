@@ -1,10 +1,11 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/track_status/track_status.view.dart';
 import 'package:nsw_app/pages/track_status/track_status.view.dto.dart';
 import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
@@ -30,13 +31,20 @@ class TrackStatus extends StatefulWidget {
 
 class _TrackStatusState extends State<TrackStatus> {
   late TrackstatusDto trackstatusDto;
+  String titleText = "ติดตามสถานะ";
+  String selectSystemText = "เลือกระบบ";
+  String selectedSystemText = "เลือกระบบงาน";
+  String searchText = "ค้นหา";
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     trackstatusDto = TrackstatusDto(
       onPressedShowSystem: _HandleonPressedShowSystem,
+      titleText: titleText,
+      selectSystemText: selectSystemText,
+      selectedSystemText: selectedSystemText,
+      searchText: searchText,
     );
   }
 
@@ -63,16 +71,8 @@ class _TrackStatusState extends State<TrackStatus> {
                   height: 20,
                 ),
                 Center(
-                  child: Text(
-                    "งานทะเบียนเรือ",
-                    style: GoogleFonts.prompt(
-                      textStyle: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
+                  child: Text("งานทะเบียนเรือ",
+                      style: Config.instance.f18boldblack),
                 ),
                 SizedBox(
                   height: 20,

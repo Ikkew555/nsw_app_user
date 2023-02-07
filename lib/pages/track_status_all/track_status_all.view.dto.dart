@@ -1,5 +1,5 @@
-class WaitingForPetitionerDto {
-  WaitingForPetitionerDto({
+class TrackStatusAllDto {
+  TrackStatusAllDto({
     required this.onPressedShowSystem,
     required this.titleText,
     required this.selectSystemText,

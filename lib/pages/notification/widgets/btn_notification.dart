@@ -61,7 +61,10 @@ class _NotificationButtonState extends State<NotificationButton> {
           ),
         ),
       ),
-      icon: Icon(Icons.notifications_none_rounded),
+      icon: Icon(
+        Icons.notifications_none_rounded,
+        color: Config.instance.primarycolor,
+      ),
     );
   }
 }

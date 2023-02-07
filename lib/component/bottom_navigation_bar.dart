@@ -11,6 +11,21 @@ import 'package:nsw_app/pages/profile/profile.dart';
 import 'package:nsw_app/pages/scanQR/scanqr.dart';
 import 'package:nsw_app/pages/track_status/track_status.dart';
 
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: BottomNavBar(),
+    );
+  }
+}
+
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
 

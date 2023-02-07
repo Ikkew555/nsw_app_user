@@ -139,10 +139,6 @@ class _HomeViewState extends State<HomeView> {
                         child: Column(
                           children: [
                             badges.Badge(
-                              badgeContent: Text('3'),
-                              child: Icon(Icons.settings),
-                            ),
-                            badges.Badge(
                               position: BadgePosition.topEnd(),
                               badgeColor: Color.fromRGBO(255, 195, 0, 1),
                               badgeContent: Text(

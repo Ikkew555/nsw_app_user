@@ -5,27 +5,25 @@ import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
 import 'package:nsw_app/pages/track_status/track_status.dart';
 import 'package:nsw_app/pages/track_status_all/track_status_all.dart';
+import 'package:nsw_app/pages/track_status_all/track_status_all.view.dto.dart';
 import 'package:nsw_app/pages/track_status_cancel/cancel.view.dart';
 import 'package:nsw_app/pages/track_status_completed/completed.view.dart';
 import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytorecievedocument.view.dart';
 import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dart';
 import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dto.dart';
-import 'package:nsw_app/service/waitingforpetitioner.data.dart';
+import 'package:nsw_app/service/trackstatus.data.dart';
 
-class WaitingForPetitionerView extends StatefulWidget {
-  const WaitingForPetitionerView(
-      {Key? key, required this.waitingForPetitionerDto})
+class TrackStatusAllView extends StatefulWidget {
+  const TrackStatusAllView({Key? key, required this.trackStatusAllDto})
       : super(key: key);
-  final WaitingForPetitionerDto waitingForPetitionerDto;
+  final TrackStatusAllDto trackStatusAllDto;
 
   @override
-  State<WaitingForPetitionerView> createState() =>
-      _WaitingForPetitionerViewState();
+  State<TrackStatusAllView> createState() => _TrackStatusAllViewState();
 }
 
-class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
-  late WaitingForPetitionerDto waitingForPetitionerDto;
+class _TrackStatusAllViewState extends State<TrackStatusAllView> {
+  late TrackStatusAllDto trackStatusAllDto;
 
   List<String> status = [
     "แสดงทั้งหมด (20)",
@@ -45,22 +43,22 @@ class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
     CancelView(),
   ];
 
-  int current = 1;
+  int current = 0;
 
   @override
   void initState() {
     super.initState();
     setState(() {
-      waitingForPetitionerDto = widget.waitingForPetitionerDto;
+      trackStatusAllDto = widget.trackStatusAllDto;
     });
   }
 
-  // *NOTE : Search Functions
+  // *NOTE: Search Functions
 
-  // *NOTE : List ที่เอาไว้แสดง
-  List<WaitingforpetitionerModel> display_list = List.from(items);
+  // *NOTE: List ที่เอาไว้แสดง
+  List<TrackStatusModel> display_list = List.from(items);
 
-  // *NOTE : ฟังก์ชั่นไว้กรองชื่อใน list
+  // *NOTE: ฟังก์ชั่นไว้กรองชื่อใน list
   // !TODO : ทำ loop ให้โชว์แค่ 5 อัน
   void updateList(String value) {
     setState(() {
@@ -76,7 +74,7 @@ class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+          padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
           child: TextField(
             onChanged: (value) => updateList(value),
             style: TextStyle(
@@ -102,7 +100,7 @@ class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
           child: display_list.isEmpty
               ? Center(
                   child: Text(
-                    "ไม่พบข้อมูล",
+                    "No result found!!!",
                     style: TextStyle(
                       color: Config.instance.primarycolor,
                       fontSize: 22,
@@ -111,9 +109,9 @@ class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
                   ),
                 )
               : ListView.builder(
-                  itemCount: display_list.length,
+                  itemCount: display_list.length - 1,
                   itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
@@ -181,6 +179,6 @@ class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
   }
 
   HandleonPressedShowSystem() {
-    waitingForPetitionerDto.onPressedShowSystem.call();
+    trackStatusAllDto.onPressedShowSystem.call();
   }
 }
