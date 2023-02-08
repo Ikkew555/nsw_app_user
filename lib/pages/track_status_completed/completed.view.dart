@@ -1,167 +1,160 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:nsw_app/pages/track_status_all/track_status_all.view.dto.dart';
+import 'package:nsw_app/pages/track_status_completed/completed.view.dto.dart';
+import 'package:nsw_app/service/completed.data.dart';
+import 'package:nsw_app/service/trackstatus.data.dart';
 
 class CompletedView extends StatefulWidget {
-  const CompletedView({Key? key}) : super(key: key);
+  const CompletedView({Key? key, required this.completedDto}) : super(key: key);
+  final CompletedDto completedDto;
 
   @override
   State<CompletedView> createState() => _CompletedViewState();
 }
 
 class _CompletedViewState extends State<CompletedView> {
-  List<Color> statuscolor = [
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-  ];
+  late CompletedDto completedDto;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      completedDto = widget.completedDto;
+    });
+  }
+
+  // *NOTE: Search Functions
+
+  // *NOTE: List ที่เอาไว้แสดง
+  List<CompletedModel> display_list = List.from(items_completed);
+
+  // *NOTE: ฟังก์ชั่นไว้กรองชื่อใน list
+  // !TODO : ทำ loop ให้โชว์แค่ 5 อัน
+  // !TODO : filter with 2 conditions
+  void updateList(String value) {
+    setState(() {
+      display_list = items_completed
+          .where((element) =>
+              element.title!.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SingleChildScrollView(
-          //show card section
-          physics: ScrollPhysics(),
-          child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemCount: 4,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 1,
-                        offset: Offset(0, 2), // Shadow position
-                      ),
-                    ],
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 5.0),
+          child: TextField(
+            onChanged: (value) => updateList(value),
+            style: TextStyle(
+              color: Config.instance.primarycolor,
+            ),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.blueGrey[100],
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
+              ),
+              hintText: "ตัวอย่าง คำร้อง A",
+              hintStyle: Config.instance.f14normalprimary,
+              suffixIcon: Icon(
+                Icons.search,
+                color: Config.instance.primarycolor,
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: display_list.isEmpty
+              ? Center(
+                  child: Text(
+                    "ไม่พบข้อมูล",
+                    style: TextStyle(
+                      color: Config.instance.primarycolor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(5.0),
-                            bottomLeft: Radius.circular(5.0),
+                )
+              : ListView.builder(
+                  itemCount: display_list.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 5.0,
+                      horizontal: 10.0,
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 1,
+                            offset: Offset(0, 2), // Shadow position
                           ),
-                          color: statuscolor[index],
-                        ),
-                        height: 100,
-                        width: 7,
+                        ],
                       ),
-                      SizedBox(
-                        height: 90,
-                        width: MediaQuery.of(context).size.width - 35,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/icon_notification_2.png",
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                130,
-                                        child: Text(
-                                          "ดำเนินการแล้วเสร็จ",
-                                          style: GoogleFonts.prompt(
-                                            textStyle: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: 'คำร้อง',
-                                              style: GoogleFonts.prompt(
-                                                textStyle: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                ),
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: ' งานตรวจเรือ',
-                                              style: GoogleFonts.prompt(
-                                                textStyle: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Config.instance.color,
-                                                ),
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: ' ของคุณเสร็จสมบูรณ์',
-                                              style: GoogleFonts.prompt(
-                                                textStyle: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5.0),
+                                bottomLeft: Radius.circular(5.0),
                               ),
-                            ],
+                              color: display_list[index].color,
+                            ),
+                            height: 90,
+                            width: 7,
+                            alignment: Alignment.center,
                           ),
-                        ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5.0),
+                                bottomLeft: Radius.circular(5.0),
+                              ),
+                            ),
+                            height: 90,
+                            width: MediaQuery.of(context).size.width - 35,
+                            alignment: Alignment.center,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.all(8),
+                              title: Text(
+                                display_list[index].title!,
+                                style: Config.instance.f16boldprimary,
+                              ),
+                              subtitle: Text(
+                                display_list[index].subtitle!,
+                                style: Config.instance.f14normalgrey,
+                              ),
+                              leading: Image.asset(
+                                display_list[index].system_image_url!,
+                              ),
+                              trailing: Text(
+                                display_list[index].track_number!,
+                                style: Config.instance.f14normalgrey,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              );
-            },
-          ),
-        )
+        ),
       ],
     );
+  }
+
+  HandleonPressedShowSystem() {
+    completedDto.onPressedShowSystem.call();
   }
 }

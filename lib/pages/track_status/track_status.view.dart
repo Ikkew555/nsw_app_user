@@ -5,11 +5,18 @@ import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/track_status/track_status.view.dto.dart';
 import 'package:nsw_app/pages/track_status_all/track_status_all.dart';
+import 'package:nsw_app/pages/track_status_cancel/cancel.dart';
 import 'package:nsw_app/pages/track_status_cancel/cancel.view.dart';
+import 'package:nsw_app/pages/track_status_completed/completed.dart';
 import 'package:nsw_app/pages/track_status_completed/completed.view.dart';
+import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytorecievedocument.dart';
 import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytorecievedocument.view.dart';
+import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.dart';
 import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dart';
 import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.dart';
+import 'package:nsw_app/service/thedepartmentisworking.data.dart';
+import 'package:nsw_app/service/trackstatus.data.dart';
+import 'package:nsw_app/service/waitingforpetitioner.data.dart';
 
 class TrackStatusView extends StatefulWidget {
   const TrackStatusView({Key? key, required this.trackstatusDto})
@@ -32,22 +39,22 @@ class _TrackStatusViewState extends State<TrackStatusView> {
     });
   }
 
-  List<String> status = [
-    "แสดงทั้งหมด (20)",
-    "รอผู้ยื่นคำร้องดำเนินการ (15)",
-    "กรมฯ กำลังดำเนินการ (7)",
-    "พร้อมรับเอกสาร (4)",
-    "ดำเนินการแล้วเสร็จ (4)",
-    "ยกเลิกคำร้อง (4)",
+  late List<String> status = [
+    "แสดงทั้งหมด (${trackstatusDto.status_number_all})",
+    "รอผู้ยื่นคำร้องดำเนินการ (${trackstatusDto.status_number_waiting})",
+    "กรมฯ กำลังดำเนินการ (${trackstatusDto.status_number_working})",
+    "พร้อมรับเอกสาร (${trackstatusDto.status_number_ready})",
+    "ดำเนินการแล้วเสร็จ (${trackstatusDto.status_number_completed})",
+    "ยกเลิกคำร้อง (${trackstatusDto.status_number_cancel})",
   ];
 
   List<Widget> pages = [
     TrackStatusAll(),
     WaitingForPetitioner(),
-    TheDepartmentIsWorkingView(),
+    TheDepartmentIsWorking(),
     ReadyToRecieveDocument(),
-    CompletedView(),
-    CancelView(),
+    Completed(),
+    Cancel(),
   ];
 
   int current = 0;
@@ -73,29 +80,7 @@ class _TrackStatusViewState extends State<TrackStatusView> {
       ),
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body:
-          // NestedScrollView(
-          //   floatHeaderSlivers: true,
-          //   headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          //     SliverAppBar(
-          //       title: Text(
-          //         trackstatusDto.titleText,
-          //         style: Config.instance.f18boldblack,
-          //       ),
-          //       centerTitle: true,
-          //       backgroundColor: Colors.white,
-          //       elevation: 0,
-          //       automaticallyImplyLeading: false,
-          //       actions: [
-          //         NotificationButton(),
-          //         SizedBox(
-          //           width: 10,
-          //         ),
-          //       ],
-          //     )
-          //   ],
-          //   body:
-          DefaultTabController(
+      body: DefaultTabController(
         length: 6,
         initialIndex: 0,
         child: Column(
@@ -196,7 +181,6 @@ class _TrackStatusViewState extends State<TrackStatusView> {
           ],
         ),
       ),
-      // ),
     );
   }
 

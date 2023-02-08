@@ -1,14 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
-import 'package:nsw_app/pages/track_status/track_status.dart';
 import 'package:nsw_app/pages/track_status_all/track_status_all.dart';
 import 'package:nsw_app/pages/track_status_cancel/cancel.view.dart';
 import 'package:nsw_app/pages/track_status_completed/completed.view.dart';
-import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytorecievedocument.view.dart';
-import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dart';
+import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytorecievedocument.dart';
+import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.dart';
 import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.dart';
 import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dto.dart';
 import 'package:nsw_app/service/waitingforpetitioner.data.dart';
@@ -27,26 +26,6 @@ class WaitingForPetitionerView extends StatefulWidget {
 class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
   late WaitingForPetitionerDto waitingForPetitionerDto;
 
-  List<String> status = [
-    "แสดงทั้งหมด (20)",
-    "รอผู้ยื่นคำร้องดำเนินการ (15)",
-    "กรมฯ กำลังดำเนินการ (7)",
-    "พร้อมรับเอกสาร (4)",
-    "ดำเนินการแล้วเสร็จ (4)",
-    "ยกเลิกคำร้อง (4)",
-  ];
-
-  List<Widget> pages = [
-    TrackStatusAll(),
-    WaitingForPetitioner(),
-    TheDepartmentIsWorkingView(),
-    ReadyToRecieveDocument(),
-    CompletedView(),
-    CancelView(),
-  ];
-
-  int current = 1;
-
   @override
   void initState() {
     super.initState();
@@ -58,13 +37,13 @@ class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
   // *NOTE : Search Functions
 
   // *NOTE : List ที่เอาไว้แสดง
-  List<WaitingforpetitionerModel> display_list = List.from(items);
+  List<WaitingforpetitionerModel> display_list = List.from(items_waiting);
 
   // *NOTE : ฟังก์ชั่นไว้กรองชื่อใน list
   // !TODO : ทำ loop ให้โชว์แค่ 5 อัน
   void updateList(String value) {
     setState(() {
-      display_list = items
+      display_list = items_waiting
           .where((element) =>
               element.title!.toLowerCase().contains(value.toLowerCase()))
           .toList();
@@ -76,7 +55,7 @@ class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 5.0),
           child: TextField(
             onChanged: (value) => updateList(value),
             style: TextStyle(
@@ -103,10 +82,12 @@ class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
               ? Center(
                   child: Text(
                     "ไม่พบข้อมูล",
-                    style: TextStyle(
-                      color: Config.instance.primarycolor,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
+                    style: GoogleFonts.notoSansThai(
+                      textStyle: TextStyle(
+                        color: Config.instance.primarycolor,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 )
@@ -136,7 +117,7 @@ class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
                               ),
                               color: display_list[index].color,
                             ),
-                            height: 100,
+                            height: 90,
                             width: 7,
                             alignment: Alignment.center,
                           ),
@@ -147,26 +128,25 @@ class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
                                 bottomLeft: Radius.circular(5.0),
                               ),
                             ),
-                            height: 100,
+                            height: 90,
                             width: MediaQuery.of(context).size.width - 35,
                             alignment: Alignment.center,
                             child: ListTile(
-                              contentPadding: EdgeInsets.all(8),
+                              contentPadding: EdgeInsets.all(10),
                               title: Text(
                                 display_list[index].title!,
-                                style: TextStyle(
-                                  color: Config.instance.primarycolor,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Config.instance.f16boldprimary,
                               ),
                               subtitle: Text(
                                 display_list[index].subtitle!,
-                                style: TextStyle(
-                                  color: Config.instance.primarycolor,
-                                ),
+                                style: Config.instance.f14normalgrey,
                               ),
                               leading: Image.asset(
                                 display_list[index].system_image_url!,
+                              ),
+                              trailing: Text(
+                                display_list[index].track_number!,
+                                style: Config.instance.f14normalgrey,
                               ),
                             ),
                           ),

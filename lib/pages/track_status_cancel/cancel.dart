@@ -3,10 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
-import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dart';
-import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dto.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dto.dart';
+import 'package:nsw_app/pages/track_status_cancel/cancel.view.dart';
+import 'package:nsw_app/pages/track_status_cancel/cancel.view.dto.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,20 +13,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TheDepartmentIsWorking(),
+      home: Cancel(),
     );
   }
 }
 
-class TheDepartmentIsWorking extends StatefulWidget {
-  const TheDepartmentIsWorking({Key? key}) : super(key: key);
+class Cancel extends StatefulWidget {
+  const Cancel({Key? key}) : super(key: key);
 
   @override
-  State<TheDepartmentIsWorking> createState() => _TheDepartmentIsWorkingState();
+  State<Cancel> createState() => _CancelState();
 }
 
-class _TheDepartmentIsWorkingState extends State<TheDepartmentIsWorking> {
-  late TheDepartmentIsWorkingDto theDepartmentIsWorkingDto;
+class _CancelState extends State<Cancel> {
+  late CancelDto cancelDto;
   String titleText = "ติดตามสถานะ";
   String selectSystemText = "เลือกระบบ";
   String selectedSystemText = "เลือกระบบงาน";
@@ -37,7 +35,7 @@ class _TheDepartmentIsWorkingState extends State<TheDepartmentIsWorking> {
   @override
   void initState() {
     super.initState();
-    theDepartmentIsWorkingDto = TheDepartmentIsWorkingDto(
+    cancelDto = CancelDto(
       onPressedShowSystem: _HandleonPressedShowSystem,
       titleText: titleText,
       selectSystemText: selectSystemText,
@@ -48,8 +46,8 @@ class _TheDepartmentIsWorkingState extends State<TheDepartmentIsWorking> {
 
   @override
   Widget build(BuildContext context) {
-    return TheDepartmentIsWorkingView(
-      theDepartmentIsWorkingDto: theDepartmentIsWorkingDto,
+    return CancelView(
+      cancelDto: cancelDto,
     );
   }
 

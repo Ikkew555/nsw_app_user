@@ -1,5 +1,5 @@
-class TheDepartmentIsWorkingDto {
-  TheDepartmentIsWorkingDto({
+class CancelDto {
+  CancelDto({
     required this.onPressedShowSystem,
     required this.titleText,
     required this.selectSystemText,

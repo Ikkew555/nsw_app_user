@@ -24,6 +24,7 @@ class Config {
     textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: 12,
+      color: Color.fromRGBO(7, 20, 124, 1),
     ),
   );
   TextStyle f12normalgrey = GoogleFonts.notoSansThai(
@@ -54,7 +55,13 @@ class Config {
       color: Color.fromRGBO(7, 20, 124, 1),
     ),
   );
-
+  TextStyle f16boldprimary = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 16,
+      color: Color.fromRGBO(7, 20, 124, 1),
+    ),
+  );
   TextStyle f16semiboldblack = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,

@@ -2,15 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
-import 'package:nsw_app/pages/track_status/track_status.dart';
-import 'package:nsw_app/pages/track_status_all/track_status_all.dart';
 import 'package:nsw_app/pages/track_status_all/track_status_all.view.dto.dart';
-import 'package:nsw_app/pages/track_status_cancel/cancel.view.dart';
-import 'package:nsw_app/pages/track_status_completed/completed.view.dart';
-import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytorecievedocument.view.dart';
-import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.dart';
 import 'package:nsw_app/service/trackstatus.data.dart';
 
 class TrackStatusAllView extends StatefulWidget {
@@ -24,26 +16,6 @@ class TrackStatusAllView extends StatefulWidget {
 
 class _TrackStatusAllViewState extends State<TrackStatusAllView> {
   late TrackStatusAllDto trackStatusAllDto;
-
-  List<String> status = [
-    "แสดงทั้งหมด (20)",
-    "รอผู้ยื่นคำร้องดำเนินการ (15)",
-    "กรมฯ กำลังดำเนินการ (7)",
-    "พร้อมรับเอกสาร (4)",
-    "ดำเนินการแล้วเสร็จ (4)",
-    "ยกเลิกคำร้อง (4)",
-  ];
-
-  List<Widget> pages = [
-    TrackStatusAll(),
-    WaitingForPetitioner(),
-    TheDepartmentIsWorkingView(),
-    ReadyToRecieveDocument(),
-    CompletedView(),
-    CancelView(),
-  ];
-
-  int current = 0;
 
   @override
   void initState() {
@@ -60,6 +32,7 @@ class _TrackStatusAllViewState extends State<TrackStatusAllView> {
 
   // *NOTE: ฟังก์ชั่นไว้กรองชื่อใน list
   // !TODO : ทำ loop ให้โชว์แค่ 5 อัน
+  // !TODO : filter with 2 conditions
   void updateList(String value) {
     setState(() {
       display_list = items
@@ -74,7 +47,7 @@ class _TrackStatusAllViewState extends State<TrackStatusAllView> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 5.0),
           child: TextField(
             onChanged: (value) => updateList(value),
             style: TextStyle(
@@ -100,7 +73,7 @@ class _TrackStatusAllViewState extends State<TrackStatusAllView> {
           child: display_list.isEmpty
               ? Center(
                   child: Text(
-                    "No result found!!!",
+                    "ไม่พบข้อมูล",
                     style: TextStyle(
                       color: Config.instance.primarycolor,
                       fontSize: 22,
@@ -109,9 +82,12 @@ class _TrackStatusAllViewState extends State<TrackStatusAllView> {
                   ),
                 )
               : ListView.builder(
-                  itemCount: display_list.length - 1,
+                  itemCount: display_list.length,
                   itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 5.0,
+                      horizontal: 10.0,
+                    ),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
@@ -134,7 +110,7 @@ class _TrackStatusAllViewState extends State<TrackStatusAllView> {
                               ),
                               color: display_list[index].color,
                             ),
-                            height: 100,
+                            height: 90,
                             width: 7,
                             alignment: Alignment.center,
                           ),
@@ -145,26 +121,25 @@ class _TrackStatusAllViewState extends State<TrackStatusAllView> {
                                 bottomLeft: Radius.circular(5.0),
                               ),
                             ),
-                            height: 100,
+                            height: 90,
                             width: MediaQuery.of(context).size.width - 35,
                             alignment: Alignment.center,
                             child: ListTile(
                               contentPadding: EdgeInsets.all(8),
                               title: Text(
                                 display_list[index].title!,
-                                style: TextStyle(
-                                  color: Config.instance.primarycolor,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Config.instance.f16boldprimary,
                               ),
                               subtitle: Text(
                                 display_list[index].subtitle!,
-                                style: TextStyle(
-                                  color: Config.instance.primarycolor,
-                                ),
+                                style: Config.instance.f14normalgrey,
                               ),
                               leading: Image.asset(
                                 display_list[index].system_image_url!,
+                              ),
+                              trailing: Text(
+                                display_list[index].track_number!,
+                                style: Config.instance.f14normalgrey,
                               ),
                             ),
                           ),
