@@ -5,19 +5,6 @@ import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
 import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dart';
 import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dto.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dto.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: TheDepartmentIsWorking(),
-    );
-  }
-}
 
 class TheDepartmentIsWorking extends StatefulWidget {
   const TheDepartmentIsWorking({Key? key}) : super(key: key);

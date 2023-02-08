@@ -2,10 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/track_status_all/track_status_all.view.dto.dart';
 import 'package:nsw_app/pages/track_status_completed/completed.view.dto.dart';
 import 'package:nsw_app/service/completed.data.dart';
-import 'package:nsw_app/service/trackstatus.data.dart';
 
 class CompletedView extends StatefulWidget {
   const CompletedView({Key? key, required this.completedDto}) : super(key: key);
