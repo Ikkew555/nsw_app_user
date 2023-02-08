@@ -1,13 +1,18 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/track_status/track_status.view.dart';
 import 'package:nsw_app/pages/track_status/track_status.view.dto.dart';
 import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
+import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytorecievedocument.dart';
+import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.dart';
+import 'package:nsw_app/service/cancel.data.dart';
+import 'package:nsw_app/service/completed.data.dart';
+import 'package:nsw_app/service/readytorecievedocument.data.dart';
+import 'package:nsw_app/service/thedepartmentisworking.data.dart';
+import 'package:nsw_app/service/trackstatus.data.dart';
+import 'package:nsw_app/service/waitingforpetitioner.data.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +20,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: TrackStatus(),
     );
   }
@@ -30,13 +34,62 @@ class TrackStatus extends StatefulWidget {
 
 class _TrackStatusState extends State<TrackStatus> {
   late TrackstatusDto trackstatusDto;
+  String titleText = "ติดตามสถานะ";
+  String selectSystemText = "เลือกระบบ";
+  String selectedSystemText = "เลือกระบบงาน";
+  String searchText = "ค้นหา";
+  late String status_number_all;
+  late String status_number_waiting;
+  late String status_number_ready;
+  late String status_number_working;
+  late String status_number_cancel;
+  late String status_number_completed;
+  List<TrackStatusModel> display_list = List.from(items);
+  List<ReadytorecievedocumentModel> display_list_ready =
+      List.from(items_readytorecieved);
+  List<TheDepartmentIsWorkingModel> display_list_working =
+      List.from(items_working);
+  List<CompletedModel> display_list_completed = List.from(items_completed);
+
+  List<CancelModel> display_list_cancel = List.from(items_cancel);
+  List<WaitingforpetitionerModel> display_list_waiting =
+      List.from(items_waiting);
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    setState(() {
+      status_number_all = display_list.length.toString();
+      status_number_waiting = display_list_waiting.length.toString();
+      status_number_cancel = display_list_cancel.length.toString();
+      status_number_ready = display_list_ready.length.toString();
+      status_number_working = display_list_working.length.toString();
+      status_number_completed = display_list_completed.length.toString();
+      print("status_number_all");
+      print(status_number_all);
+      print("status_number_waiting");
+      print(status_number_waiting);
+      print("status_number_cancel");
+      print(status_number_cancel);
+      print("status_number_ready");
+      print(status_number_ready);
+      print("status_number_working");
+      print(status_number_working);
+      print("status_number_completed");
+      print(status_number_completed);
+    });
     trackstatusDto = TrackstatusDto(
       onPressedShowSystem: _HandleonPressedShowSystem,
+      titleText: titleText,
+      selectSystemText: selectSystemText,
+      selectedSystemText: selectedSystemText,
+      searchText: searchText,
+      status_number_all: status_number_all,
+      status_number_waiting: status_number_waiting,
+      status_number_cancel: status_number_cancel,
+      status_number_ready: status_number_ready,
+      status_number_working: status_number_working,
+      status_number_completed: status_number_completed,
     );
   }
 
@@ -63,16 +116,8 @@ class _TrackStatusState extends State<TrackStatus> {
                   height: 20,
                 ),
                 Center(
-                  child: Text(
-                    "งานทะเบียนเรือ",
-                    style: GoogleFonts.prompt(
-                      textStyle: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
+                  child: Text("งานทะเบียนเรือ",
+                      style: Config.instance.f18boldblack),
                 ),
                 SizedBox(
                   height: 20,

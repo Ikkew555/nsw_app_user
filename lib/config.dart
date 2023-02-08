@@ -9,6 +9,7 @@ class Config {
   static Config instance = Config._myConstructor();
   Color color = const Color.fromRGBO(19, 71, 154, 1);
   Color primarycolor = const Color.fromRGBO(7, 20, 124, 1);
+  String systemImagePath = "assets/icon_notification_2.png";
 
   double fonttopic = 12;
   double fontinfo = 16;
@@ -23,6 +24,7 @@ class Config {
     textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: 12,
+      color: Color.fromRGBO(7, 20, 124, 1),
     ),
   );
   TextStyle f12normalgrey = GoogleFonts.notoSansThai(
@@ -53,7 +55,13 @@ class Config {
       color: Color.fromRGBO(7, 20, 124, 1),
     ),
   );
-
+  TextStyle f16boldprimary = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 16,
+      color: Color.fromRGBO(7, 20, 124, 1),
+    ),
+  );
   TextStyle f16semiboldblack = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
@@ -87,6 +95,13 @@ class Config {
       fontWeight: FontWeight.w400,
       fontSize: 14,
       color: Colors.grey,
+    ),
+  );
+  TextStyle f14normalprimary = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      color: Color.fromRGBO(7, 20, 124, 1),
     ),
   );
   TextStyle f16normal = GoogleFonts.notoSansThai(

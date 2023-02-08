@@ -1,12 +1,22 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:nsw_app/pages/track_status_all/track_status_all.dart';
+import 'package:nsw_app/pages/track_status_cancel/cancel.view.dart';
+import 'package:nsw_app/pages/track_status_completed/completed.view.dart';
+import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytorecievedocument.dart';
+import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.dart';
+import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.dart';
+import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dto.dart';
+import 'package:nsw_app/service/waitingforpetitioner.data.dart';
 
 class WaitingForPetitionerView extends StatefulWidget {
-  const WaitingForPetitionerView({Key? key}) : super(key: key);
+  const WaitingForPetitionerView(
+      {Key? key, required this.waitingForPetitionerDto})
+      : super(key: key);
+  final WaitingForPetitionerDto waitingForPetitionerDto;
 
   @override
   State<WaitingForPetitionerView> createState() =>
@@ -14,230 +24,143 @@ class WaitingForPetitionerView extends StatefulWidget {
 }
 
 class _WaitingForPetitionerViewState extends State<WaitingForPetitionerView> {
-  List<String> topic = [
-    "คำร้อง A",
-    "คำร้อง B",
-    "คำร้อง C",
-    "คำร้อง A",
-    "คำร้อง A",
-    "คำร้อง A",
-    "คำร้อง C",
-    "คำร้อง C",
-    "คำร้อง B",
-    "คำร้อง A",
-    "คำร้อง C",
-    "คำร้อง A",
-    "คำร้อง B",
-    "คำร้อง C",
-    "คำร้อง C",
-  ];
+  late WaitingForPetitionerDto waitingForPetitionerDto;
 
-  List<Color> statuscolor = [
-    Config.instance.color,
-    Colors.yellow,
-    Colors.green,
-    Colors.greenAccent,
-    Colors.red,
-    Colors.redAccent,
-    Config.instance.color,
-    Colors.yellow,
-    Colors.green,
-    Colors.greenAccent,
-    Colors.red,
-    Colors.redAccent,
-    Colors.greenAccent,
-    Colors.red,
-    Colors.redAccent,
-  ];
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      waitingForPetitionerDto = widget.waitingForPetitionerDto;
+    });
+  }
+
+  // *NOTE : Search Functions
+
+  // *NOTE : List ที่เอาไว้แสดง
+  List<WaitingforpetitionerModel> display_list = List.from(items_waiting);
+
+  // *NOTE : ฟังก์ชั่นไว้กรองชื่อใน list
+  // !TODO : ทำ loop ให้โชว์แค่ 5 อัน
+  void updateList(String value) {
+    setState(() {
+      display_list = items_waiting
+          .where((element) =>
+              element.title!.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SingleChildScrollView(
-          //show card section
-          physics: ScrollPhysics(),
-          child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemCount: topic.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 1,
-                        offset: Offset(0, 2), // Shadow position
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 5.0),
+          child: TextField(
+            onChanged: (value) => updateList(value),
+            style: TextStyle(
+              color: Config.instance.primarycolor,
+            ),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.blueGrey[100],
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
+              ),
+              hintText: "ตัวอย่าง คำร้อง A",
+              hintStyle: Config.instance.f14normalprimary,
+              suffixIcon: Icon(
+                Icons.search,
+                color: Config.instance.primarycolor,
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: display_list.isEmpty
+              ? Center(
+                  child: Text(
+                    "ไม่พบข้อมูล",
+                    style: GoogleFonts.notoSansThai(
+                      textStyle: TextStyle(
+                        color: Config.instance.primarycolor,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
+                    ),
                   ),
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(5.0),
-                            bottomLeft: Radius.circular(5.0),
+                )
+              : ListView.builder(
+                  itemCount: display_list.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 1,
+                            offset: Offset(0, 2), // Shadow position
                           ),
-                          color: statuscolor[index],
-                        ),
-                        height: 100,
-                        width: 7,
+                        ],
                       ),
-                      SizedBox(
-                        height: 90,
-                        width: MediaQuery.of(context).size.width - 35,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/icon_notification_2.png",
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                130,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              topic[index],
-                                              style: GoogleFonts.prompt(
-                                                textStyle: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ),
-                                            // SizedBox(
-                                            //   height: 30,
-                                            //   width: 120,
-                                            //   child: ElevatedButton(
-                                            //     style: ElevatedButton.styleFrom(
-                                            //       alignment:
-                                            //           Alignment.centerLeft,
-                                            //       shape: RoundedRectangleBorder(
-                                            //         borderRadius:
-                                            //             BorderRadius.circular(
-                                            //                 50),
-                                            //       ),
-                                            //       primary:
-                                            //           Config.instance.color,
-                                            //     ),
-                                            //     onPressed: () async {
-                                            //       await launchUrl(
-                                            //           Uri.parse(
-                                            //               "https://www.google.com/?&bih=961&biw=1872&hl=en"),
-                                            //           mode: LaunchMode
-                                            //               .externalApplication);
-                                            //     },
-                                            //     child: Row(
-                                            //       mainAxisAlignment:
-                                            //           MainAxisAlignment
-                                            //               .spaceBetween,
-                                            //       children: [
-                                            //         Container(
-                                            //           width: 15,
-                                            //           height: 15,
-                                            //           decoration: BoxDecoration(
-                                            //             color: Colors.white,
-                                            //             shape: BoxShape.circle,
-                                            //           ),
-                                            //         ),
-                                            //         Text(
-                                            //           "ดาวน์โหลด",
-                                            //           style: GoogleFonts.prompt(
-                                            //             textStyle: TextStyle(
-                                            //                 fontSize: 12,
-                                            //                 fontWeight:
-                                            //                     FontWeight.w400,
-                                            //                 color:
-                                            //                     Colors.white),
-                                            //           ),
-                                            //         ),
-                                            //       ],
-                                            //     ),
-                                            //   ),
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: 'คำร้อง',
-                                              style: GoogleFonts.prompt(
-                                                textStyle: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                ),
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: ' งานตรวจเรือ',
-                                              style: GoogleFonts.prompt(
-                                                textStyle: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Config.instance.color,
-                                                ),
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  ' ของคุณได้รับการอนุมัติแล้ว',
-                                              style: GoogleFonts.prompt(
-                                                textStyle: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5.0),
+                                bottomLeft: Radius.circular(5.0),
                               ),
-                            ],
+                              color: display_list[index].color,
+                            ),
+                            height: 90,
+                            width: 7,
+                            alignment: Alignment.center,
                           ),
-                        ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5.0),
+                                bottomLeft: Radius.circular(5.0),
+                              ),
+                            ),
+                            height: 90,
+                            width: MediaQuery.of(context).size.width - 35,
+                            alignment: Alignment.center,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.all(10),
+                              title: Text(
+                                display_list[index].title!,
+                                style: Config.instance.f16boldprimary,
+                              ),
+                              subtitle: Text(
+                                display_list[index].subtitle!,
+                                style: Config.instance.f14normalgrey,
+                              ),
+                              leading: Image.asset(
+                                display_list[index].system_image_url!,
+                              ),
+                              trailing: Text(
+                                display_list[index].track_number!,
+                                style: Config.instance.f14normalgrey,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              );
-            },
-          ),
-        )
+        ),
       ],
     );
+  }
+
+  HandleonPressedShowSystem() {
+    waitingForPetitionerDto.onPressedShowSystem.call();
   }
 }

@@ -3,10 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
-import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dart';
-import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dto.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.view.dto.dart';
+import 'package:nsw_app/pages/track_status_all/track_status_all.view.dart';
+import 'package:nsw_app/pages/track_status_all/track_status_all.view.dto.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,20 +12,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: TheDepartmentIsWorking(),
+      home: TrackStatusAll(),
     );
   }
 }
 
-class TheDepartmentIsWorking extends StatefulWidget {
-  const TheDepartmentIsWorking({Key? key}) : super(key: key);
+class TrackStatusAll extends StatefulWidget {
+  const TrackStatusAll({Key? key}) : super(key: key);
 
   @override
-  State<TheDepartmentIsWorking> createState() => _TheDepartmentIsWorkingState();
+  State<TrackStatusAll> createState() => _TrackStatusAllState();
 }
 
-class _TheDepartmentIsWorkingState extends State<TheDepartmentIsWorking> {
-  late TheDepartmentIsWorkingDto theDepartmentIsWorkingDto;
+class _TrackStatusAllState extends State<TrackStatusAll> {
+  late TrackStatusAllDto trackStatusAllDto;
   String titleText = "ติดตามสถานะ";
   String selectSystemText = "เลือกระบบ";
   String selectedSystemText = "เลือกระบบงาน";
@@ -36,7 +34,7 @@ class _TheDepartmentIsWorkingState extends State<TheDepartmentIsWorking> {
   @override
   void initState() {
     super.initState();
-    theDepartmentIsWorkingDto = TheDepartmentIsWorkingDto(
+    trackStatusAllDto = TrackStatusAllDto(
       onPressedShowSystem: _HandleonPressedShowSystem,
       titleText: titleText,
       selectSystemText: selectSystemText,
@@ -47,8 +45,8 @@ class _TheDepartmentIsWorkingState extends State<TheDepartmentIsWorking> {
 
   @override
   Widget build(BuildContext context) {
-    return TheDepartmentIsWorkingView(
-      theDepartmentIsWorkingDto: theDepartmentIsWorkingDto,
+    return TrackStatusAllView(
+      trackStatusAllDto: trackStatusAllDto,
     );
   }
 

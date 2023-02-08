@@ -1,42 +1,41 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/track_status_cancel/cancel.view.dto.dart';
-import 'package:nsw_app/service/cancel.data.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:nsw_app/pages/track_status_all/track_status_all.view.dto.dart';
+import 'package:nsw_app/service/trackstatus.data.dart';
 
-class CancelView extends StatefulWidget {
-  const CancelView({Key? key, required this.cancelDto}) : super(key: key);
-
-  final CancelDto cancelDto;
+class TrackStatusAllView extends StatefulWidget {
+  const TrackStatusAllView({Key? key, required this.trackStatusAllDto})
+      : super(key: key);
+  final TrackStatusAllDto trackStatusAllDto;
 
   @override
-  State<CancelView> createState() => _CancelViewState();
+  State<TrackStatusAllView> createState() => _TrackStatusAllViewState();
 }
 
-class _CancelViewState extends State<CancelView> {
-  late CancelDto cancelDto;
+class _TrackStatusAllViewState extends State<TrackStatusAllView> {
+  late TrackStatusAllDto trackStatusAllDto;
+
   @override
   void initState() {
     super.initState();
     setState(() {
-      cancelDto = widget.cancelDto;
+      trackStatusAllDto = widget.trackStatusAllDto;
     });
   }
 
   // *NOTE: Search Functions
 
   // *NOTE: List ที่เอาไว้แสดง
-  List<CancelModel> display_list = List.from(items_cancel);
+  List<TrackStatusModel> display_list = List.from(items);
 
   // *NOTE: ฟังก์ชั่นไว้กรองชื่อใน list
   // !TODO : ทำ loop ให้โชว์แค่ 5 อัน
   // !TODO : filter with 2 conditions
   void updateList(String value) {
     setState(() {
-      display_list = items_cancel
+      display_list = items
           .where((element) =>
               element.title!.toLowerCase().contains(value.toLowerCase()))
           .toList();
@@ -155,6 +154,6 @@ class _CancelViewState extends State<CancelView> {
   }
 
   HandleonPressedShowSystem() {
-    cancelDto.onPressedShowSystem.call();
+    trackStatusAllDto.onPressedShowSystem.call();
   }
 }

@@ -47,6 +47,7 @@ class _BottomNavBarQRScanState extends State<BottomNavBarQRScan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: PageStorage(
         bucket: bucket,
         child: currentScreen,
