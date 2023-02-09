@@ -1,14 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:nsw_app/component/bottom_navigation_bar.dart';
-import 'package:nsw_app/component/bottom_navigation_bar_profilepage.dart';
-import 'package:nsw_app/component/bottom_navigation_bar_trackstatus.dart';
 import 'package:nsw_app/pages/calendar/calendarpage.dart';
 import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/home/home.view.dto.dart';
 import 'package:nsw_app/pages/track_status/track_status.dart';
-import 'package:nsw_app/pages/track_status_all/track_status_all.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

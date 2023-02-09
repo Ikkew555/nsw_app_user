@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:nsw_app/pages/contact_us/contact_us.view.dart';
 import 'package:nsw_app/pages/splashscreen/splashscreen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       locale: const Locale('th', 'TH'),
-      home: SplashScreen(),
+      home: ContactUsView(),
     );
   }
 }

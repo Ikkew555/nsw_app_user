@@ -19,22 +19,47 @@ class _ContactUsViewState extends State<ContactUsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            SearchBar(),
-            LocationCard(),
-            SizedBox(
-              height: 10,
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                          height: 280,
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/map_demo.png"),
+                                fit: BoxFit.cover),
+                          ),
+                          child: null // Foreground widget here
+                          ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 20,
+                        ),
+                        child: SearchBar(),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Divider(
+                        thickness: 2,
+                        indent: 110,
+                        endIndent: 110,
+                        color: Color.fromRGBO(179, 193, 206, 1),
+                      ),
+                    ],
+                  ),
+                  LocationCard(),
+                ],
+              ),
             ),
-            Divider(
-              thickness: 2,
-              indent: 110,
-              endIndent: 110,
-              color: Color.fromRGBO(179, 193, 206, 1),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
