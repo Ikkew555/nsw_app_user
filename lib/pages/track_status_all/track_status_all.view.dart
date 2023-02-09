@@ -84,10 +84,7 @@ class _TrackStatusAllViewState extends State<TrackStatusAllView> {
               : ListView.builder(
                   itemCount: display_list.length,
                   itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 5.0,
-                      horizontal: 10.0,
-                    ),
+                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),

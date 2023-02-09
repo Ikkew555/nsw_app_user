@@ -8,17 +8,6 @@ import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/contact_us/widgets/location.card.dart';
 import 'package:nsw_app/pages/contact_us/widgets/searchbar.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ContactUsView(),
-    );
-  }
-}
-
 class ContactUsView extends StatefulWidget {
   const ContactUsView({Key? key}) : super(key: key);
 

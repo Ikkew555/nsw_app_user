@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:logger/logger.dart';
+import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/component/bottom_navigation_bar_profilepage.dart';
 import 'package:nsw_app/component/bottom_navigation_bar_trackstatus.dart';
 import 'package:nsw_app/pages/calendar/calendarpage.dart';
 import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/home/home.view.dto.dart';
-import 'package:nsw_app/pages/track_status/track_status.view.dart';
+import 'package:nsw_app/pages/track_status/track_status.dart';
+import 'package:nsw_app/pages/track_status_all/track_status_all.dart';
+import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // void main() {
 //   runApp(const MyApp());
@@ -40,17 +42,19 @@ class _HomeState extends State<Home> {
   String imagePathMenuWait = "assets/circle_menu1.png";
   String imagePathMenuWorking = "assets/circle_menu2.png";
   String imagePathMenuDocument = "assets/circle_menu3.png";
-  String helloText = "สวัสดี";
-  String prefixText = " คุณ";
-  String menuWaitText = "รอผู้ยื่นคำร้อง";
-  String menuWorkingText = "กรมฯ กำลังดำเนินการ";
-  String menuDocumentText = "พร้อมรับเอกสาร";
-  String appointmentText = "การนัดหมาย";
-  String allAppointmentText = "การนัดหมายทั้งหมด";
+  late String helloText = "";
+  late String prefixText = "";
+  late String menuWaitText = "";
+  late String menuWorkingText = "";
+  late String menuDocumentText = "";
+  late String appointmentText = "";
+  late String allAppointmentText = "";
 
   @override
   void initState() {
     super.initState();
+    Logger logger = Logger();
+    logger.d("message from Home");
     homeDto = HomeDto(
       onTapWelcomeWeb: _HandleonTapWelcomeWeb,
       imagePathWelcomeWeb: imagePathWelcomeWeb,
@@ -75,6 +79,21 @@ class _HomeState extends State<Home> {
       onPressedWaitingforPetitioner:
           _HandleonPressedShortcutWaitingforPetitioner,
     );
+    Future.delayed(Duration.zero, () {
+      setState(() {
+        homeDto.helloText = AppLocalizations.of(context)!.hello;
+        homeDto.prefixText = AppLocalizations.of(context)!.gender;
+        homeDto.menuWaitText =
+            AppLocalizations.of(context)!.waitingforpetitionerMenu;
+        homeDto.menuWorkingText =
+            AppLocalizations.of(context)!.thedepartmentisworking;
+        homeDto.menuDocumentText =
+            AppLocalizations.of(context)!.readytorecievedocuments;
+        homeDto.appointmentText = AppLocalizations.of(context)!.appointmentText;
+        homeDto.allAppointmentText =
+            AppLocalizations.of(context)!.allappointmentText;
+      });
+    });
   }
 
   @override
@@ -98,7 +117,7 @@ class _HomeState extends State<Home> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const BottomNavBarProfile(),
+        builder: (context) => const BottomNavBar(),
       ),
     );
   }
@@ -116,7 +135,7 @@ class _HomeState extends State<Home> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const BottomNavBarTrackStatus(),
+        builder: (context) => const TrackStatus(),
       ),
     );
   }
@@ -125,7 +144,7 @@ class _HomeState extends State<Home> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const BottomNavBarTrackStatus(),
+        builder: (context) => const TrackStatus(),
       ),
     );
   }
@@ -134,7 +153,7 @@ class _HomeState extends State<Home> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const BottomNavBarTrackStatus(),
+        builder: (context) => const TrackStatus(),
       ),
     );
   }
