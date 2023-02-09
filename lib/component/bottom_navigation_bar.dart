@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, unused_field, prefer_final_fields, unused_element, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/home/home.dart';
 import 'package:nsw_app/pages/notification/notification.dart';
@@ -10,6 +12,7 @@ import 'package:nsw_app/pages/notification/notification.view.dto.dart';
 import 'package:nsw_app/pages/profile/profile.dart';
 import 'package:nsw_app/pages/scanQR/scanqr.dart';
 import 'package:nsw_app/pages/track_status/track_status.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,31 +37,16 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    TrackStatus(),
-    ScanQR(),
-    NotificationPage(),
-    Profile(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = Home();
   int currentTab = 0;
-  final List<Widget> screens = [
-    Home(),
-    TrackStatus(),
-    NotificationPage(),
-    Profile(),
-  ];
+
+  @override
+  void initState() {
+    super.initState();
+    Logger logger = Logger();
+    logger.d("message from navbar");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +56,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
         bucket: bucket,
         child: currentScreen,
       ),
-      // body: Center(
-      //   child: _widgetOptions.elementAt(_selectedIndex),
-      // ),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 10,
@@ -229,12 +214,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
         elevation: 0,
         backgroundColor: Config.instance.color,
         onPressed: () {
-          Navigator.push(
+          PersistentNavBarNavigator.pushNewScreen(
             context,
-            MaterialPageRoute(
-              builder: (context) => const ScanQR(),
-            ),
+            screen: ScanQR(),
+            withNavBar: true,
           );
+
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => const ScanQR(),
+          //   ),
+          // );
         },
         child: Icon(
           Icons.qr_code_scanner,
@@ -243,5 +234,109 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
+  }
+}
+
+class NavBarPersistance extends StatefulWidget {
+  const NavBarPersistance({Key? key}) : super(key: key);
+
+  @override
+  State<NavBarPersistance> createState() => _NavBarPersistanceState();
+}
+
+class _NavBarPersistanceState extends State<NavBarPersistance> {
+  @override
+  Widget build(BuildContext context) {
+    PersistentTabController _controller;
+
+    _controller = PersistentTabController(initialIndex: 0);
+
+    List<Widget> _buildScreens() {
+      return [
+        Home(),
+        TrackStatus(),
+        ScanQR(),
+        NotificationPage(),
+        Profile(),
+      ];
+    }
+
+    List<PersistentBottomNavBarItem> _navBarsItems() {
+      return [
+        PersistentBottomNavBarItem(
+          icon: Icon(CupertinoIcons.home),
+          title: ("หน้าหลัก"),
+          textStyle: Config.instance.f12normalprimary,
+          activeColorPrimary: CupertinoColors.activeBlue,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: Icon(CupertinoIcons.doc_text_search),
+          title: ("ติดตามสถานะ"),
+          textStyle: Config.instance.f12normalprimary,
+          activeColorPrimary: CupertinoColors.activeBlue,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+        ),
+        PersistentBottomNavBarItem(
+          // onPressed: selectedHandler(),
+          icon: Icon(
+            CupertinoIcons.qrcode_viewfinder,
+            color: Colors.white,
+          ),
+          title: ("แสกน QR"),
+          textStyle: Config.instance.f12normalprimary,
+          activeColorPrimary: CupertinoColors.activeBlue,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: Icon(CupertinoIcons.calendar),
+          title: ("นัดหมาย"),
+          textStyle: Config.instance.f12normalprimary,
+          activeColorPrimary: CupertinoColors.activeBlue,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: Icon(CupertinoIcons.settings),
+          title: ("ตั้งค่า"),
+          textStyle: Config.instance.f12normalprimary,
+          activeColorPrimary: CupertinoColors.activeBlue,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+        ),
+      ];
+    }
+
+    return PersistentTabView(
+      context,
+      controller: _controller,
+      screens: _buildScreens(),
+      items: _navBarsItems(),
+      confineInSafeArea: true,
+      backgroundColor: Colors.white,
+      handleAndroidBackButtonPress: true,
+      resizeToAvoidBottomInset: true,
+      stateManagement: true,
+      hideNavigationBarWhenKeyboardShows: true,
+      decoration: NavBarDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        colorBehindNavBar: Colors.white,
+      ),
+      popAllScreensOnTapOfSelectedTab: true,
+      popActionScreens: PopActionScreensType.all,
+      itemAnimationProperties: ItemAnimationProperties(
+        duration: Duration(milliseconds: 200),
+        curve: Curves.ease,
+      ),
+      screenTransitionAnimation: ScreenTransitionAnimation(
+        animateTabTransition: true,
+        curve: Curves.ease,
+        duration: Duration(milliseconds: 200),
+      ),
+      navBarStyle: NavBarStyle.style15,
+    );
+  }
+
+  void selectedHandler() {
+    PersistentNavBarNavigator.pushNewScreen(context,
+        screen: ScanQR(), withNavBar: false);
   }
 }

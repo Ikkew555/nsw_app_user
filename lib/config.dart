@@ -97,6 +97,13 @@ class Config {
       color: Colors.grey,
     ),
   );
+  TextStyle f14normalwhite = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      color: Colors.white,
+    ),
+  );
   TextStyle f14normalprimary = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w400,

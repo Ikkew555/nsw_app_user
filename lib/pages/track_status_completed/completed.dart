@@ -6,17 +6,6 @@ import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
 import 'package:nsw_app/pages/track_status_completed/completed.view.dart';
 import 'package:nsw_app/pages/track_status_completed/completed.view.dto.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Completed(),
-    );
-  }
-}
-
 class Completed extends StatefulWidget {
   const Completed({Key? key}) : super(key: key);
 

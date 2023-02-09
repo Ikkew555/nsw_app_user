@@ -65,7 +65,7 @@ class _PincodeState extends State<Pincode> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BottomNavBar(),
+        builder: (context) => NavBarPersistance(),
       ),
     );
   }

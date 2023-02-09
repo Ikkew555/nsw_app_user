@@ -40,7 +40,12 @@ class _ScanQRViewState extends State<ScanQRView> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         elevation: 0,
         centerTitle: true,
         backgroundColor: Color.fromRGBO(19, 71, 154, .5),

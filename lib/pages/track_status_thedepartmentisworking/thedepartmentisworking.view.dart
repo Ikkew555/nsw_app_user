@@ -3,13 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/track_status_all/track_status_all.dart';
-import 'package:nsw_app/pages/track_status_cancel/cancel.view.dart';
-import 'package:nsw_app/pages/track_status_completed/completed.view.dart';
-import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytorecievedocument.dart';
-import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.dart';
 import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.view.dto.dart';
-import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.dart';
 import 'package:nsw_app/service/thedepartmentisworking.data.dart';
 
 class TheDepartmentIsWorkingView extends StatefulWidget {

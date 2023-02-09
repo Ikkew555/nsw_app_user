@@ -1,0 +1,12 @@
+{
+  "allappointmentText": "การนัดหมายทั้งหมด",
+  "appointmentText": "การนัดหมาย",
+  "cancel": "ยกเลิกคำร้อง",
+  "completed": "ดำเนินการแล้วเสร็จ",
+  "gender": " คุณ",
+  "hello": "สวัสดี",
+  "readytorecievedocuments": "พร้อมรับเอกสาร",
+  "thedepartmentisworking": "กรมฯ กำลังดำเนินการ",
+  "waitingforpetitioner": "รอผู้ยื่นคำร้องดำเนินการ",
+  "waitingforpetitionerMenu": "รอผู้ยื่นคำร้อง"
+}

@@ -11,6 +11,7 @@ import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytoreciev
 import 'package:nsw_app/pages/track_status_thedepartmentisworking/thedepartmentisworking.dart';
 import 'package:nsw_app/pages/track_status_waitingforpetitioner/waitingforpetitioner.dart';
 import 'package:nsw_app/service/readytorecievedocument.data.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ReadyToRecieveDocumentView extends StatefulWidget {
   const ReadyToRecieveDocumentView(
@@ -141,16 +142,52 @@ class _ReadyToRecieveDocumentViewState
                                 style: Config.instance.f16boldprimary,
                               ),
                               subtitle: Text(
-                                display_list[index].subtitle!,
+                                display_list[index].track_number!,
                                 style: Config.instance.f14normalgrey,
                               ),
                               leading: Image.asset(
                                 display_list[index].system_image_url!,
                               ),
-                              trailing: Text(
-                                display_list[index].track_number!,
-                                style: Config.instance.f14normalgrey,
-                              ),
+                              trailing: display_list[index].url != null
+                                  ? display_list[index].url ==
+                                          "https://md.go.th/"
+                                      ? ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                Config.instance.primarycolor,
+                                          ),
+                                          onPressed: () async {
+                                            await launchUrl(
+                                                Uri.parse(
+                                                    display_list[index].url!),
+                                                mode: LaunchMode
+                                                    .externalApplication);
+                                          },
+                                          child: Text(
+                                            "ดาวน์โหลด",
+                                            style:
+                                                Config.instance.f14normalwhite,
+                                          ),
+                                        )
+                                      : ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                Config.instance.primarycolor,
+                                          ),
+                                          onPressed: () async {
+                                            await launchUrl(
+                                                Uri.parse(
+                                                    display_list[index].url!),
+                                                mode: LaunchMode
+                                                    .externalApplication);
+                                          },
+                                          child: Text(
+                                            "แก้ไขเอกสาร",
+                                            style:
+                                                Config.instance.f14normalwhite,
+                                          ),
+                                        )
+                                  : null,
                             ),
                           ),
                         ],

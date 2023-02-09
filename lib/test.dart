@@ -3,15 +3,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/scanQR/scanQR.view.dart';
+import 'package:nsw_app/pages/home/home.dart';
+import 'package:nsw_app/pages/notification/notification.dart';
+import 'package:nsw_app/pages/profile/profile.dart';
 import 'package:nsw_app/pages/scanQR/scanqr.dart';
-import 'package:nsw_app/test_widgets_&_pages/testpage.dart';
-import 'package:nsw_app/test_widgets_&_pages/testpage2.dart';
-import 'package:nsw_app/test_widgets_&_pages/testpage3.dart';
-import 'package:nsw_app/test_widgets_&_pages/testpage4.dart';
-import 'package:nsw_app/test_widgets_&_pages/testpage5.dart';
+import 'package:nsw_app/pages/track_status/track_status.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,18 +42,13 @@ class _MainSrcState extends State<MainSrc> {
 
     _controller = PersistentTabController(initialIndex: 0);
 
-    selectHandler() {
-      PersistentNavBarNavigator.pushNewScreen(context,
-          screen: ScanQR(), withNavBar: false);
-    }
-
     List<Widget> _buildScreens() {
       return [
-        TestPage1(),
-        TestPage2(),
-        TestPage3(),
-        TestPage4(),
-        TestPage5(),
+        Home(),
+        TrackStatus(),
+        ScanQR(),
+        NotificationPage(),
+        Profile(),
       ];
     }
 
@@ -77,6 +69,7 @@ class _MainSrcState extends State<MainSrc> {
           inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
+          // onPressed: selectedHandler(),
           icon: Icon(
             CupertinoIcons.qrcode_viewfinder,
             color: Colors.white,
@@ -94,7 +87,7 @@ class _MainSrcState extends State<MainSrc> {
           inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
-          icon: Icon(CupertinoIcons.location),
+          icon: Icon(CupertinoIcons.settings),
           title: ("ตั้งค่า"),
           textStyle: Config.instance.f12normalprimary,
           activeColorPrimary: CupertinoColors.activeBlue,
@@ -131,5 +124,10 @@ class _MainSrcState extends State<MainSrc> {
       ),
       navBarStyle: NavBarStyle.style15,
     );
+  }
+
+  void selectedHandler() {
+    PersistentNavBarNavigator.pushNewScreen(context,
+        screen: ScanQR(), withNavBar: false);
   }
 }

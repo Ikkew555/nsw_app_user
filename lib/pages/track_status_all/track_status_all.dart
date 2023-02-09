@@ -6,17 +6,6 @@ import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
 import 'package:nsw_app/pages/track_status_all/track_status_all.view.dart';
 import 'package:nsw_app/pages/track_status_all/track_status_all.view.dto.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: TrackStatusAll(),
-    );
-  }
-}
-
 class TrackStatusAll extends StatefulWidget {
   const TrackStatusAll({Key? key}) : super(key: key);
 

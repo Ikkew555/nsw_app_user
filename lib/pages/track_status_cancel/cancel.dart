@@ -6,17 +6,6 @@ import 'package:nsw_app/pages/track_status/widgets/system_list.dart';
 import 'package:nsw_app/pages/track_status_cancel/cancel.view.dart';
 import 'package:nsw_app/pages/track_status_cancel/cancel.view.dto.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Cancel(),
-    );
-  }
-}
-
 class Cancel extends StatefulWidget {
   const Cancel({Key? key}) : super(key: key);
 

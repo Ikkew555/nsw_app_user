@@ -8,17 +8,6 @@ import 'package:nsw_app/pages/track_status_readytorecievedocuments/readytoreciev
 import 'package:nsw_app/service/trackstatus.data.dart';
 import 'package:nsw_app/service/waitingforpetitioner.data.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ReadyToRecieveDocument(),
-    );
-  }
-}
-
 class ReadyToRecieveDocument extends StatefulWidget {
   const ReadyToRecieveDocument({Key? key}) : super(key: key);
 
@@ -41,20 +30,13 @@ class _ReadyToRecieveDocumentState extends State<ReadyToRecieveDocument> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      status_number_all = display_list.length.toString();
-      status_number_waiting = display_list_waiting.length.toString();
-      print("status_number_all");
-      print(status_number_all);
-      print("status_number_waiting");
-      print(status_number_waiting);
-    });
     readyToRecieveDocumentDto = ReadyToRecieveDocumentDto(
-        onPressedShowSystem: _HandleonPressedShowSystem,
-        searchText: '',
-        selectSystemText: '',
-        selectedSystemText: '',
-        titleText: '');
+      onPressedShowSystem: _HandleonPressedShowSystem,
+      searchText: searchText,
+      selectSystemText: selectSystemText,
+      selectedSystemText: selectedSystemText,
+      titleText: titleText,
+    );
   }
 
   @override
