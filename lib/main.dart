@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       locale: const Locale('th', 'TH'),
-      home: ContactUsView(),
+      home: SplashScreen(),
     );
   }
 }
