@@ -38,11 +38,11 @@ class _MeetingCardState extends State<MeetingCard> {
                 ),
                 color: Config.instance.color,
               ),
-              height: 75,
+              height: 80,
               width: 7,
             ),
             SizedBox(
-              height: 67,
+              height: 75,
               width: MediaQuery.of(context).size.width - 50,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
@@ -52,7 +52,7 @@ class _MeetingCardState extends State<MeetingCard> {
                   children: [
                     Text(
                       "การนัดหมายที่ 1",
-                      style: GoogleFonts.prompt(
+                      style: GoogleFonts.notoSansThai(
                         textStyle: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -64,7 +64,7 @@ class _MeetingCardState extends State<MeetingCard> {
                       children: [
                         Text(
                           "สถานที่ A",
-                          style: GoogleFonts.prompt(
+                          style: GoogleFonts.notoSansThai(
                             textStyle: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -74,7 +74,7 @@ class _MeetingCardState extends State<MeetingCard> {
                         Spacer(),
                         Text(
                           "11:00",
-                          style: GoogleFonts.prompt(
+                          style: GoogleFonts.notoSansThai(
                             textStyle: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,

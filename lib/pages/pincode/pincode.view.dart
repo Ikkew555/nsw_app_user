@@ -284,7 +284,7 @@ class _PincodeViewState extends State<PincodeView> {
                   ),
                   Text(
                     "สำหรับการเข้าสู่ระบบครั้งแรก",
-                    style: GoogleFonts.prompt(
+                    style: GoogleFonts.notoSansThai(
                       textStyle: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
@@ -293,7 +293,7 @@ class _PincodeViewState extends State<PincodeView> {
                   ),
                   Text(
                     "กรุณาตั้งรหัสความปลอดภัย (PIN CODE)",
-                    style: GoogleFonts.prompt(
+                    style: GoogleFonts.notoSansThai(
                       textStyle: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -337,7 +337,7 @@ class _PincodeViewState extends State<PincodeView> {
                             },
                             child: Text(
                               "ยกเลิก",
-                              style: GoogleFonts.prompt(
+                              style: GoogleFonts.notoSansThai(
                                 textStyle: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
@@ -359,7 +359,7 @@ class _PincodeViewState extends State<PincodeView> {
                             },
                             child: Text(
                               "ข้าม",
-                              style: GoogleFonts.prompt(
+                              style: GoogleFonts.notoSansThai(
                                 textStyle: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,

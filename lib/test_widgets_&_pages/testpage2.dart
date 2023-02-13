@@ -122,7 +122,7 @@ class _TestPage2State extends State<TestPage2> {
                                                 130,
                                             child: Text(
                                               topic[index],
-                                              style: GoogleFonts.prompt(
+                                              style: GoogleFonts.notoSansThai(
                                                 textStyle: TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w600,
@@ -135,7 +135,8 @@ class _TestPage2State extends State<TestPage2> {
                                               children: <TextSpan>[
                                                 TextSpan(
                                                   text: 'กำลังดำเนินการ',
-                                                  style: GoogleFonts.prompt(
+                                                  style:
+                                                      GoogleFonts.notoSansThai(
                                                     textStyle: TextStyle(
                                                       fontSize: 12,
                                                       fontWeight:
@@ -147,7 +148,8 @@ class _TestPage2State extends State<TestPage2> {
                                                 ),
                                                 TextSpan(
                                                   text: ' งานตรวจเรือ',
-                                                  style: GoogleFonts.prompt(
+                                                  style:
+                                                      GoogleFonts.notoSansThai(
                                                     textStyle: TextStyle(
                                                       fontSize: 12,
                                                       fontWeight:
@@ -159,7 +161,8 @@ class _TestPage2State extends State<TestPage2> {
                                                 ),
                                                 TextSpan(
                                                   text: ' ของคุณ',
-                                                  style: GoogleFonts.prompt(
+                                                  style:
+                                                      GoogleFonts.notoSansThai(
                                                     textStyle: TextStyle(
                                                       fontSize: 12,
                                                       fontWeight:

@@ -57,7 +57,7 @@ class _CalendarPageState extends State<CalendarPage> {
           SliverAppBar(
             title: Text(
               "การนัดหมาย",
-              style: GoogleFonts.prompt(
+              style: GoogleFonts.notoSansThai(
                 textStyle: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,

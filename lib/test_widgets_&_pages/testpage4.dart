@@ -118,7 +118,7 @@ class _TestPage4State extends State<TestPage4> {
                                                 130,
                                         child: Text(
                                           "ดำเนินการเสร็จแล้ว",
-                                          style: GoogleFonts.prompt(
+                                          style: GoogleFonts.notoSansThai(
                                             textStyle: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,
@@ -131,7 +131,7 @@ class _TestPage4State extends State<TestPage4> {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text: 'คำร้อง',
-                                              style: GoogleFonts.prompt(
+                                              style: GoogleFonts.notoSansThai(
                                                 textStyle: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,
@@ -142,7 +142,7 @@ class _TestPage4State extends State<TestPage4> {
                                             ),
                                             TextSpan(
                                               text: ' งานตรวจเรือ',
-                                              style: GoogleFonts.prompt(
+                                              style: GoogleFonts.notoSansThai(
                                                 textStyle: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,
@@ -152,7 +152,7 @@ class _TestPage4State extends State<TestPage4> {
                                             ),
                                             TextSpan(
                                               text: ' ของคุณเสร็จสมบูรณ์',
-                                              style: GoogleFonts.prompt(
+                                              style: GoogleFonts.notoSansThai(
                                                 textStyle: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,

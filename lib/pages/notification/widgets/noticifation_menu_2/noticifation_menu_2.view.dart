@@ -65,7 +65,7 @@ class _NotificationCard2State extends State<NotificationCard2> {
                           children: [
                             Text(
                               "คำร้องของคุณกำลังถูกตรวจสอบ",
-                              style: GoogleFonts.prompt(
+                              style: GoogleFonts.notoSansThai(
                                 textStyle: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -77,33 +77,15 @@ class _NotificationCard2State extends State<NotificationCard2> {
                                 children: <TextSpan>[
                                   TextSpan(
                                     text: 'คำร้อง',
-                                    style: GoogleFonts.prompt(
-                                      textStyle: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color.fromRGBO(102, 102, 102, 1),
-                                      ),
-                                    ),
+                                    style: Config.instance.f12normalgrey,
                                   ),
                                   TextSpan(
                                     text: ' งานตรวจเรือ',
-                                    style: GoogleFonts.prompt(
-                                      textStyle: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Config.instance.color,
-                                      ),
-                                    ),
+                                    style: Config.instance.f12normalprimary,
                                   ),
                                   TextSpan(
                                     text: ' ของคุณได้รับการอนุมัติแล้ว',
-                                    style: GoogleFonts.prompt(
-                                      textStyle: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color.fromRGBO(102, 102, 102, 1),
-                                      ),
-                                    ),
+                                    style: Config.instance.f12normalgrey,
                                   ),
                                 ],
                               ),
@@ -114,7 +96,7 @@ class _NotificationCard2State extends State<NotificationCard2> {
                     ),
                     Text(
                       "8 มิ.ย.",
-                      style: GoogleFonts.prompt(
+                      style: GoogleFonts.notoSansThai(
                         textStyle: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -189,7 +171,7 @@ class _NotificationCard2HomePageState extends State<NotificationCard2HomePage> {
                       children: [
                         Text(
                           "คำร้องของคุณกำลังถูกตรวจสอบ",
-                          style: GoogleFonts.prompt(
+                          style: GoogleFonts.notoSansThai(
                             textStyle: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -201,33 +183,15 @@ class _NotificationCard2HomePageState extends State<NotificationCard2HomePage> {
                             children: <TextSpan>[
                               TextSpan(
                                 text: 'คำร้อง',
-                                style: GoogleFonts.prompt(
-                                  textStyle: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: Color.fromRGBO(102, 102, 102, 1),
-                                  ),
-                                ),
+                                style: Config.instance.f10normalgrey,
                               ),
                               TextSpan(
                                 text: ' งานตรวจเรือ',
-                                style: GoogleFonts.prompt(
-                                  textStyle: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: Config.instance.color,
-                                  ),
-                                ),
+                                style: Config.instance.f10normalprimary,
                               ),
                               TextSpan(
                                 text: ' ของคุณได้รับการอนุมัติแล้ว',
-                                style: GoogleFonts.prompt(
-                                  textStyle: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: Color.fromRGBO(102, 102, 102, 1),
-                                  ),
-                                ),
+                                style: Config.instance.f10normalgrey,
                               ),
                             ],
                           ),

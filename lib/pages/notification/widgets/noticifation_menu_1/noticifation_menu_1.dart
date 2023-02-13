@@ -13,7 +13,8 @@ class _NotificationCardState extends State<NotificationCard> {
   late NotificationCardViewDto notificationCardViewDto;
   String iconNotificationImagePath = "assets/icon_notification_1.png";
   String incomingMeetText = "ใกล้ถึงวันนัดหมาย";
-  String dateMeetText = "คุณมีนัดหมายในวันที่ 12 / 06 / 65";
+  String dateMeetText = "คุณมีนัดหมายในวันที่ ";
+  String MeetTimeText = " 12 / 06 / 65";
   String dateNotificationAlert = "8 มิ.ย.";
 
   @override
@@ -21,11 +22,11 @@ class _NotificationCardState extends State<NotificationCard> {
     // TODO: implement initState
     super.initState();
     notificationCardViewDto = NotificationCardViewDto(
-      dateMeetText: dateMeetText,
-      dateNotificationAlert: dateNotificationAlert,
-      iconNotificationImagePath: iconNotificationImagePath,
-      incomingMeetText: incomingMeetText,
-    );
+        dateMeetText: dateMeetText,
+        dateNotificationAlert: dateNotificationAlert,
+        iconNotificationImagePath: iconNotificationImagePath,
+        incomingMeetText: incomingMeetText,
+        MeetTimeText: MeetTimeText);
   }
 
   @override

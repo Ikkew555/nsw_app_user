@@ -60,7 +60,7 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                         Text(
                           "โปรไฟล์",
-                          style: GoogleFonts.prompt(
+                          style: GoogleFonts.notoSansThai(
                             textStyle: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
@@ -84,7 +84,7 @@ class _ProfileViewState extends State<ProfileView> {
                               ),
                               Text(
                                 User.instance.prefix.toString(),
-                                style: GoogleFonts.prompt(
+                                style: GoogleFonts.notoSansThai(
                                   textStyle: TextStyle(
                                     fontSize: 12,
                                     color: Colors.white,
@@ -97,7 +97,7 @@ class _ProfileViewState extends State<ProfileView> {
                               Text(
                                 User.instance.displayName
                                     .toString(), // user name and surname
-                                style: GoogleFonts.prompt(
+                                style: GoogleFonts.notoSansThai(
                                   textStyle: TextStyle(
                                     fontSize: Config.instance.fontinfo,
                                     fontWeight: FontWeight.w700,

@@ -22,7 +22,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  // late userData userdata;
   late HomeDto homeDto;
 
   @override
@@ -31,8 +30,6 @@ class _HomeViewState extends State<HomeView> {
     setState(() {
       homeDto = widget.homeDto;
     });
-    // print("userdata");
-    // print(userdata);
   }
 
   @override
@@ -75,7 +72,7 @@ class _HomeViewState extends State<HomeView> {
                                   children: <TextSpan>[
                                     TextSpan(
                                       text: homeDto.helloText,
-                                      style: GoogleFonts.prompt(
+                                      style: GoogleFonts.notoSansThai(
                                         textStyle: TextStyle(
                                           fontSize: 22,
                                           fontWeight: FontWeight.w600,
@@ -85,7 +82,7 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                     TextSpan(
                                       text: ''' ${User.instance.prefix}''',
-                                      style: GoogleFonts.prompt(
+                                      style: GoogleFonts.notoSansThai(
                                         textStyle: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w600,
@@ -96,7 +93,7 @@ class _HomeViewState extends State<HomeView> {
                                     TextSpan(
                                       text:
                                           '''\n${User.instance.displayName.toString()}''', // user name and surname
-                                      style: GoogleFonts.prompt(
+                                      style: GoogleFonts.notoSansThai(
                                         textStyle: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600,
@@ -143,7 +140,7 @@ class _HomeViewState extends State<HomeView> {
                               badgeColor: Color.fromRGBO(255, 195, 0, 1),
                               badgeContent: Text(
                                 '10',
-                                style: GoogleFonts.prompt(
+                                style: GoogleFonts.notoSansThai(
                                   textStyle: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -168,7 +165,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Text(
                               homeDto.menuWaitText,
-                              style: GoogleFonts.prompt(
+                              style: GoogleFonts.notoSansThai(
                                 textStyle: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
@@ -195,7 +192,7 @@ class _HomeViewState extends State<HomeView> {
                               badgeColor: Color.fromRGBO(255, 195, 0, 1),
                               badgeContent: Text(
                                 '10',
-                                style: GoogleFonts.prompt(
+                                style: GoogleFonts.notoSansThai(
                                   textStyle: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -220,7 +217,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Text(
                               homeDto.menuWorkingText,
-                              style: GoogleFonts.prompt(
+                              style: GoogleFonts.notoSansThai(
                                 textStyle: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
@@ -247,7 +244,7 @@ class _HomeViewState extends State<HomeView> {
                               badgeColor: Color.fromRGBO(255, 195, 0, 1),
                               badgeContent: Text(
                                 '10',
-                                style: GoogleFonts.prompt(
+                                style: GoogleFonts.notoSansThai(
                                   textStyle: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -272,7 +269,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Text(
                               homeDto.menuDocumentText,
-                              style: GoogleFonts.prompt(
+                              style: GoogleFonts.notoSansThai(
                                 textStyle: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
@@ -358,7 +355,7 @@ class _HomeViewState extends State<HomeView> {
                       children: [
                         Text(
                           "การนัดหมาย",
-                          style: GoogleFonts.prompt(
+                          style: GoogleFonts.notoSansThai(
                             textStyle: TextStyle(
                               fontSize: Config.instance.fontinfo,
                               fontWeight: FontWeight.w700,
@@ -377,7 +374,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             child: Text(
                               "การนัดหมายทั้งหมด",
-                              style: GoogleFonts.prompt(
+                              style: GoogleFonts.notoSansThai(
                                 textStyle: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
