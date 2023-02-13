@@ -7,7 +7,9 @@ import 'package:nsw_app/component/bottom_navigation_bar_profilepage.dart';
 import 'package:nsw_app/pages/calendar/calendarpage.dart';
 import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/home/home.view.dto.dart';
+import 'package:nsw_app/pages/profile/profile.dart';
 import 'package:nsw_app/pages/track_status/track_status.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -113,12 +115,8 @@ class _HomeState extends State<Home> {
   }
 
   _HandleonPressedProfile() async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const BottomNavBarProfile(),
-      ),
-    );
+    await PersistentNavBarNavigator.pushNewScreen(context,
+        screen: BottomNavBarProfile(), withNavBar: false);
   }
 
   _HandleonPressedCalendar() async {

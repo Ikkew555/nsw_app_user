@@ -127,7 +127,8 @@ class _TestPage1State extends State<TestPage1> {
                                               children: [
                                                 Text(
                                                   topic[index],
-                                                  style: GoogleFonts.prompt(
+                                                  style:
+                                                      GoogleFonts.notoSansThai(
                                                     textStyle: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight:
@@ -143,7 +144,8 @@ class _TestPage1State extends State<TestPage1> {
                                               children: <TextSpan>[
                                                 TextSpan(
                                                   text: 'คำร้อง',
-                                                  style: GoogleFonts.prompt(
+                                                  style:
+                                                      GoogleFonts.notoSansThai(
                                                     textStyle: TextStyle(
                                                       fontSize: 12,
                                                       fontWeight:
@@ -155,7 +157,8 @@ class _TestPage1State extends State<TestPage1> {
                                                 ),
                                                 TextSpan(
                                                   text: ' งานตรวจเรือ',
-                                                  style: GoogleFonts.prompt(
+                                                  style:
+                                                      GoogleFonts.notoSansThai(
                                                     textStyle: TextStyle(
                                                       fontSize: 12,
                                                       fontWeight:
@@ -168,7 +171,8 @@ class _TestPage1State extends State<TestPage1> {
                                                 TextSpan(
                                                   text:
                                                       ' ของคุณได้รับการอนุมัติแล้ว',
-                                                  style: GoogleFonts.prompt(
+                                                  style:
+                                                      GoogleFonts.notoSansThai(
                                                     textStyle: TextStyle(
                                                       fontSize: 12,
                                                       fontWeight:

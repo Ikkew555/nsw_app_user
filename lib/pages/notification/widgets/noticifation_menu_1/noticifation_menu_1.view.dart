@@ -83,9 +83,20 @@ class _NotificationCardViewState extends State<NotificationCardView> {
                               notificationCardViewDto.incomingMeetText,
                               style: Config.instance.f16semiboldblack,
                             ),
-                            Text(
-                              notificationCardViewDto.dateMeetText,
-                              style: Config.instance.f12normalgrey,
+                            RichText(
+                              text: TextSpan(
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: notificationCardViewDto
+                                        .incomingMeetText,
+                                    style: Config.instance.f12normalgrey,
+                                  ),
+                                  TextSpan(
+                                    text: notificationCardViewDto.MeetTimeText,
+                                    style: Config.instance.f12normalprimary,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

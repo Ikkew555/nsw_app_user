@@ -23,7 +23,7 @@ class ImageDialog extends StatelessWidget {
             SizedBox(height: 20),
             Text(
               "ตั้งรหัสความปลอดภัยเสร็จสิ้น",
-              style: GoogleFonts.prompt(
+              style: GoogleFonts.notoSansThai(
                 textStyle: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -33,7 +33,7 @@ class ImageDialog extends StatelessWidget {
             ),
             Text(
               "กรุณาจำรหัสนี้ไว้เพื่อใช้ในการเข้าสู่ระบบครั้งถัดไป",
-              style: GoogleFonts.prompt(
+              style: GoogleFonts.notoSansThai(
                 textStyle: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,

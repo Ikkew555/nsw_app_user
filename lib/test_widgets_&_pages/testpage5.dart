@@ -96,7 +96,7 @@ class _TestPage5State extends State<TestPage5> {
                                                 130,
                                         child: Text(
                                           "คำร้องถูกยกเลิก",
-                                          style: GoogleFonts.prompt(
+                                          style: GoogleFonts.notoSansThai(
                                             textStyle: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,
@@ -109,7 +109,7 @@ class _TestPage5State extends State<TestPage5> {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text: 'คำร้อง',
-                                              style: GoogleFonts.prompt(
+                                              style: GoogleFonts.notoSansThai(
                                                 textStyle: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,
@@ -120,7 +120,7 @@ class _TestPage5State extends State<TestPage5> {
                                             ),
                                             TextSpan(
                                               text: ' งานตรวจเรือ',
-                                              style: GoogleFonts.prompt(
+                                              style: GoogleFonts.notoSansThai(
                                                 textStyle: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,
@@ -130,7 +130,7 @@ class _TestPage5State extends State<TestPage5> {
                                             ),
                                             TextSpan(
                                               text: ' ของคุณถูกยกเลิก',
-                                              style: GoogleFonts.prompt(
+                                              style: GoogleFonts.notoSansThai(
                                                 textStyle: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,

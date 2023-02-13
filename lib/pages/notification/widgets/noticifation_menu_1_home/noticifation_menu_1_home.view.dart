@@ -73,7 +73,7 @@ class _NotificationCardHomePageViewState
                   children: [
                     Text(
                       notificationCardHomePageViewDto.incomingMeetText,
-                      style: Config.instance.f16semiboldblack,
+                      style: Config.instance.f12boldblack,
                     ),
                     Text(
                       notificationCardHomePageViewDto.dateMeetText,

@@ -20,11 +20,25 @@ class Config {
       color: Colors.grey,
     ),
   );
+  TextStyle f10normalprimary = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 10,
+      color: Color.fromRGBO(7, 20, 124, 1),
+    ),
+  );
   TextStyle f12normalprimary = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: 12,
       color: Color.fromRGBO(7, 20, 124, 1),
+    ),
+  );
+  TextStyle f12boldblack = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 12,
+      color: Colors.black,
     ),
   );
   TextStyle f12normalgrey = GoogleFonts.notoSansThai(

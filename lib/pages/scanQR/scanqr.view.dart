@@ -54,7 +54,7 @@ class _ScanQRViewState extends State<ScanQRView> {
         ),
         title: Text(
           "แสกน QR",
-          style: GoogleFonts.prompt(
+          style: GoogleFonts.notoSansThai(
             textStyle: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -104,7 +104,7 @@ class _ScanQRViewState extends State<ScanQRView> {
           child: Center(
             child: Text(
               'วาง QR หรือ บาร์โค้ด\nให้อยู่ในช่องสี่เหลี่ยม',
-              style: GoogleFonts.prompt(
+              style: GoogleFonts.notoSansThai(
                 textStyle: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,

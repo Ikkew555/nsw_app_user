@@ -43,7 +43,7 @@ class _ViewNotificationButtonState extends State<ViewNotificationButton> {
           children: [
             Text(
               "การแจ้งเตือนทั้งหมด",
-              style: GoogleFonts.prompt(
+              style: GoogleFonts.notoSansThai(
                 textStyle: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 12,
