@@ -19,7 +19,6 @@ class _NotificationCardState extends State<NotificationCard> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     notificationCardViewDto = NotificationCardViewDto(
         dateMeetText: dateMeetText,

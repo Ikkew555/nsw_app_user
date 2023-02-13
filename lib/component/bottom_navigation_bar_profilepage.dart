@@ -85,7 +85,7 @@ class _BottomNavBarProfileState extends State<BottomNavBarProfile> {
           inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
-          icon: Icon(CupertinoIcons.settings),
+          icon: Icon(CupertinoIcons.list_bullet),
           title: ("ตั้งค่า"),
           textStyle: Config.instance.f12normalprimary,
           activeColorPrimary: CupertinoColors.activeBlue,

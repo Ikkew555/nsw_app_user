@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/pincode/widgets/popupSuccessfull.dart';
+import 'package:nsw_app/pages/login/widgets/btn_retry.dart';
+import 'package:nsw_app/pages/login/widgets/popupFail.dart';
 import 'package:nsw_app/pages/resetpin/resetpincode.view.dto.dart';
+import 'package:nsw_app/pages/resetpin_username/resetpinUsername.dart';
 
 class ResetPincodeView extends StatefulWidget {
   const ResetPincodeView({Key? key, required this.resetpincodeDto})
@@ -26,6 +27,7 @@ class _ResetPincodeViewState extends State<ResetPincodeView> {
   @override
   void initState() {
     super.initState();
+
     setState(() {
       resetpincodeDto = widget.resetpincodeDto;
     });
@@ -387,10 +389,63 @@ class _ResetPincodeViewState extends State<ResetPincodeView> {
       print('Code is $code');
       selectedindex = code.length;
     });
+    resetpin() {
+      if (code.length == 6 && code != "123456") {
+        Future<void> _dialogBuilder(BuildContext context) {
+          return showDialog<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text(
+                  'Pin ไม่ถูกนะน้อน',
+                ), // title แก้ด้วย
+                content: const Text(
+                  'สามารถรีเซ็ทได้ ถ้าหากลืม... นะจ๊ะ',
+                ), // content แก้ด้วย
+                actions: <Widget>[
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    child: const Text('ตกลง'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        }
+
+        setState(() {
+          // resetpin addDigits
+          code = code.substring(0, code.length - 6);
+          selectedindex = code.length;
+        });
+        return _dialogBuilder(context);
+      }
+      if (code == "123456") {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ResetPinUsername(),
+          ),
+        );
+        setState(() {
+          // resetpin addDigits
+          code = code.substring(0, code.length - 6);
+          selectedindex = code.length;
+        });
+        print("Pincode match !!!");
+      }
+    }
+
+    resetpin();
   }
 
   backspace() {
-    if (code.length == 0) {
+    if (code.isEmpty) {
       return;
     }
     setState(() {

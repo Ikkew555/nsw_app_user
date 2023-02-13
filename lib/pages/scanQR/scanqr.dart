@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/pages/scanQR/scanQR.view.dart';
 import 'package:nsw_app/pages/scanQR/scanqr.view.dto.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,15 +29,16 @@ class _ScanQRState extends State<ScanQR> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    scanQRDto = ScanQRDto(onPressedShowSystem: _HandleonPressedLogin);
+    scanQRDto = ScanQRDto(
+      onPressedPop: _HandleonPressedPop,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return ScanQRView(
-      scanQRDto: ScanQRDto,
+      scanQRDto: scanQRDto,
     );
   }
 
@@ -48,13 +50,11 @@ class _ScanQRState extends State<ScanQR> {
     );
   }
 
-  _HandleonPressedLogin() async {
+  _HandleonPressedPop() async {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const ScanQRView(
-          scanQRDto: ScanQRDto,
-        ),
+        builder: (context) => const BottomNavBar(),
       ),
     );
   }

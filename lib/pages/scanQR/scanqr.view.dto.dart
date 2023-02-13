@@ -1,7 +1,7 @@
 class ScanQRDto {
   ScanQRDto({
-    required this.onPressedShowSystem,
+    required this.onPressedPop,
   });
 
-  Function onPressedShowSystem;
+  Function onPressedPop;
 }
