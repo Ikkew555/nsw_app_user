@@ -24,7 +24,15 @@ class SearchBar extends StatelessWidget {
         ),
         child: TextField(
           decoration: InputDecoration(
-            labelText: "สาขาเจ้าท่าทั้งหมด",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide.none,
+            ),
+            hintText: "สาขาเจ้าท่าทั้งหมด",
+            hintStyle: Config.instance.f14normalprimary,
+            filled: true,
+            fillColor: Colors.white,
+            // labelText: "สาขาเจ้าท่าทั้งหมด",
             labelStyle: Config.instance.f16normal,
             prefixIcon: Icon(Icons.location_on_outlined),
             suffixIcon: Icon(Icons.search),

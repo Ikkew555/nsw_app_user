@@ -28,7 +28,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                   Stack(
                     children: <Widget>[
                       Container(
-                          height: 280,
+                          height: 300,
                           width: double.infinity,
                           decoration: const BoxDecoration(
                             image: DecorationImage(

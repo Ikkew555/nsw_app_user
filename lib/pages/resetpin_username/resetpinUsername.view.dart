@@ -120,12 +120,17 @@ class _ResetPinUsernameViewState extends State<ResetPinUsernameView> {
                                 },
                                 child: Text(
                                   "ย้อนกลับ",
-                                  style: Config.instance.f16normal,
+                                  style: Config.instance.f16normalgrey,
                                 ),
                               ),
                               SizedBox(
-                                width: 100,
+                                width: 140,
+                                height: 50,
                                 child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Config.instance.primarycolor,
+                                  ),
                                   onPressed: () {
                                     if (_UsernameKey.currentState!.validate()) {
                                       _UsernameKey.currentState!.save();
