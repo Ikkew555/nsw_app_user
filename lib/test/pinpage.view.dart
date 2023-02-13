@@ -1,34 +1,40 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/pincode/pincode.view.dto.dart';
-import 'package:nsw_app/pages/pincode/widgets/popupSuccessfull.dart';
 
-class PincodeView extends StatefulWidget {
-  const PincodeView({Key? key, required this.pincodeDto}) : super(key: key);
+void main() => runApp(MyApp());
 
-  final PincodeDto pincodeDto;
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<PincodeView> createState() => _PincodeViewState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: _buildTheme(),
+      home: PasswordView(),
+    );
+  }
 }
 
-class _PincodeViewState extends State<PincodeView> {
-  late PincodeDto pincodeDto;
+ThemeData _buildTheme() {
+  final base = ThemeData.light();
+  return base.copyWith(
+      primaryIconTheme: base.iconTheme.copyWith(color: Colors.black));
+}
+
+class PasswordView extends StatefulWidget {
+  const PasswordView({Key? key}) : super(key: key);
+
+  @override
+  _PasswordViewState createState() => _PasswordViewState();
+}
+
+class _PasswordViewState extends State<PasswordView> {
   var selectedindex = 0;
   String code = '';
   Color pinDigitBeforeSubmitColor = const Color.fromARGB(255, 246, 246, 246);
   Color pinDigitAfterSubmitColor = const Color.fromARGB(255, 180, 180, 180);
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      pincodeDto = widget.pincodeDto;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -341,9 +347,7 @@ class _PincodeViewState extends State<PincodeView> {
                               Expanded(
                                 flex: 1,
                                 child: TextButton(
-                                  onPressed: () {
-                                    HandleonPressedCancel();
-                                  },
+                                  onPressed: () {},
                                   child: Text(
                                     "ยกเลิก",
                                     style: Config.instance.f14normalprimary,
@@ -353,9 +357,7 @@ class _PincodeViewState extends State<PincodeView> {
                               Expanded(
                                 flex: 1,
                                 child: TextButton(
-                                  onPressed: () {
-                                    HandleonPressedSkip();
-                                  },
+                                  onPressed: () {},
                                   child: Text(
                                     "ข้าม",
                                     style: Config.instance.f14normalgrey,
@@ -397,21 +399,9 @@ class _PincodeViewState extends State<PincodeView> {
       selectedindex = code.length;
     });
   }
-
-  HandleonPressedResetPin() {
-    pincodeDto.onPressedNavigateResetUsername.call();
-  }
-
-  HandleonPressedCancel() {
-    pincodeDto.onPressedCancelResetPin.call();
-  }
-
-  HandleonPressedSkip() {
-    pincodeDto.onPressedSkip.call();
-  }
 }
 
-class DigitHolder extends StatefulWidget {
+class DigitHolder extends StatelessWidget {
   final int selectedIndex;
   final int index;
   final String code;
@@ -424,13 +414,6 @@ class DigitHolder extends StatefulWidget {
   }) : super(key: key);
 
   final double width;
-
-  @override
-  State<DigitHolder> createState() => _DigitHolderState();
-}
-
-class _DigitHolderState extends State<DigitHolder> {
-  late PincodeDto pincodeDto;
 
   @override
   Widget build(BuildContext context) {
@@ -448,7 +431,7 @@ class _DigitHolderState extends State<DigitHolder> {
         ),
         boxShadow: [
           BoxShadow(
-            color: widget.index == widget.selectedIndex
+            color: index == selectedIndex
                 ? Config.instance.primarycolor
                 : Colors.transparent,
             offset: Offset(0, 0),
@@ -457,7 +440,7 @@ class _DigitHolderState extends State<DigitHolder> {
           ),
         ],
       ),
-      child: widget.code.length > widget.index
+      child: code.length > index
           ? Container(
               width: 22,
               height: 22,
