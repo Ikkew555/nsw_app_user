@@ -1,10 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/pincode/pincode.view.dto.dart';
-import 'package:nsw_app/pages/pincode/widgets/popupSuccessfull.dart';
+import 'package:nsw_app/pages/pincode/widgets/digitHolder.dart';
 
 class PincodeView extends StatefulWidget {
   const PincodeView({Key? key, required this.pincodeDto}) : super(key: key);
@@ -19,8 +19,6 @@ class _PincodeViewState extends State<PincodeView> {
   late PincodeDto pincodeDto;
   var selectedindex = 0;
   String code = '';
-  Color pinDigitBeforeSubmitColor = const Color.fromARGB(255, 246, 246, 246);
-  Color pinDigitAfterSubmitColor = const Color.fromARGB(255, 180, 180, 180);
 
   @override
   void initState() {
@@ -92,17 +90,17 @@ class _PincodeViewState extends State<PincodeView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 5.0),
-                        child: Text(
-                          "สำหรับการเข้าสู่ระบบครั้งแรก",
-                          style: Config.instance.f12normalgrey,
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(bottom: 5.0),
+                      //   child: Text(
+                      //     "สำหรับการเข้าสู่ระบบครั้งแรก",
+                      //     style: Config.instance.f12normalgrey,
+                      //   ),
+                      // ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Text(
-                          "กรุณายืนยันรหัสความปลอดภัย (PIN CODE)",
+                          "กรุณาใส่รหัสความปลอดภัย (PIN CODE)",
                           style: Config.instance.f16semiboldblack,
                         ),
                       ),
@@ -354,7 +352,7 @@ class _PincodeViewState extends State<PincodeView> {
                                 flex: 1,
                                 child: TextButton(
                                   onPressed: () {
-                                    HandleonPressedSkip();
+                                    // HandleonPressedSkip();
                                   },
                                   child: Text(
                                     "ข้าม",
@@ -386,10 +384,68 @@ class _PincodeViewState extends State<PincodeView> {
       print('Code is $code');
       selectedindex = code.length;
     });
+    resetpin() {
+      if (code.length == 6 && code != "123456") {
+        Future<void> _dialogBuilder(BuildContext context) {
+          return showDialog<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(
+                  'รหัสความปลอดภัยไม่ถูกต้อง',
+                  style: Config.instance.f16boldprimary,
+                ),
+                content: Text(
+                  'กรุณากรอกรหัสที่ถูกต้อง หรือ รีเซ้ทรหัสความปลอดภัย',
+                  style: Config.instance.f16normalblack,
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    child: Text(
+                      'ตกลง',
+                      style: Config.instance.f16normalprimary,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        }
+
+        setState(() {
+          // resetpin addDigits
+          code = code.substring(0, code.length - code.length);
+          selectedindex = code.length;
+        });
+        return _dialogBuilder(context);
+      }
+      if (code == "123456") {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BottomNavBar(),
+          ),
+        );
+        setState(() {
+          // resetpin addDigits
+          code = code.substring(0, code.length - code.length);
+          selectedindex = code.length;
+        });
+        print("Pincode match !!!");
+      }
+    }
+
+    resetpin();
   }
 
   backspace() {
-    if (code.length == 0) {
+    if (code.isEmpty) {
       return;
     }
     setState(() {
@@ -408,65 +464,5 @@ class _PincodeViewState extends State<PincodeView> {
 
   HandleonPressedSkip() {
     pincodeDto.onPressedSkip.call();
-  }
-}
-
-class DigitHolder extends StatefulWidget {
-  final int selectedIndex;
-  final int index;
-  final String code;
-  const DigitHolder({
-    required this.selectedIndex,
-    Key? key,
-    required this.width,
-    required this.index,
-    required this.code,
-  }) : super(key: key);
-
-  final double width;
-
-  @override
-  State<DigitHolder> createState() => _DigitHolderState();
-}
-
-class _DigitHolderState extends State<DigitHolder> {
-  late PincodeDto pincodeDto;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      height: 30,
-      width: 30,
-      margin: EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-        border: Border.all(
-          width: 1,
-          color: Colors.grey,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: widget.index == widget.selectedIndex
-                ? Config.instance.primarycolor
-                : Colors.transparent,
-            offset: Offset(0, 0),
-            // spreadRadius: 1.5,
-            // blurRadius: 2,
-          ),
-        ],
-      ),
-      child: widget.code.length > widget.index
-          ? Container(
-              width: 22,
-              height: 22,
-              decoration: BoxDecoration(
-                color: Config.instance.primarycolor,
-                shape: BoxShape.circle,
-              ),
-            )
-          : Container(),
-    );
   }
 }
