@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/pages/login/login.dart';

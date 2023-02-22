@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/login/widgets/btn_retry.dart';
-import 'package:nsw_app/pages/login/widgets/popupFail.dart';
 import 'package:nsw_app/pages/resetpin/resetpincode.view.dto.dart';
 import 'package:nsw_app/pages/resetpin_username/resetpinUsername.dart';
 
@@ -345,7 +343,8 @@ class _ResetPincodeViewState extends State<ResetPincodeView> {
                                 flex: 1,
                                 child: TextButton(
                                   onPressed: () {
-                                    HandleonPressedCancel();
+                                    Navigator.pop(context);
+                                    // HandleonPressedCancel();
                                   },
                                   child: Text(
                                     "ยกเลิก",
@@ -397,10 +396,10 @@ class _ResetPincodeViewState extends State<ResetPincodeView> {
             builder: (BuildContext context) {
               return AlertDialog(
                 title: const Text(
-                  'Pin ไม่ถูกนะน้อน',
+                  'รหัสความปลอดภัยไม่ถูกต้อง',
                 ), // title แก้ด้วย
                 content: const Text(
-                  'สามารถรีเซ็ทได้ ถ้าหากลืม... นะจ๊ะ',
+                  'กรุณากรอกรหัสที่ถูกต้อง หรือ รีเซ้ทรหัสความปลอดภัย',
                 ), // content แก้ด้วย
                 actions: <Widget>[
                   TextButton(
@@ -420,7 +419,7 @@ class _ResetPincodeViewState extends State<ResetPincodeView> {
 
         setState(() {
           // resetpin addDigits
-          code = code.substring(0, code.length - 6);
+          code = code.substring(0, code.length - code.length);
           selectedindex = code.length;
         });
         return _dialogBuilder(context);
@@ -434,7 +433,7 @@ class _ResetPincodeViewState extends State<ResetPincodeView> {
         );
         setState(() {
           // resetpin addDigits
-          code = code.substring(0, code.length - 6);
+          code = code.substring(0, code.length - code.length);
           selectedindex = code.length;
         });
         print("Pincode match !!!");

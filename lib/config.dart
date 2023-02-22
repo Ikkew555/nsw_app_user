@@ -159,12 +159,18 @@ class Config {
       color: Color.fromRGBO(102, 102, 102, 1),
     ),
   );
-
   TextStyle f16normalyellow = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: 16,
       color: Color.fromRGBO(235, 158, 0, 1),
+    ),
+  );
+  TextStyle f22boldprimary = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 22,
+      color: Color.fromRGBO(7, 20, 124, 1),
     ),
   );
 }

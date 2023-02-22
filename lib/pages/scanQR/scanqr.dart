@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/pages/scanQR/scanQR.view.dart';
 import 'package:nsw_app/pages/scanQR/scanqr.view.dto.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ScanQR extends StatefulWidget {
@@ -51,11 +52,10 @@ class _ScanQRState extends State<ScanQR> {
   }
 
   _HandleonPressedPop() async {
-    Navigator.push(
+    PersistentNavBarNavigator.pushNewScreen(
       context,
-      MaterialPageRoute(
-        builder: (context) => const BottomNavBar(),
-      ),
+      screen: BottomNavBar(),
+      withNavBar: false,
     );
   }
 }
