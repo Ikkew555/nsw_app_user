@@ -367,10 +367,10 @@ class _HomeViewState extends State<HomeView> {
                           width: 150,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Color.fromRGBO(19, 71, 154, 1),
                               minimumSize: Size.fromHeight(40),
                               shape: StadiumBorder(),
-                              onPrimary: Colors.white,
-                              primary: Color.fromRGBO(19, 71, 154, 1),
                             ),
                             child: Text(
                               "การนัดหมายทั้งหมด",

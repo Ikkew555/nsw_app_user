@@ -28,7 +28,6 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loginDto = LoginDto(
       onPressedForgotPassword: _HandleonPressedForgotPassword,

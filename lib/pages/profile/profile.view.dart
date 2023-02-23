@@ -69,18 +69,18 @@ class _ProfileViewState extends State<ProfileView> {
                           ),
                         ),
                         Container(
-                          height: MediaQuery.of(context).size.height / 20,
+                          height: MediaQuery.of(context).size.height / 25,
                         ),
                         Image.asset(
                           profileDto.imagePathProfile,
                           width: MediaQuery.of(context).size.width / 3,
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 6,
+                          height: MediaQuery.of(context).size.height / 8,
                           child: Column(
                             children: [
                               SizedBox(
-                                height: 25,
+                                height: 15,
                               ),
                               Text(
                                 User.instance.prefix.toString(),
@@ -106,8 +106,9 @@ class _ProfileViewState extends State<ProfileView> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+                                padding: EdgeInsets.only(
+                                  top: 5.0,
+                                ),
                                 child: Divider(
                                   thickness: 1,
                                   indent: 120,
@@ -136,13 +137,10 @@ class _ProfileViewState extends State<ProfileView> {
                               child: OpenBiometricButton(),
                             ),
                             Divider(
-                              thickness: 2,
+                              thickness: 1,
                               indent: 110,
                               endIndent: 110,
                               color: Color.fromRGBO(179, 193, 206, 1),
-                            ),
-                            SizedBox(
-                              height: 5,
                             ),
                             ChangPinButton(),
                             PrivacyConsentButton(),
@@ -152,9 +150,6 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 50,
                   ),
                 ],
               ),

@@ -22,7 +22,6 @@ class _NotificationViewState extends State<NotificationView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setState(
       () {

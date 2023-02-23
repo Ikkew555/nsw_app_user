@@ -22,7 +22,6 @@ class _NotificationCardViewState extends State<NotificationCardView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setState(() {
       notificationCardViewDto = widget.notificationCardViewDto;

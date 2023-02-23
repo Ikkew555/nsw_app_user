@@ -74,11 +74,7 @@ class _TrackStatusAllViewState extends State<TrackStatusAllView> {
               ? Center(
                   child: Text(
                     "ไม่พบข้อมูล",
-                    style: TextStyle(
-                      color: Config.instance.primarycolor,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Config.instance.f22boldprimary,
                   ),
                 )
               : ListView.builder(
@@ -145,6 +141,9 @@ class _TrackStatusAllViewState extends State<TrackStatusAllView> {
                     ),
                   ),
                 ),
+        ),
+        SizedBox(
+          height: 20,
         ),
       ],
     );

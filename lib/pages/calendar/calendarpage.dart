@@ -6,6 +6,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
 import 'package:nsw_app/config.dart';
 
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: CalendarPage(),
+    );
+  }
+}
+
 class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
 
@@ -57,13 +72,7 @@ class _CalendarPageState extends State<CalendarPage> {
           SliverAppBar(
             title: Text(
               "การนัดหมาย",
-              style: GoogleFonts.notoSansThai(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
-              ),
+              style: Config.instance.f18boldblack,
             ),
             centerTitle: true,
             backgroundColor: Colors.white,
@@ -79,16 +88,8 @@ class _CalendarPageState extends State<CalendarPage> {
         ],
         body: Calendar(
           eventTileHeight: 70, //*Events height
-          startOnMonday: true,
-          weekDays: [
-            'Mon',
-            'Tue',
-            'Wed',
-            'Thu',
-            'Fri',
-            'Sat',
-            'Sun'
-          ], //* Name top
+          startOnMonday: false,
+          weekDays: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], //* Name top
           eventsList: _eventList, //*List of events
           isExpandable: false, //*Show day above list events
           eventDoneColor: Colors.green,
@@ -101,6 +102,7 @@ class _CalendarPageState extends State<CalendarPage> {
           hideTodayIcon: true, //*Hide label above month
           // allDayEventText: 'Ganztägig',
           multiDayEndText: 'End',
+          displayMonthTextStyle: Config.instance.f16normalblack,
           isExpanded: true,
           expandableDateFormat: 'EEEE d MMMM yyyy',
           // datePickerType: DatePickerType.date, //*Hide calendar icon

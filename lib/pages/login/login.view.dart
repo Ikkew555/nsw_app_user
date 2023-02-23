@@ -147,6 +147,7 @@ class _LoginViewState extends State<LoginView> {
                                         color: Colors.grey, width: 1.0),
                                   ),
                                   hintText: loginDto.usernameText,
+                                  hintStyle: Config.instance.f14normalgrey,
                                 ),
                               ),
                             ),
@@ -201,6 +202,7 @@ class _LoginViewState extends State<LoginView> {
                                         color: Colors.grey, width: 1.0),
                                   ),
                                   hintText: loginDto.passwordText,
+                                  hintStyle: Config.instance.f14normalgrey,
                                 ),
                               ),
                             ),
@@ -216,12 +218,7 @@ class _LoginViewState extends State<LoginView> {
                               ),
                               child: Text(
                                 loginDto.loginText,
-                                style: GoogleFonts.notoSansThai(
-                                  textStyle: TextStyle(
-                                    fontSize: Config.instance.fontinfo,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                                style: Config.instance.f16semiboldwhite,
                               ),
                               onPressed: () async {
                                 if (_formLoginKey.currentState!.validate()) {
@@ -308,25 +305,15 @@ class _LoginViewState extends State<LoginView> {
                     children: [
                       Text(
                         loginDto.registerText,
-                        style: GoogleFonts.notoSansThai(
-                          textStyle: TextStyle(
-                            fontSize: Config.instance.fontinfo,
-                            color: Color.fromRGBO(19, 71, 154, 1),
-                          ),
-                        ),
+                        style: Config.instance.f16normalprimary,
                       ),
                       TextButton(
                         onPressed: () {
-                          HandleonPressedRegister;
+                          HandleonPressedRegister();
                         },
                         child: Text(
                           loginDto.registerText,
-                          style: GoogleFonts.notoSansThai(
-                            textStyle: TextStyle(
-                              fontSize: Config.instance.fontinfo,
-                              color: Color.fromRGBO(235, 158, 0, 1),
-                            ),
-                          ),
+                          style: Config.instance.f16normalyellow,
                         ),
                       ),
                     ],

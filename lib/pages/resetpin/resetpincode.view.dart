@@ -1,30 +1,33 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/pincode/pincode.view.dto.dart';
-import 'package:nsw_app/pages/pincode/widgets/digitHolder.dart';
+import 'package:nsw_app/pages/resetpin/resetpincode.view.dto.dart';
+import 'package:nsw_app/pages/resetpin_username/resetpinUsername.dart';
 
-class PincodeView extends StatefulWidget {
-  const PincodeView({Key? key, required this.pincodeDto}) : super(key: key);
+class ResetPincodeView extends StatefulWidget {
+  const ResetPincodeView({Key? key, required this.resetpincodeDto})
+      : super(key: key);
 
-  final PincodeDto pincodeDto;
+  final ResetpincodeDto resetpincodeDto;
 
   @override
-  State<PincodeView> createState() => _PincodeViewState();
+  State<ResetPincodeView> createState() => _ResetPincodeViewState();
 }
 
-class _PincodeViewState extends State<PincodeView> {
-  late PincodeDto pincodeDto;
+class _ResetPincodeViewState extends State<ResetPincodeView> {
+  late ResetpincodeDto resetpincodeDto;
   var selectedindex = 0;
   String code = '';
+  Color pinDigitBeforeSubmitColor = const Color.fromARGB(255, 246, 246, 246);
+  Color pinDigitAfterSubmitColor = const Color.fromARGB(255, 180, 180, 180);
 
   @override
   void initState() {
     super.initState();
+
     setState(() {
-      pincodeDto = widget.pincodeDto;
+      resetpincodeDto = widget.resetpincodeDto;
     });
   }
 
@@ -90,17 +93,17 @@ class _PincodeViewState extends State<PincodeView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      // Padding(
-                      //   padding: const EdgeInsets.only(bottom: 5.0),
-                      //   child: Text(
-                      //     "สำหรับการเข้าสู่ระบบครั้งแรก",
-                      //     style: Config.instance.f12normalgrey,
-                      //   ),
-                      // ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5.0),
+                        child: Text(
+                          "สำหรับการเข้าสู่ระบบครั้งแรก",
+                          style: Config.instance.f12normalgrey,
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Text(
-                          "กรุณาใส่รหัสความปลอดภัย (PIN CODE)",
+                          "กรุณายืนยันรหัสความปลอดภัย (PIN CODE)",
                           style: Config.instance.f16semiboldblack,
                         ),
                       ),
@@ -340,7 +343,8 @@ class _PincodeViewState extends State<PincodeView> {
                                 flex: 1,
                                 child: TextButton(
                                   onPressed: () {
-                                    HandleonPressedCancel();
+                                    Navigator.pop(context);
+                                    // HandleonPressedCancel();
                                   },
                                   child: Text(
                                     "ยกเลิก",
@@ -352,10 +356,10 @@ class _PincodeViewState extends State<PincodeView> {
                                 flex: 1,
                                 child: TextButton(
                                   onPressed: () {
-                                    // HandleonPressedSkip();
+                                    HandleonPressedResetPin();
                                   },
                                   child: Text(
-                                    "ข้าม",
+                                    "ลืม Pin ?",
                                     style: Config.instance.f14normalgrey,
                                   ),
                                 ),
@@ -391,23 +395,18 @@ class _PincodeViewState extends State<PincodeView> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text(
+                title: const Text(
                   'รหัสความปลอดภัยไม่ถูกต้อง',
-                  style: Config.instance.f16boldprimary,
-                ),
-                content: Text(
+                ), // title แก้ด้วย
+                content: const Text(
                   'กรุณากรอกรหัสที่ถูกต้อง หรือ รีเซ้ทรหัสความปลอดภัย',
-                  style: Config.instance.f16normalblack,
-                ),
+                ), // content แก้ด้วย
                 actions: <Widget>[
                   TextButton(
                     style: TextButton.styleFrom(
                       textStyle: Theme.of(context).textTheme.labelLarge,
                     ),
-                    child: Text(
-                      'ตกลง',
-                      style: Config.instance.f16normalprimary,
-                    ),
+                    child: const Text('ตกลง'),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -429,7 +428,7 @@ class _PincodeViewState extends State<PincodeView> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => BottomNavBar(),
+            builder: (context) => ResetPinUsername(),
           ),
         );
         setState(() {
@@ -455,14 +454,72 @@ class _PincodeViewState extends State<PincodeView> {
   }
 
   HandleonPressedResetPin() {
-    pincodeDto.onPressedNavigateResetUsername.call();
+    resetpincodeDto.onPressedNavigateResetUsername.call();
   }
 
   HandleonPressedCancel() {
-    pincodeDto.onPressedCancelResetPin.call();
+    resetpincodeDto.onPressedCancelResetPin.call();
   }
 
   HandleonPressedSkip() {
-    pincodeDto.onPressedSkip.call();
+    resetpincodeDto.onPressedSkip.call();
+  }
+}
+
+class DigitHolder extends StatefulWidget {
+  final int selectedIndex;
+  final int index;
+  final String code;
+  const DigitHolder({
+    required this.selectedIndex,
+    Key? key,
+    required this.width,
+    required this.index,
+    required this.code,
+  }) : super(key: key);
+
+  final double width;
+
+  @override
+  State<DigitHolder> createState() => _DigitHolderState();
+}
+
+class _DigitHolderState extends State<DigitHolder> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      height: 30,
+      width: 30,
+      margin: EdgeInsets.only(right: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        shape: BoxShape.circle,
+        border: Border.all(
+          width: 1,
+          color: Colors.grey,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: widget.index == widget.selectedIndex
+                ? Config.instance.primarycolor
+                : Colors.transparent,
+            offset: Offset(0, 0),
+            // spreadRadius: 1.5,
+            // blurRadius: 2,
+          ),
+        ],
+      ),
+      child: widget.code.length > widget.index
+          ? Container(
+              width: 22,
+              height: 22,
+              decoration: BoxDecoration(
+                color: Config.instance.primarycolor,
+                shape: BoxShape.circle,
+              ),
+            )
+          : Container(),
+    );
   }
 }

@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/pages/resetpin/resetpincode.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class ChangPinButton extends StatefulWidget {
   const ChangPinButton({Key? key}) : super(key: key);
@@ -24,7 +26,10 @@ class _ChangPinButtonState extends State<ChangPinButton> {
         minimumSize: const Size.fromHeight(50),
         elevation: 5,
       ),
-      onPressed: () {},
+      onPressed: () {
+        PersistentNavBarNavigator.pushNewScreen(context,
+            screen: ResetPincode(), withNavBar: false);
+      },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

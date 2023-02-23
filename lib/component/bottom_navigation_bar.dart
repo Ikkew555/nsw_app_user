@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nsw_app/config.dart';
@@ -68,10 +70,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
         PersistentBottomNavBarItem(
           // onPressed: selectedHandler(),
-          icon: Icon(
-            CupertinoIcons.qrcode_viewfinder,
-            color: Colors.white,
-          ),
+          icon: Icon(CupertinoIcons.qrcode_viewfinder, color: Colors.white),
           title: ("แสกน QR"),
           textStyle: Config.instance.f12normalprimary,
           activeColorPrimary: CupertinoColors.activeBlue,
@@ -85,7 +84,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
-          icon: Icon(CupertinoIcons.settings),
+          icon: Icon(CupertinoIcons.list_bullet),
           title: ("ตั้งค่า"),
           textStyle: Config.instance.f12normalprimary,
           activeColorPrimary: CupertinoColors.activeBlue,
@@ -124,7 +123,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     );
   }
 
-  void selectedHandler() {
+  selectedHandler() {
     PersistentNavBarNavigator.pushNewScreen(context,
         screen: ScanQR(), withNavBar: false);
   }

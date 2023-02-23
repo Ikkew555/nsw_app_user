@@ -1,12 +1,17 @@
 {
+  "agree": "ตกลง",
   "allappointmentText": "การนัดหมายทั้งหมด",
   "appointmentText": "การนัดหมาย",
   "cancel": "ยกเลิกคำร้อง",
   "completed": "ดำเนินการแล้วเสร็จ",
   "gender": " คุณ",
   "hello": "สวัสดี",
+  "pleaseEnterPincode": "กรุณาใส่รหัสความปลอดภัย (PIN CODE)",
   "readytorecievedocuments": "พร้อมรับเอกสาร",
+  "skip": "ข้าม",
   "thedepartmentisworking": "กรมฯ กำลังดำเนินการ",
   "waitingforpetitioner": "รอผู้ยื่นคำร้องดำเนินการ",
-  "waitingforpetitionerMenu": "รอผู้ยื่นคำร้อง"
+  "waitingforpetitionerMenu": "รอผู้ยื่นคำร้อง",
+  "warningText": "กรุณากรอกรหัสที่ถูกต้อง หรือ รีเซ้ทรหัสความปลอดภัย",
+  "wrongPinText": "รหัสความปลอดภัยไม่ถูกต้อง"
 }

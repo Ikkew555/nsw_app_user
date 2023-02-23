@@ -5,6 +5,8 @@ import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/calendar/calendarpage.dart';
 import 'package:nsw_app/pages/notification/widgets/noticifation_menu_1_home/noticifation_menu_1_home.view.dto.dart';
 
+import '../../notification.view.dto.dart';
+
 class NotificationCardHomePageView extends StatefulWidget {
   const NotificationCardHomePageView(
       {Key? key, required this.notificationCardHomePageViewDto})
