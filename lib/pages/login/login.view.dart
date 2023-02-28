@@ -1,15 +1,16 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously, non_constant_identifier_names, no_leading_underscores_for_local_identifiers
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously, non_constant_identifier_names, no_leading_underscores_for_local_identifiers, unrelated_type_equality_checks
+
+import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:nsw_app/api/api_login.dart';
-import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/model/login.user.Json.dart';
 import 'package:nsw_app/model/user.dart';
+import 'package:nsw_app/pages/home/home.dart';
+import 'package:nsw_app/pages/login/login.dart';
 import 'package:nsw_app/pages/login/login.view.dto.dart';
-import 'package:nsw_app/pages/pincode/pincode.dart';
-import 'package:nsw_app/pages/resetpin_username/resetpinUsername.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io' show Platform;
 
@@ -24,30 +25,26 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final GlobalKey<FormState> _formLoginKey = GlobalKey<FormState>();
-
-  bool light = false;
   late LoginDto loginDto;
+
   String username = "";
   String password = "";
+  Logger logger = Logger();
   var obscureText = true;
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   bool isIOS = false;
+  bool light = false;
 
   @override
-  void initState() {
+  initState() {
     super.initState();
-    try {
-      if (Platform.isIOS || Platform.isMacOS) {
-        isIOS = true;
+    setState(() {
+      loginDto = widget.loginDto;
+      if (User.instance.prefsUsername != null) {
+        light = true;
+      } else {
+        light = false;
       }
-    } catch (err) {
-      isIOS = false;
-    }
-    setState(
-      () {
-        loginDto = widget.loginDto;
-      },
-    );
+    });
   }
 
   @override
@@ -102,12 +99,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     color: Colors.white,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(
-                        20.0,
-                        10.0,
-                        20.0,
-                        0.0,
-                      ),
+                      padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
                       child: Form(
                         key: _formLoginKey,
                         child: Column(
@@ -125,7 +117,12 @@ class _LoginViewState extends State<LoginView> {
                                 top: 10.0,
                               ),
                               child: TextFormField(
-                                validator: (username) {
+                                initialValue: User.instance.prefsUsername ??
+                                    User.instance.prefsUsername,
+                                validator: (String? value) {
+                                  if (value == null || value.isEmpty) {
+                                    return HandleLoginUsernameValidate();
+                                  }
                                   return null;
                                 },
                                 onSaved: (_username) {
@@ -164,7 +161,11 @@ class _LoginViewState extends State<LoginView> {
                               ),
                               child: TextFormField(
                                 obscureText: obscureText,
+                                initialValue: User.instance.prefsPassword,
                                 validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return HandleLoginPasswordValidate();
+                                  }
                                   return null;
                                 },
                                 onSaved: (_password) {
@@ -224,33 +225,46 @@ class _LoginViewState extends State<LoginView> {
                                 if (_formLoginKey.currentState!.validate()) {
                                   _formLoginKey.currentState!.save();
                                 }
-                                print("username");
-                                print(username);
-                                print("password");
-                                print(password);
                                 userData userdata =
                                     await loginApi(username, password);
-                                setState(() {
-                                  User.instance.prefix = userdata.info?.prefix;
-                                  User.instance.displayName =
-                                      userdata.info?.displayName;
-                                }); // set value userData
-                                if (username == "") {
-                                  return HandleLoginUsernameValidate();
-                                }
-                                if (password == "") {
-                                  return HandleLoginPasswordValidate();
-                                }
+                                setState(
+                                  () {
+                                    User.instance.prefix =
+                                        userdata.info?.prefix;
+                                    User.instance.displayName =
+                                        userdata.info?.displayName;
+                                  },
+                                ); // set value userData
                                 if (username == "setpin") {
                                   return HandleonPressedSetpin();
                                 }
                                 if (username == "resetpin") {
                                   return HandleonPressedResetpin();
                                 }
-                                if (username == "1101800898174") {
-                                  HandleonPressedSuccess();
+                                if (userdata.resCode == 98) {
+                                  logger.d(
+                                    "Failed Login info doesn't match",
+                                  );
+                                  return HandleLoginValidate();
                                 } else {
-                                  return;
+                                  logger.d(
+                                    "Successfully Login\n"
+                                    "username : $username\n"
+                                    "password : $password",
+                                  );
+                                  if (light == true) {
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
+                                    prefs.setString('prefsUsername', username);
+                                    prefs.setString('prefsPassword', password);
+                                    logger.d(
+                                      "Remember Success !!!\n"
+                                      "Remember Info\n"
+                                      "username : $username\n"
+                                      "password : $password",
+                                    ); //Check light status.
+                                  }
+                                  return HandleonPressedSuccess();
                                 }
                               },
                             ),
@@ -264,15 +278,16 @@ class _LoginViewState extends State<LoginView> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Switch(
-                                      // This bool value toggles the switch.
                                       value: light,
                                       activeColor:
                                           Color.fromRGBO(235, 158, 0, 1),
-                                      onChanged: (bool value) {
+                                      onChanged: (bool value) async {
                                         // This is called when the user toggles the switch.
                                         setState(() {
                                           light = value;
                                         });
+                                        logger.d("Remember Switch : $light");
+                                        //Check light status.
                                       },
                                     ),
                                     Text(

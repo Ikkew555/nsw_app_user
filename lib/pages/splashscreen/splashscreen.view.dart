@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/model/user.dart';
 import 'package:nsw_app/pages/splashscreen/splashscreen.view.dto.dart';
 import 'dart:io' show Platform;
 
@@ -18,6 +20,7 @@ class SplashScreenView extends StatefulWidget {
 class _SplashScreenViewState extends State<SplashScreenView> {
   late SplashScreenDto splashScreenDto;
   bool isIOS = false;
+  Logger logger = Logger();
 
   @override
   void initState() {

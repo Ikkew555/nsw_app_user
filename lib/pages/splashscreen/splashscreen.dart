@@ -1,9 +1,12 @@
-// ignore_for_file: non_constant_identifier_names, prefer_const_constructors
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:nsw_app/model/user.dart';
 import 'package:nsw_app/pages/login/login.dart';
 import 'package:nsw_app/pages/splashscreen/splashscreen.view.dart';
 import 'package:nsw_app/pages/splashscreen/splashscreen.view.dto.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,9 +21,23 @@ class _SplashScreenState extends State<SplashScreen> {
   String imagePathLogo = "assets/logo_nsw.png";
   String loginText = "เข้าสู่ระบบ";
   String registerText = "ลงทะเบียน";
+  Logger logger = Logger();
 
   @override
   void initState() {
+    PrefInfo() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var prefsUsername = prefs.getString('prefsUsername');
+      var prefsPassword = prefs.getString('prefsPassword');
+      User.instance.prefsUsername = prefsUsername;
+      User.instance.prefsPassword = prefsPassword;
+      logger.d(
+        "Remembered Info\n"
+        "prefsUsername : ${User.instance.prefsUsername}\n"
+        "prefsPassword : ${User.instance.prefsPassword}",
+      );
+    }
+
     super.initState();
     splashScreenDto = SplashScreenDto(
       onPressedRegister: _HandleonPressedRegister,
@@ -29,6 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
       imagePathLogo: imagePathLogo,
       registerText: registerText,
     );
+    PrefInfo();
   }
 
   @override

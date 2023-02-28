@@ -16,6 +16,8 @@ class LoginDto {
     required this.forgetPassText,
     required this.loginText,
     required this.onPressedSuccess,
+    required this.prefsUsername,
+    required this.prefsPassword,
   });
 
   Function onPressedForgotPassword;
@@ -35,4 +37,6 @@ class LoginDto {
   String rememberUserText;
   String forgetPassText;
   String loginText;
+  String? prefsUsername;
+  String? prefsPassword;
 }

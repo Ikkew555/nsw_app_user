@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, unnecessary_this
+
 import 'package:logger/logger.dart';
 
 class User {
@@ -5,6 +7,9 @@ class User {
   User._myConstructor();
   static User instance = User._myConstructor();
   String? username;
+  String? password;
+  String? prefsUsername;
+  String? prefsPassword;
   String? prefix;
   String? firstname;
   String? lastname;
@@ -32,5 +37,17 @@ class User {
 
   void setdisplayName(String? displayName) {
     this.displayName = displayName;
+  }
+
+  void setpassword(String? password) {
+    this.password = password;
+  }
+
+  void setprefs_password(String? prefsPassword) {
+    this.prefsPassword = prefsPassword;
+  }
+
+  void setprefs_username(String? prefsUsername) {
+    this.prefsUsername = prefsUsername;
   }
 }
