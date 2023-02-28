@@ -241,14 +241,20 @@ class _LoginViewState extends State<LoginView> {
                                 if (username == "resetpin") {
                                   return HandleonPressedResetpin();
                                 }
+                                if (userdata.resCode == 97) {
+                                  logger.d(
+                                    "Login Failed Wrong Username/Password",
+                                  );
+                                  return HandleLoginValidate();
+                                }
                                 if (userdata.resCode == 98) {
                                   logger.d(
-                                    "Failed Login info doesn't match",
+                                    "Login Failed No user founded",
                                   );
                                   return HandleLoginValidate();
                                 } else {
                                   logger.d(
-                                    "Successfully Login\n"
+                                    "Login Success!!!\n"
                                     "username : $username\n"
                                     "password : $password",
                                   );
@@ -258,11 +264,14 @@ class _LoginViewState extends State<LoginView> {
                                     prefs.setString('prefsUsername', username);
                                     prefs.setString('prefsPassword', password);
                                     logger.d(
-                                      "Remember Success !!!\n"
+                                      "Remember Success!!!\n"
                                       "Remember Info\n"
                                       "username : $username\n"
                                       "password : $password",
                                     ); //Check light status.
+                                  }
+                                  if (light == false) {
+                                    User.instance.clear();
                                   }
                                   return HandleonPressedSuccess();
                                 }

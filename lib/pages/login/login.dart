@@ -186,8 +186,4 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
-  _HandleonPressedRememberuserOn() async {}
-
-  _HandleonPressedRememberuserOff() async {}
 }

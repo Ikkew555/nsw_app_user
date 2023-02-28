@@ -7,8 +7,6 @@ import 'package:nsw_app/model/user.dart';
 import 'package:nsw_app/pages/login/login.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LogOutButton extends StatefulWidget {
   const LogOutButton({Key? key}) : super(key: key);
@@ -37,7 +35,6 @@ class _LogOutButtonState extends State<LogOutButton> {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.remove('prefsUsername');
         prefs.remove('prefsPassword');
-        User.instance.clear();
         logger.d(
           "Remember Clear !!!\n"
           "Remember Info\n"
