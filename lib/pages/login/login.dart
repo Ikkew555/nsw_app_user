@@ -1,12 +1,15 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/model/user.dart';
 import 'package:nsw_app/pages/login/login.view.dart';
 import 'package:nsw_app/pages/login/login.view.dto.dart';
 import 'package:nsw_app/pages/pincode/pincode.dart';
 import 'package:nsw_app/pages/resetpin_username/resetpinUsername.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Login extends StatefulWidget {
@@ -18,6 +21,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   late LoginDto loginDto;
+  Logger logger = Logger();
   String imagePathLogo = "assets/logo_nsw.png";
   String usernameText = "ชื่อผู้ใช้งาน";
   String passwordText = "รหัสผ่าน";
@@ -27,7 +31,7 @@ class _LoginState extends State<Login> {
   String loginText = "เข้าสู่ระบบ";
 
   @override
-  void initState() {
+  initState() {
     super.initState();
     loginDto = LoginDto(
       onPressedForgotPassword: _HandleonPressedForgotPassword,
@@ -46,6 +50,8 @@ class _LoginState extends State<Login> {
       usernameText: usernameText,
       loginText: loginText,
       onPressedSuccess: _HandleonPressedSuccess,
+      prefsPassword: User.instance.prefsPassword,
+      prefsUsername: User.instance.prefsUsername,
     );
   }
 
@@ -172,7 +178,7 @@ class _LoginState extends State<Login> {
     );
   }
 
-  _HandleonPressedSuccess() async {
+  _HandleonPressedSuccess() {
     Navigator.push(
       context,
       MaterialPageRoute(

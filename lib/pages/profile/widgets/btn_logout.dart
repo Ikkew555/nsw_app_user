@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously, prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:nsw_app/config.dart';
+import 'package:nsw_app/model/user.dart';
 import 'package:nsw_app/pages/login/login.dart';
-import 'package:nsw_app/pages/login/login.view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,14 +16,7 @@ class LogOutButton extends StatefulWidget {
 }
 
 class _LogOutButtonState extends State<LogOutButton> {
-  // final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-
-  // Future<void> _logout() async {
-  //   final SharedPreferences prefs = await _prefs;
-
-  //   final username_out = await prefs.remove('username');
-  //   final password_out = await prefs.remove('password');
-  // }
+  Logger logger = Logger();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +31,16 @@ class _LogOutButtonState extends State<LogOutButton> {
         minimumSize: const Size.fromHeight(50),
         elevation: 5,
       ),
-      onPressed: () {
+      onPressed: () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.remove('prefsUsername');
+        prefs.remove('prefsPassword');
+        logger.d(
+          "Remember Clear !!!\n"
+          "Remember Info\n"
+          "username : ${User.instance.prefsUsername}\n"
+          "password : ${User.instance.prefsPassword}",
+        ); //Check light status.
         PersistentNavBarNavigator.pushNewScreen(context,
             screen: Login(), withNavBar: false);
       },
