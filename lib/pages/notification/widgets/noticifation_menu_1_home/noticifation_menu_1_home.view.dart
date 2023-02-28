@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/calendar/calendarpage.dart';
+import 'package:nsw_app/pages/calendar/calendar.view.dart';
 import 'package:nsw_app/pages/notification/widgets/noticifation_menu_1_home/noticifation_menu_1_home.view.dto.dart';
 
 import '../../notification.view.dto.dart';
@@ -46,7 +47,7 @@ class _NotificationCardHomePageViewState
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const CalendarPage(),
+            builder: (context) => Calendar(),
           ),
         );
       },
