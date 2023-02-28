@@ -3,64 +3,69 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nsw_app/pages/calendar/calendar.view.dto.dart';
 import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
 import 'package:nsw_app/config.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+class CalendarView extends StatefulWidget {
+  const CalendarView({Key? key, required this.calendarDto}) : super(key: key);
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final CalendarDto calendarDto;
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: CalendarPage(),
-    );
-  }
+  State<CalendarView> createState() => _CalendarViewState();
 }
 
-class CalendarPage extends StatefulWidget {
-  const CalendarPage({Key? key}) : super(key: key);
-
-  @override
-  State<CalendarPage> createState() => _CalendarPageState();
-}
-
-class _CalendarPageState extends State<CalendarPage> {
+class _CalendarViewState extends State<CalendarView> {
   final List<NeatCleanCalendarEvent> _eventList = [
-    NeatCleanCalendarEvent('MultiDay Event A',
-        description: 'test desc',
-        startTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day, 10, 0),
-        endTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day + 1, 12, 0),
-        color: Colors.orange,
-        isMultiDay: true),
-    NeatCleanCalendarEvent('Allday Event B',
-        description: 'test desc',
-        startTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day - 2, 14, 30),
-        endTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day + 2, 17, 0),
-        color: Colors.pink,
-        isAllDay: true),
-    NeatCleanCalendarEvent('Normal Event D',
-        description: 'test desc',
-        startTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day, 14, 30),
-        endTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day, 17, 0),
-        color: Colors.indigo),
-    NeatCleanCalendarEvent('Normal Event E',
-        description: 'test desc',
+    NeatCleanCalendarEvent('นัดขึ้นทะเบียนเรือ',
+        description: 'เลขทะเบียน TB00241',
         startTime: DateTime(DateTime.now().year, DateTime.now().month,
             DateTime.now().day, 7, 45),
         endTime: DateTime(DateTime.now().year, DateTime.now().month,
             DateTime.now().day, 9, 0),
-        color: Colors.indigo),
+        color: Colors.green,
+        isMultiDay: false),
+    NeatCleanCalendarEvent('นัดตรวจท่าเรือ',
+        description: 'เลขทะเบียน TB00286',
+        startTime: DateTime(DateTime.now().year, 3, 1, 10, 0),
+        endTime: DateTime(DateTime.now().year, 3, 2, 12, 0),
+        color: Colors.orange,
+        isMultiDay: true),
+    NeatCleanCalendarEvent('นัดตรวจท่าเรือ',
+        description: 'เลขทะเบียน TB01551',
+        startTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day - 3, 14, 30),
+        endTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day - 1, 17, 0),
+        color: Colors.pink,
+        isAllDay: true),
+    NeatCleanCalendarEvent('นัดขึ้นทะเบียนเรือ',
+        description: 'เลขทะเบียน TB03874',
+        startTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day + 1, 14, 30),
+        endTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day + 1, 17, 0),
+        color: Colors.indigo,
+        isMultiDay: false),
+    NeatCleanCalendarEvent('นัดขึ้นทะเบียนเรือ',
+        description: 'เลขทะเบียน TB02242',
+        startTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day, 7, 45),
+        endTime: DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day, 9, 0),
+        color: Colors.indigo,
+        isMultiDay: false),
   ];
+
+  late CalendarDto calendarDto;
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      calendarDto = widget.calendarDto;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

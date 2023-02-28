@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/component/bottom_navigation_bar_notification.dart';
 import 'package:nsw_app/config.dart';
-import 'package:nsw_app/pages/calendar/calendarpage.dart';
+import 'package:nsw_app/pages/calendar/calendar.view.dart';
 import 'package:nsw_app/pages/notification/widgets/noticifation_menu_1/noticifation_menu_1.view.dto.dart';
 
 class NotificationCardView extends StatefulWidget {

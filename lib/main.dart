@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:nsw_app/pages/calendar/calendar.dart';
 import 'package:nsw_app/pages/splashscreen/splashscreen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
+        fontFamily: "Noto Sans Thai",
+        scaffoldBackgroundColor: Colors.white,
       ),
       useInheritedMediaQuery: true,
       localizationsDelegates: const [
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       locale: const Locale('th', 'TH'),
-      home: SplashScreen(),
+      home: Calendar(),
     );
   }
 }

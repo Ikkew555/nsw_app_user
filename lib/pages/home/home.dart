@@ -1,10 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 import 'package:logger/logger.dart';
 import 'package:nsw_app/component/bottom_navigation_bar.dart';
 import 'package:nsw_app/component/bottom_navigation_bar_profilepage.dart';
-import 'package:nsw_app/pages/calendar/calendarpage.dart';
+import 'package:nsw_app/pages/calendar/calendar.view.dart';
 import 'package:nsw_app/pages/home/home.view.dart';
 import 'package:nsw_app/pages/home/home.view.dto.dart';
 import 'package:nsw_app/pages/profile/profile.dart';
@@ -123,7 +124,7 @@ class _HomeState extends State<Home> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const CalendarPage(),
+        builder: (context) => Calendar(),
       ),
     );
   }
