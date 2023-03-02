@@ -14,6 +14,7 @@ class User {
   String? firstname;
   String? lastname;
   String? displayName;
+  String? prefsCode;
 
   clear() {
     instance = User._myConstructor();
@@ -49,5 +50,9 @@ class User {
 
   void setprefs_username(String? prefsUsername) {
     this.prefsUsername = prefsUsername;
+  }
+
+  void setprefs_code(String? prefsCode) {
+    this.prefsCode = prefsCode;
   }
 }
