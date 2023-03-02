@@ -1,18 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously, non_constant_identifier_names, no_leading_underscores_for_local_identifiers, unrelated_type_equality_checks
 
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:nsw_app/api/api_login.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/model/login.user.Json.dart';
 import 'package:nsw_app/model/user.dart';
-import 'package:nsw_app/pages/home/home.dart';
-import 'package:nsw_app/pages/login/login.dart';
 import 'package:nsw_app/pages/login/login.view.dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:io' show Platform;
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key, required this.loginDto}) : super(key: key);
@@ -121,7 +116,7 @@ class _LoginViewState extends State<LoginView> {
                                     User.instance.prefsUsername,
                                 validator: (String? value) {
                                   if (value == null || value.isEmpty) {
-                                    return HandleLoginUsernameValidate();
+                                    return;
                                   }
                                   return null;
                                 },
@@ -164,7 +159,7 @@ class _LoginViewState extends State<LoginView> {
                                 initialValue: User.instance.prefsPassword,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return HandleLoginPasswordValidate();
+                                    return;
                                   }
                                   return null;
                                 },
@@ -244,6 +239,12 @@ class _LoginViewState extends State<LoginView> {
                                 if (userdata.resCode == 97) {
                                   logger.d(
                                     "Login Failed Wrong Username/Password",
+                                  );
+                                  return HandleLoginValidate();
+                                }
+                                if (userdata.resCode == 99) {
+                                  logger.d(
+                                    "Login Failed Missing Username/Password",
                                   );
                                   return HandleLoginValidate();
                                 }

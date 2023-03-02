@@ -33,13 +33,16 @@ class _LogOutButtonState extends State<LogOutButton> {
       ),
       onPressed: () async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
+        User.instance.clear();
         prefs.remove('prefsUsername');
         prefs.remove('prefsPassword');
+        prefs.remove('prefsCode');
         logger.d(
           "Remember Clear !!!\n"
           "Remember Info\n"
           "username : ${User.instance.prefsUsername}\n"
-          "password : ${User.instance.prefsPassword}",
+          "password : ${User.instance.prefsPassword}\n"
+          "code : ${User.instance.prefsCode}",
         ); //Check light status.
         PersistentNavBarNavigator.pushNewScreen(context,
             screen: Login(), withNavBar: false);

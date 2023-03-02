@@ -29,12 +29,15 @@ class _SplashScreenState extends State<SplashScreen> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var prefsUsername = prefs.getString('prefsUsername');
       var prefsPassword = prefs.getString('prefsPassword');
+      var prefsCode = prefs.getString('prefsCode');
       User.instance.prefsUsername = prefsUsername;
       User.instance.prefsPassword = prefsPassword;
+      User.instance.prefsCode = prefsCode;
       logger.d(
         "Remembered Info\n"
         "prefsUsername : ${User.instance.prefsUsername}\n"
-        "prefsPassword : ${User.instance.prefsPassword}",
+        "prefsPassword : ${User.instance.prefsPassword}\n"
+        "prefsCode : ${User.instance.prefsCode}",
       );
     }
 
