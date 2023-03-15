@@ -385,6 +385,6 @@ class _LoginViewState extends State<LoginView> {
   }
 
   HandleonPressedSuccess() {
-    loginDto.onPressedSetPin.call();
+    loginDto.onPressedSuccess.call();
   }
 }

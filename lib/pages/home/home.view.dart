@@ -355,13 +355,7 @@ class _HomeViewState extends State<HomeView> {
                       children: [
                         Text(
                           "การนัดหมาย",
-                          style: GoogleFonts.notoSansThai(
-                            textStyle: TextStyle(
-                              fontSize: Config.instance.fontinfo,
-                              fontWeight: FontWeight.w700,
-                              color: Color.fromRGBO(19, 71, 154, 1),
-                            ),
-                          ),
+                          style: Config.instance.f16boldprimary,
                         ),
                         SizedBox(
                           width: 150,
@@ -374,12 +368,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             child: Text(
                               "การนัดหมายทั้งหมด",
-                              style: GoogleFonts.notoSansThai(
-                                textStyle: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
+                              style: Config.instance.f12normalwhite,
                             ),
                             onPressed: () {
                               HandleonPressedCalendar();

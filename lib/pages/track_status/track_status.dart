@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/track_status/track_status.view.dart';
 import 'package:nsw_app/pages/track_status/track_status.view.dto.dart';
@@ -34,6 +35,7 @@ class TrackStatus extends StatefulWidget {
 
 class _TrackStatusState extends State<TrackStatus> {
   late TrackstatusDto trackstatusDto;
+  Logger logger = Logger();
   String titleText = "ติดตามสถานะ";
   String selectSystemText = "เลือกระบบ";
   String selectedSystemText = "เลือกระบบงาน";
@@ -65,19 +67,14 @@ class _TrackStatusState extends State<TrackStatus> {
       status_number_ready = display_list_ready.length.toString();
       status_number_working = display_list_working.length.toString();
       status_number_completed = display_list_completed.length.toString();
-      print("status_number_all");
-      print(status_number_all);
-      print("status_number_waiting");
-      print(status_number_waiting);
-      print("status_number_cancel");
-      print(status_number_cancel);
-      print("status_number_ready");
-      print(status_number_ready);
-      print("status_number_working");
-      print(status_number_working);
-      print("status_number_completed");
-      print(status_number_completed);
     });
+    logger.d("Status Lists\n"
+        "status_number_all : $status_number_all\n"
+        "status_number_waiting : $status_number_waiting\n"
+        "status_number_cancel : $status_number_cancel\n"
+        "status_number_ready : $status_number_ready\n"
+        "status_number_working : $status_number_working\n"
+        "status_number_completed : $status_number_completed");
     trackstatusDto = TrackstatusDto(
       onPressedShowSystem: _HandleonPressedShowSystem,
       titleText: titleText,

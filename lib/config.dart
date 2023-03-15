@@ -48,6 +48,20 @@ class Config {
       color: Colors.grey,
     ),
   );
+  TextStyle f12normalblack = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 12,
+      color: Colors.black,
+    ),
+  );
+  TextStyle f12normalwhite = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 12,
+      color: Colors.white,
+    ),
+  );
   TextStyle f12semiboldprimary = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
