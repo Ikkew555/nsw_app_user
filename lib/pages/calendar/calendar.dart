@@ -7,14 +7,14 @@ import 'package:nsw_app/pages/calendar/calendar.view.dart';
 import 'package:nsw_app/pages/calendar/calendar.view.dto.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-class Calendar extends StatefulWidget {
-  const Calendar({Key? key}) : super(key: key);
+class CalendarHome extends StatefulWidget {
+  const CalendarHome({Key? key}) : super(key: key);
 
   @override
-  State<Calendar> createState() => _CalendarState();
+  State<CalendarHome> createState() => _CalendarHomeState();
 }
 
-class _CalendarState extends State<Calendar> {
+class _CalendarHomeState extends State<CalendarHome> {
   late CalendarDto calendarDto;
   String imagePathWelcomeWeb = "assets/web_nsw1.png";
   String imagePathEservice = "assets/web_nsw2.png";
