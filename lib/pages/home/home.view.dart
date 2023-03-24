@@ -72,34 +72,16 @@ class _HomeViewState extends State<HomeView> {
                                   children: <TextSpan>[
                                     TextSpan(
                                       text: homeDto.helloText,
-                                      style: GoogleFonts.notoSansThai(
-                                        textStyle: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black,
-                                        ),
-                                      ),
+                                      style: Config.instance.f22boldprimary,
                                     ),
                                     TextSpan(
                                       text: ''' ${User.instance.prefix}''',
-                                      style: GoogleFonts.notoSansThai(
-                                        textStyle: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black,
-                                        ),
-                                      ),
+                                      style: Config.instance.f12semiboldprimary,
                                     ),
                                     TextSpan(
                                       text:
                                           '''\n${User.instance.displayName.toString()}''', // user name and surname
-                                      style: GoogleFonts.notoSansThai(
-                                        textStyle: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black,
-                                        ),
-                                      ),
+                                      style: Config.instance.f16semiboldblack,
                                     ),
                                   ],
                                 ),
@@ -139,14 +121,8 @@ class _HomeViewState extends State<HomeView> {
                               position: BadgePosition.topEnd(),
                               badgeColor: Color.fromRGBO(255, 195, 0, 1),
                               badgeContent: Text(
-                                '10',
-                                style: GoogleFonts.notoSansThai(
-                                  textStyle: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                                homeDto.status_number_waiting,
+                                style: Config.instance.f16normalwhite,
                               ),
                               child: PhysicalShape(
                                 shadowColor: Colors.black,
@@ -165,13 +141,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Text(
                               homeDto.menuWaitText,
-                              style: GoogleFonts.notoSansThai(
-                                textStyle: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color.fromRGBO(102, 102, 102, 1),
-                                ),
-                              ),
+                              style: Config.instance.f12normalgrey,
                             ),
                           ],
                         ),
@@ -191,14 +161,8 @@ class _HomeViewState extends State<HomeView> {
                               position: BadgePosition.topEnd(),
                               badgeColor: Color.fromRGBO(255, 195, 0, 1),
                               badgeContent: Text(
-                                '10',
-                                style: GoogleFonts.notoSansThai(
-                                  textStyle: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                                homeDto.status_number_working,
+                                style: Config.instance.f16normalwhite,
                               ),
                               child: PhysicalShape(
                                 shadowColor: Colors.black,
@@ -217,13 +181,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Text(
                               homeDto.menuWorkingText,
-                              style: GoogleFonts.notoSansThai(
-                                textStyle: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color.fromRGBO(102, 102, 102, 1),
-                                ),
-                              ),
+                              style: Config.instance.f12normalgrey,
                             ),
                           ],
                         ),
@@ -243,14 +201,8 @@ class _HomeViewState extends State<HomeView> {
                               position: BadgePosition.topEnd(),
                               badgeColor: Color.fromRGBO(255, 195, 0, 1),
                               badgeContent: Text(
-                                '10',
-                                style: GoogleFonts.notoSansThai(
-                                  textStyle: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                                homeDto.status_number_ready,
+                                style: Config.instance.f16normalwhite,
                               ),
                               child: PhysicalShape(
                                 shadowColor: Colors.black,
@@ -269,13 +221,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Text(
                               homeDto.menuDocumentText,
-                              style: GoogleFonts.notoSansThai(
-                                textStyle: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color.fromRGBO(102, 102, 102, 1),
-                                ),
-                              ),
+                              style: Config.instance.f12normalgrey,
                             ),
                           ],
                         ),
@@ -355,13 +301,7 @@ class _HomeViewState extends State<HomeView> {
                       children: [
                         Text(
                           "การนัดหมาย",
-                          style: GoogleFonts.notoSansThai(
-                            textStyle: TextStyle(
-                              fontSize: Config.instance.fontinfo,
-                              fontWeight: FontWeight.w700,
-                              color: Color.fromRGBO(19, 71, 154, 1),
-                            ),
-                          ),
+                          style: Config.instance.f16boldprimary,
                         ),
                         SizedBox(
                           width: 150,
@@ -374,12 +314,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             child: Text(
                               "การนัดหมายทั้งหมด",
-                              style: GoogleFonts.notoSansThai(
-                                textStyle: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
+                              style: Config.instance.f12normalwhite,
                             ),
                             onPressed: () {
                               HandleonPressedCalendar();

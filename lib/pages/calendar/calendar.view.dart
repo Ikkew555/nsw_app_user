@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nsw_app/pages/calendar/calendar.view.dto.dart';
 import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
 import 'package:nsw_app/config.dart';
@@ -17,6 +16,15 @@ class CalendarView extends StatefulWidget {
 }
 
 class _CalendarViewState extends State<CalendarView> {
+  late CalendarDto calendarDto;
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      calendarDto = widget.calendarDto;
+    });
+  }
+
   final List<NeatCleanCalendarEvent> _eventList = [
     NeatCleanCalendarEvent('นัดขึ้นทะเบียนเรือ',
         description: 'เลขทะเบียน TB00241',
@@ -58,15 +66,6 @@ class _CalendarViewState extends State<CalendarView> {
         isMultiDay: false),
   ];
 
-  late CalendarDto calendarDto;
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      calendarDto = widget.calendarDto;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +91,7 @@ class _CalendarViewState extends State<CalendarView> {
           )
         ],
         body: Calendar(
-          eventTileHeight: 70, //*Events height
+          eventTileHeight: 75, //*Events height
           startOnMonday: false,
           weekDays: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], //* Name top
           eventsList: _eventList, //*List of events

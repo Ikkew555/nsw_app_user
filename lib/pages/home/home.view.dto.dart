@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 class HomeDto {
   HomeDto({
     required this.onTapWelcomeWeb,
@@ -20,6 +22,12 @@ class HomeDto {
     required this.onPressedInProgess,
     required this.onPressedReadyToReceiveDocuments,
     required this.onPressedWaitingforPetitioner,
+    required this.status_number_all,
+    required this.status_number_waiting,
+    required this.status_number_working,
+    required this.status_number_ready,
+    required this.status_number_cancel,
+    required this.status_number_completed,
   });
 
   Function onPressedProfile;
@@ -43,4 +51,10 @@ class HomeDto {
   String prefixText;
   String allAppointmentText;
   String appointmentText;
+  String status_number_all;
+  String status_number_waiting;
+  String status_number_working;
+  String status_number_ready;
+  String status_number_cancel;
+  String status_number_completed;
 }

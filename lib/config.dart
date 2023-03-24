@@ -48,11 +48,32 @@ class Config {
       color: Colors.grey,
     ),
   );
+  TextStyle f12normalblack = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 12,
+      color: Colors.black,
+    ),
+  );
+  TextStyle f12normalwhite = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 12,
+      color: Colors.white,
+    ),
+  );
   TextStyle f12semiboldprimary = GoogleFonts.notoSansThai(
     textStyle: TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 12,
       color: Color.fromRGBO(7, 20, 124, 1),
+    ),
+  );
+  TextStyle f12semiboldblack = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 12,
+      color: Colors.black,
     ),
   );
   TextStyle f16semiboldprimary = GoogleFonts.notoSansThai(
@@ -171,6 +192,13 @@ class Config {
       fontWeight: FontWeight.w700,
       fontSize: 22,
       color: Color.fromRGBO(7, 20, 124, 1),
+    ),
+  );
+  TextStyle f22semiboldblack = GoogleFonts.notoSansThai(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 22,
+      color: Colors.black,
     ),
   );
 }
