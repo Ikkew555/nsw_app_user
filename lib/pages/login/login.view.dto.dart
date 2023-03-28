@@ -18,6 +18,9 @@ class LoginDto {
     required this.onPressedSuccess,
     required this.prefsUsername,
     required this.prefsPassword,
+    required this.missingUserValidate,
+    required this.wrongUserValidate,
+    required this.noUserValidate,
   });
 
   Function onPressedForgotPassword;
@@ -29,6 +32,9 @@ class LoginDto {
   Function onPressedResetPin;
   Function onPressedSetPin;
   Function onPressedSuccess;
+  Function missingUserValidate;
+  Function wrongUserValidate;
+  Function noUserValidate;
 
   String imagePathLogo;
   String registerText;
