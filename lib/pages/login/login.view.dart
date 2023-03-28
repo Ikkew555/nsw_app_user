@@ -231,28 +231,28 @@ class _LoginViewState extends State<LoginView> {
                                   },
                                 ); // set value userData
                                 if (username == "setpin") {
-                                  return HandleonPressedSetpin();
+                                  return _handleonPressedSetpin(); //Navigate to Setpin page
                                 }
                                 if (username == "resetpin") {
-                                  return HandleonPressedResetpin();
+                                  return _handleonPressedResetpin(); //Navigate to Resetpin page
                                 }
                                 if (userdata.resCode == 97) {
                                   logger.d(
                                     "Login Failed Wrong Username/Password",
                                   );
-                                  return HandleLoginValidate();
+                                  return _handleWrongUser(); //Wrong is called
                                 }
                                 if (userdata.resCode == 99) {
                                   logger.d(
                                     "Login Failed Missing Username/Password",
                                   );
-                                  return HandleLoginValidate();
+                                  return _handleMissingUser(); //Missing is called
                                 }
                                 if (userdata.resCode == 98) {
                                   logger.d(
                                     "Login Failed No user founded",
                                   );
-                                  return HandleLoginValidate();
+                                  return _handleNoUserFound(); //No user exists
                                 } else {
                                   logger.d(
                                     "Login Success!!!\n"
@@ -274,7 +274,7 @@ class _LoginViewState extends State<LoginView> {
                                   if (light == false) {
                                     User.instance.clear();
                                   }
-                                  return HandleonPressedSuccess();
+                                  return _handleonPressedSuccess();
                                 }
                               },
                             ),
@@ -308,7 +308,7 @@ class _LoginViewState extends State<LoginView> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    HandleonPressedForgotPassword();
+                                    _handleonPressedForgotPassword();
                                   },
                                   child: Text(
                                     loginDto.forgetPassText,
@@ -334,7 +334,7 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       TextButton(
                         onPressed: () {
-                          HandleonPressedRegister();
+                          _handleonPressedRegister();
                         },
                         child: Text(
                           loginDto.registerText,
@@ -352,39 +352,35 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  HandleonPressedForgotPassword() {
+  _handleonPressedForgotPassword() {
     loginDto.onPressedForgotPassword.call();
   }
 
-  HandleonPressedRegister() {
+  _handleonPressedRegister() {
     loginDto.onPressedRegister.call();
   }
 
-  HandleonPressedLogin() {
-    loginDto.onPressedLogin.call();
-  }
-
-  HandleLoginValidate() {
-    loginDto.loginValidate.call();
-  }
-
-  HandleLoginUsernameValidate() {
-    loginDto.usernameValidate.call();
-  }
-
-  HandleLoginPasswordValidate() {
-    loginDto.passwordValidate.call();
-  }
-
-  HandleonPressedResetpin() {
+  _handleonPressedResetpin() {
     loginDto.onPressedResetPin.call();
   }
 
-  HandleonPressedSetpin() {
+  _handleonPressedSetpin() {
     loginDto.onPressedSetPin.call();
   }
 
-  HandleonPressedSuccess() {
+  _handleonPressedSuccess() {
     loginDto.onPressedSuccess.call();
+  }
+
+  _handleMissingUser() {
+    loginDto.missingUserValidate.call();
+  }
+
+  _handleWrongUser() {
+    loginDto.wrongUserValidate.call();
+  }
+
+  _handleNoUserFound() {
+    loginDto.noUserValidate.call();
   }
 }

@@ -52,6 +52,9 @@ class _LoginState extends State<Login> {
       onPressedSuccess: _HandleonPressedSuccess,
       prefsPassword: User.instance.prefsPassword,
       prefsUsername: User.instance.prefsUsername,
+      missingUserValidate: _HandleMissingValidate,
+      noUserValidate: _HandleNotFoundUsername,
+      wrongUserValidate: _HandleWrongValidate,
     );
   }
 
@@ -113,6 +116,81 @@ class _LoginState extends State<Login> {
         ),
         content: Text(
           'โปรดกรอก ชื่อผู้ใช้งาน หรือ รหัสผ่านให้ถูกต้อง เพื่อเข้าสู่ระบบ',
+          style: Config.instance.f16normalblack,
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'ปิด'),
+            child: Text(
+              'ปิด',
+              style: Config.instance.f16normalprimary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _HandleWrongValidate() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+          'เข้าสู่ระบบล้มเหลว',
+          style: Config.instance.f16semiboldprimary,
+        ),
+        content: Text(
+          'ชื่อผู้ใช้งาน หรือ รหัสผ่านไม่ถูกต้อง',
+          style: Config.instance.f16normalblack,
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'ปิด'),
+            child: Text(
+              'ปิด',
+              style: Config.instance.f16normalprimary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _HandleMissingValidate() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+          'เข้าสู่ระบบล้มเหลว',
+          style: Config.instance.f16semiboldprimary,
+        ),
+        content: Text(
+          'โปรดกรอกชื่อผู้ใช้งาน หรือ รหัสผ่านให้ครบถ้วน',
+          style: Config.instance.f16normalblack,
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'ปิด'),
+            child: Text(
+              'ปิด',
+              style: Config.instance.f16normalprimary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _HandleNotFoundUsername() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+          'เข้าสู่ระบบล้มเหลว',
+          style: Config.instance.f16semiboldprimary,
+        ),
+        content: Text(
+          'ไม่พบชื่อผู้ใช้งาน',
           style: Config.instance.f16normalblack,
         ),
         actions: <Widget>[
