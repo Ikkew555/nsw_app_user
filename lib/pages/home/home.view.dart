@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:badges/badges.dart' as badges;
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:nsw_app/component/menu_meeting_menu.dart';
 import 'package:nsw_app/config.dart';
 import 'package:nsw_app/pages/notification/widgets/btn_notification.dart';
@@ -23,6 +23,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   late HomeDto homeDto;
+  Logger logger = Logger();
 
   @override
   void initState() {
@@ -113,7 +114,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         onPressed: () {
                           HandleonPressedWaitingforPetitioner();
-                          print("HandleonPressedWaitingforPetitioner");
+                          logger.d("HandleonPressedWaitingforPetitioner");
                         },
                         child: Column(
                           children: [
@@ -153,7 +154,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         onPressed: () {
                           HandleonPressedInProgess();
-                          print("HandleonPressedInProgess");
+                          logger.d("HandleonPressedInProgess");
                         },
                         child: Column(
                           children: [
@@ -193,7 +194,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         onPressed: () {
                           HandleonPressedReadyToReceiveDocuments();
-                          print("HandleonPressedReadyToReceiveDocuments");
+                          logger.d("HandleonPressedReadyToReceiveDocuments");
                         },
                         child: Column(
                           children: [
@@ -324,10 +325,6 @@ class _HomeViewState extends State<HomeView> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  MeetingCard(),
                   SizedBox(
                     height: 10,
                   ),
