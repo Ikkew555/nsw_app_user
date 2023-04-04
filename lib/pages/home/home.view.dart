@@ -301,7 +301,7 @@ class _HomeViewState extends State<HomeView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "การนัดหมาย",
+                          homeDto.appointmentText,
                           style: Config.instance.f16boldprimary,
                         ),
                         SizedBox(
@@ -314,7 +314,7 @@ class _HomeViewState extends State<HomeView> {
                               shape: StadiumBorder(),
                             ),
                             child: Text(
-                              "การนัดหมายทั้งหมด",
+                              homeDto.allAppointmentText,
                               style: Config.instance.f12normalwhite,
                             ),
                             onPressed: () {

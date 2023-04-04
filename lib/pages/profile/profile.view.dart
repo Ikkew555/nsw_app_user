@@ -73,7 +73,7 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                         Image.asset(
                           profileDto.imagePathProfile,
-                          width: MediaQuery.of(context).size.width / 3,
+                          width: MediaQuery.of(context).size.width / 3.5,
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 8,
@@ -146,6 +146,9 @@ class _ProfileViewState extends State<ProfileView> {
                             PrivacyConsentButton(),
                             ContactUsButton(),
                             LogOutButton(),
+                            SizedBox(
+                              height: 40,
+                            ),
                           ],
                         ),
                       ),
